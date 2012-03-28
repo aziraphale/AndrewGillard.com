@@ -3,7 +3,7 @@
     <?php if (!$this->image): ?>
         <p>Invalid image.</p>
     <?php else: ?>
-        <p><a href="<?php echo $this->url(array('controller'=>'gallery', 'action'=>'album', 'id'=>$this->image->album), null, true) ?>/">&laquo; Back</a></p>
+        <p><a href="<?php echo $this->url(array('controller'=>'gallery', 'action'=>'album', 'id'=>$this->image->album), 'default', true) ?>/">&laquo; Back</a></p>
         <p class="gallery_img" id="gallery_image"><img id="gallery_img" src="<?php echo $this->baseUrl() ?>/img/gallery/<?php echo $this->escape($this->album->dirName) ?>/<?php echo $this->escape($this->image->filename) ?>" alt="Image #<?php echo $this->image->id ?>" /></p>
         <script type="text/javascript">
         var img = document.getElementById('gallery_img');
@@ -21,6 +21,6 @@
                 </tbody>
             </table>
         </div>
-        <p><a href="<?php echo $this->url(array('controller'=>'gallery', 'action'=>'album', 'id'=>$this->image->album), null, true) ?>/">&laquo; Back</a></p>
+        <p><a href="<?php echo $this->url(array('controller'=>'gallery', 'action'=>'album', 'id'=>$this->image->album), 'default', true) ?>/">&laquo; Back</a></p>
     <?php endif; ?>
 </article>

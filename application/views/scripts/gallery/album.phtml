@@ -6,7 +6,7 @@
             <p class="gallery_imglist">
                 <?php
                 foreach ($this->images as $image):
-                    ?><a href="<?php echo $this->url(array('controller'=>'gallery', 'action'=>'view', 'image'=>$image->id), null, true) ?>"><img src="<?php echo $this->baseUrl() ?>/img/gallery/<?php echo $this->escape($this->album->dirName) ?>/<?php echo $this->escape($image->filename) ?>.thumb" width="<?php echo $image->tWidth ?>" height="<?php echo $image->tHeight ?>" alt="<?php echo $this->escape($image->caption) ?>" title="<?php echo $this->escape($image->caption) ?>" /></a><?php
+                    ?><a href="<?php echo $this->url(array('controller'=>'gallery', 'action'=>'view', 'image'=>$image->id), 'default', true) ?>"><img src="<?php echo $this->baseUrl() ?>/img/gallery/<?php echo $this->escape($this->album->dirName) ?>/<?php echo $this->escape($image->filename) ?>.thumb" width="<?php echo $image->tWidth ?>" height="<?php echo $image->tHeight ?>" alt="<?php echo $this->escape($image->caption) ?>" title="<?php echo $this->escape($image->caption) ?>" /></a><?php
                 endforeach;
                 ?>
             </p>

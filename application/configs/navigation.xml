@@ -5,56 +5,79 @@
             <label>Home</label>
             <controller>blog</controller>
             <action>index</action>
+            <route>default</route>
+            <pages>
+                <blog>
+                    <label>Post</label>
+                    <controller>blog</controller>
+                    <action>view</action>
+                    <params>
+                        <id>*</id>
+                        <title>*</title>
+                    </params>
+                    <route>blogpost</route>
+                </blog>
+            </pages>
         </home>
         <discworld>
             <label>Discworld MUD</label>
             <controller>discworld</controller>
             <action>index</action>
+            <route>default</route>
             <pages>
                 <crecards>
                     <label>Creator Cards</label>
                     <controller>discworld</controller>
                     <action>cre-cards</action>
+                    <route>default</route>
                 </crecards>
                 <deaths>
                     <label>My Deaths</label>
                     <controller>discworld</controller>
                     <action>deaths</action>
+                    <route>default</route>
                 </deaths>
                 <grunthadeaths>
                     <label>Gruntha's Deaths</label>
                     <controller>discworld</controller>
                     <action>gruntha-deaths</action>
+                    <route>default</route>
                 </grunthadeaths>
                 <info>
                     <label>Information</label>
                     <controller>discworld</controller>
                     <action>information</action>
+                    <route>default</route>
                 </info>
                 <langgraphs>
                     <label>Language Graphs</label>
                     <controller>discworld</controller>
                     <action>language-graphs</action>
+                    <route>default</route>
                 </langgraphs>
                 <locations>
                     <label>Passage Locations</label>
                     <controller>discworld</controller>
                     <action>locations</action>
+                    <route>default</route>
                 </locations>
                 <logs>
                     <label>Logs</label>
                     <controller>discworld</controller>
                     <action>logs</action>
+                    <route>default</route>
                 </logs>
                 <maps>
                     <label>Maps</label>
                     <controller>discworld</controller>
                     <action>maps</action>
+                    <route>default</route>
 <!--                    <pages>
                         <cool>
                             <label>Monks of Cool</label>
                             <controller>discworld</controller>
                             <action>maps</action>
+                            <route>default</route>
                             <params>
                                 <map>monks-of-cool</map>
                             </params>
@@ -63,6 +86,7 @@
                             <label>Pictsie Barrows</label>
                             <controller>discworld</controller>
                             <action>maps</action>
+                            <route>default</route>
                             <params>
                                 <map>pictsie-barrows</map>
                             </params>
@@ -73,11 +97,13 @@
                     <label>Faith Rods</label>
                     <controller>discworld</controller>
                     <action>rods</action>
+                    <route>default</route>
                 </rods>
                 <sbscript>
                     <label>Status Bar Script</label>
                     <controller>discworld</controller>
                     <action>status-bar-script</action>
+                    <route>default</route>
                 </sbscript>
             </pages>
         </discworld>
@@ -85,16 +111,19 @@
             <label>Gallery</label>
             <controller>gallery</controller>
             <action>index</action>
+            <route>default</route>
         </gallery>
         <!--<other>
             <label>Miscellaneous</label>
             <controller>other</controller>
             <action>index</action>
+            <route>default</route>
             <pages>
                 <colournick>
                     <label>Coloured Nicks</label>
                     <controller>other</controller>
                     <action>colour-nick</action>
+                    <route>default</route>
                 </colournick>
             </pages>
         </other>-->
@@ -102,21 +131,25 @@
             <label>Portfolio</label>
             <controller>portfolio</controller>
             <action>index</action>
+            <route>default</route>
         </portfolio>
         <cv>
             <label>CV</label>
             <controller>cv</controller>
             <action>index</action>
+            <route>default</route>
         </cv>
         <w2m>
             <label>Web2Messenger</label>
             <controller>web2messenger</controller>
             <action>index</action>
+            <route>default</route>
         </w2m>
         <!--<xbox>
             <label>Xbox 360 Blog</label>
             <controller>xbox-blog</controller>
             <action>index</action>
+            <route>default</route>
         </xbox>-->
     </nav>
 </config>

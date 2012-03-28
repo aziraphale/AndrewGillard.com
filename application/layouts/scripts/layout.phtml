@@ -55,7 +55,7 @@ echo $this->doctype(); ?>
 </head>
 <body>
     <header>
-        <h1><a href="<?php echo $this->url(array('controller'=>'blog'), null, true) ?>">Andrew's Stuff</a></h1>
+        <h1><a href="<?php echo $this->url(array('controller'=>'blog', 'action'=>'index'), 'default', true) ?>">Andrew's Stuff</a></h1>
         <nav>
             <?php echo $this->navigation()->menu(); ?>
         </nav>

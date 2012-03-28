@@ -3,18 +3,18 @@
 <?php foreach ($this->paginator as $entry) : ?>
     <article class="blogpost">
 	    <h2>
-		    <a href="<?php echo $this->url(array('controller'=>'blog', 'action'=>'view', 'id'=>$entry->id), null, true) ?>">
+		    <a href="<?php echo $this->url(array('controller'=>'blog', 'action'=>'view', 'id'=>$entry->id, 'title'=>$entry->title), 'blogpost', true) ?>">
 			    <?php echo $this->escape($entry->title) ?>
 		    </a>
 	    </h2>
-        <h3 class="blogsubheading">Posted at <?php echo $entry->date->toString("EEE, d MMM yyyy, HH:mm:ss") ?> — <a href="<?php echo $this->url(array('controller'=>'blog', 'action'=>'view', 'id'=>$entry->id), null, true) ?>#disqus_thread" data-disqus-identifier="<?php echo $entry->id ?>">Comments</a></h3>
+        <h3 class="blogsubheading">Posted at <?php echo $entry->date->toString("EEE, d MMM yyyy, HH:mm:ss") ?> — <a href="<?php echo $this->url(array('controller'=>'blog', 'action'=>'view', 'id'=>$entry->id, 'title'=>$entry->title), 'blogpost', true) ?>#disqus_thread" data-disqus-identifier="<?php echo $entry->id ?>">Comments</a></h3>
         <div class="blogpostcontent">
             <?php if ($entry->isHtml): ?>
                 <?php echo $entry->shortBody() ?>
             <?php else: ?>
 	            <div><?php echo $this->bbcode->render($entry->shortBody()) ?></div>
             <?php endif; ?>
-            <p><a href="<?php echo $this->url(array('controller'=>'blog', 'action'=>'view', 'id'=>$entry->id), null, true) ?>">Read more...</a></p>
+            <p><a href="<?php echo $this->url(array('controller'=>'blog', 'action'=>'view', 'id'=>$entry->id, 'title'=>$entry->title), 'blogpost', true) ?>">Read more...</a></p>
         </div>
     </article>
 <?php endforeach; ?>
