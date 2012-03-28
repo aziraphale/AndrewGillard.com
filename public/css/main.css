@@ -4,8 +4,8 @@ body,html {
     font-family: Verdana,sans-serif;
 }
 body {
-    margin: 150px 0px 0px 20px;
-    background-color: white;
+    margin: 150px 200px 0px 20px;
+    background-color: #E0E0E0;
 }
 
 header a, nav a, aside.sidebar a, footer a, .pagination a, h1 a, h2 a, h3 a, h4 a, h5 a {
@@ -17,7 +17,7 @@ footer a:link, footer a:visited, footer a:active, footer a:hover,
     text-decoration: none;
 }
 a {
-    color: blue;
+    color: #2E648E;
 }
 
 header {
@@ -27,18 +27,26 @@ header {
     width: 100%;
     height: 120px;
     box-sizing: border-box;
-    background-color: #bbb;
-    box-shadow: 0px 4px 7px 2px #bbb;
+    box-shadow: 0px 4px 7px 2px rgba(0, 0, 0, 0.2);
+    background: rgb(173,209,237);
 }
 header h1 {
     margin: 15px 20px;
+}
+header h1 a {
+    color: #2E648E;
 }
 header nav {
     text-align: center;
     font-size: 0;
 }
-header .active > a, header nav ul > li:hover > ul .active a {
-    color: white;
+header nav > ul > li > a {
+    color: #8CB9DB;
+    background-color: #2E648E;
+}
+header nav .active > a, header nav ul > li:hover > ul .active a {
+    color: #2E648E;
+    background-color: #8CB9DB;
     font-weight: bold;
 }
 header nav ul ul {
@@ -47,7 +55,7 @@ header nav ul ul {
     padding: 0;
     text-align: left;
     position: absolute;
-/*    background-color: rgba(128, 128, 128, 1.0);*/
+    z-index: 10;
     font-size: initial;
     white-space: nowrap;
 }
@@ -80,17 +88,18 @@ header nav > ul > li > a {
     font-size: initial;
 }
 header nav ul > li:hover > a {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(140, 185, 219, 0.7);
+    color: #2E648E;
 }
 header nav ul > li:hover > ul {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(46, 100, 142, 0.9);
 }
 header nav ul > li:hover > ul a {
-    color: #ccc;
+    color: #8CB9DB;
 }
 header nav ul > li > ul > li:hover > a {
-    background-color: rgba(0, 0, 0, 0.9);
-    color: #fff;
+    background-color: rgba(140, 185, 219, 1.0);
+    color: #2E648E;
 }
 header nav ul li ul li {
     display: block;
@@ -102,14 +111,26 @@ header #breadcrumbs {
     position: absolute;
     bottom: 0px;
     left: 0px;
+    width: 100%;
+    z-index: 0;
     padding: 2px 10px;
     font-size: 0.8em;
+    background-color: rgb(140,185,219);
+    background: -moz-linear-gradient(top,  rgba(140,185,219,0) 0%, rgba(140,185,219,1) 25%, rgba(140,185,219,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(140,185,219,0)), color-stop(25%,rgba(140,185,219,1)), color-stop(100%,rgba(140,185,219,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(140,185,219,0) 0%,rgba(140,185,219,1) 25%,rgba(140,185,219,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(140,185,219,0) 0%,rgba(140,185,219,1) 25%,rgba(140,185,219,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(140,185,219,0) 0%,rgba(140,185,219,1) 25%,rgba(140,185,219,1) 100%); /* IE10+ */
+    background: linear-gradient(top,  rgba(140,185,219,0) 0%,rgba(140,185,219,1) 25%,rgba(140,185,219,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#008cb9db', endColorstr='#8cb9db',GradientType=0 ); /* IE6-9 */
+}
+header #breadcrumbs a {
+    color: #2E648E;
 }
 
 aside.sidebar {
-    float: right;
-/*    position: absolute;
-    right: 0px;*/
+    position: absolute;
+    right: 0px;
     width: 200px;
     font-size: small;
 }
@@ -117,21 +138,22 @@ aside.sidebar h1 {
     margin: 0px 0px;
     padding: 3px 5px 1px 7px;
     font-size: 1.2em;
-    background-color: #888;
+    background-color: #2E648E;
+    color: #8CB9DB;
 /*    border-radius-topleft: 15px;*/
     border-top-left-radius: 15px;
 }
 aside.sidebar div.boxcontent {
     margin-bottom: 10px;
     padding: 5px 5px 20px 7px;
-    background-color: #ccc;
-    background: -moz-linear-gradient(top,  rgba(127,127,127,0.2) 0%, rgba(127,127,127,0.4) 21%, rgba(127,127,127,0.4) 36%, rgba(127,127,127,0) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(127,127,127,0.2)), color-stop(21%,rgba(127,127,127,0.4)), color-stop(36%,rgba(127,127,127,0.4)), color-stop(100%,rgba(127,127,127,0))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  rgba(127,127,127,0.2) 0%,rgba(127,127,127,0.4) 21%,rgba(127,127,127,0.4) 36%,rgba(127,127,127,0) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  rgba(127,127,127,0.2) 0%,rgba(127,127,127,0.4) 21%,rgba(127,127,127,0.4) 36%,rgba(127,127,127,0) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  rgba(127,127,127,0.2) 0%,rgba(127,127,127,0.4) 21%,rgba(127,127,127,0.4) 36%,rgba(127,127,127,0) 100%); /* IE10+ */
-    background: linear-gradient(top,  rgba(127,127,127,0.2) 0%,rgba(127,127,127,0.4) 21%,rgba(127,127,127,0.4) 36%,rgba(127,127,127,0) 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#337f7f7f', endColorstr='#007f7f7f',GradientType=0 ); /* IE6-9 */
+    background-color: #C6D8E6;
+    background: -moz-linear-gradient(top,  rgba(198,216,230,0.2) 0%, rgba(198,216,230,0.4) 21%, rgba(198,216,230,0.4) 36%, rgba(198,216,230,0) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(198,216,230,0.2)), color-stop(21%,rgba(198,216,230,0.4)), color-stop(36%,rgba(198,216,230,0.4)), color-stop(100%,rgba(198,216,230,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(198,216,230,0.2) 0%,rgba(198,216,230,0.4) 21%,rgba(198,216,230,0.4) 36%,rgba(198,216,230,0) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(198,216,230,0.2) 0%,rgba(198,216,230,0.4) 21%,rgba(198,216,230,0.4) 36%,rgba(198,216,230,0) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(198,216,230,0.2) 0%,rgba(198,216,230,0.4) 21%,rgba(198,216,230,0.4) 36%,rgba(198,216,230,0) 100%); /* IE10+ */
+    background: linear-gradient(top,  rgba(198,216,230,0.2) 0%,rgba(198,216,230,0.4) 21%,rgba(198,216,230,0.4) 36%,rgba(198,216,230,0) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33C6D8E6', endColorstr='#00C6D8E6',GradientType=0 ); /* IE6-9 */
 }
 aside.sidebar ul {
     margin: 0px 0px;
@@ -186,7 +208,7 @@ ul.github li.github-fork:before {
     background-repeat: no-repeat;
     
     /* copy the position from sprite-sites-githubfork */
-    background-position:0px -384px;
+    background-position:0px -400px;
 }
 
 aside.sidebar .furry {
@@ -223,7 +245,7 @@ aside.sidebar .flickr {
 }
 
 #mainbody {
-    margin: 0px 230px 0px 10px;
+    margin: 0px 30px 0px 10px;
 }
 #mainbody article {
     margin: 20px 0px 20px 0px;
@@ -232,13 +254,19 @@ aside.sidebar .flickr {
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
     padding: 10px 20px;
     text-align: justify;
-    background-color: white;
+    background-color: #ffffff;
+}
+#mainbody article h1, #mainbody article h2, #mainbody article h3, #mainbody article h4, #mainbody article h5 {
+    text-align: left;
+}
+#mainbody article th, #mainbody article td {
+    text-align: initial;
 }
 #mainbody article h2 {
     margin: -10px -20px 30px -20px;
     padding: 2px 10px 4px 20px;
-    background-color: #444;
-    color: #ddd;
+    background-color: #2E648E;
+    color: #BED9ED;
     font-size: 1.2em;
     border-radius-topleft: 8px;
     border-radius-topright: 8px;
@@ -246,12 +274,12 @@ aside.sidebar .flickr {
     border-top-right-radius: 8px;
 }
 #mainbody article h2 a {
-    color: #ddd;
+    color: #BED9ED;
 }
 #mainbody article h3.blogsubheading {
     font-size: 0.8em;
     float: right;
-    background-color: #ddd;
+    background-color: #BED9ED;
     margin: -30px -20px 0px 0px;
     padding: 2px 8px 4px 8px;
     border-bottom-left-radius: 10px;
@@ -263,7 +291,7 @@ footer {
     margin: 60px 230px 10px 10px;
     text-align: center;
     font-size: small;
-    color: #444;
+    color: #7891A4;
 }
 footer ul {
     margin: 10px 0px 0px 0px;
@@ -294,9 +322,10 @@ footer ul li a {
     display: inline-block;
     padding: 0px 0px;
     margin: 0px;
-    border: 1px solid #888;
+    border: 1px solid #2E648E;
     border-radius: 10px;
     box-shadow: inset 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
+    background-color: #8CB9DB;
 }
 .pagination li {
     display: inline-block;
@@ -304,12 +333,14 @@ footer ul li a {
 .pagination li a, .pagination li span {
     display: inline-block;
     padding: 5px 8px 6px 6px;
+    color: #2E648E;
 }
 .pagination li span {
-    color: #aaa;
+    color: #ADD1ED;
 }
 .pagination li a:hover {
-    background-color: #ccc;
+    color: #BED9ED;
+    background-color: #2E648E;
 }
 .pagination li span:hover {
 }
@@ -341,7 +372,7 @@ footer ul li a {
     display: inline-block;
     margin: 20px;
     padding: 10px;
-    border: 1px solid #aaa;
+    border: 1px solid #2E648E;
     border-radius: 10px;
     box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.3);
     text-decoration: none;
@@ -354,8 +385,64 @@ footer ul li a {
     left: 2px;
 }
 
-.pfs {
-    clear: left;
+.portfoliosite {
+    overflow: auto;
+}
+.portfoliosite img {
+    margin: 10px;
+}
+.portfoliosite:nth-child(odd) img {
+    float: left;
+}
+.portfoliosite:nth-child(even) img {
+    float: right;
+}
+
+
+aside.cvdl {
+    font-size: 0.8em;
+    font-style: oblique;
+    margin: 0px 50px;
+    text-align: center;
+}
+aside.cvdl span {
+    display: inline-block;
+}
+aside.cvdl span a {
+    padding-left: 5px;
+}
+.cvredacted {
+    font-style: oblique;
+    color: #999;
+}
+.cvcentre {
+    text-align: center;
+}
+.cvcontacttable {
+    margin: 0px auto;
+}
+.cvcontacttable td {
+    padding: 0px 50px;
+}
+
+.cvqualificationtable {
+    width: 80%;
+    margin: 0px auto;
+}
+.cvqualificationtable, .cvqualificationtable th, .cvqualificationtable td {
+    border: 1px solid;
+    padding: 5px 8px;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+
+.cv h3 {
+    border: 1px solid #000;
+    border-width: 1px 3px 3px 1px;
+    background-color: #ccc;
+    padding: 2px 10px 3px 5px;
+    font-style: oblique;
+    font-variant: small-caps;
 }
 
 
@@ -388,6 +475,8 @@ footer ul li a {
  * 4. s/background-image:url\(sites.png\);background-repeat:no-repeat/content:"";float:left;width:16px;height:16px;background-image:url(../img/sites.png);background-repeat:no-repeat;/
  * 
  * (or just use the fix-sprite-css.php script in the meta/ dir)
+ * 
+ * ** DON'T FORGET TO COPY THE GITHUB-FORK POSITION TO THE `ul.github li.github-fork:before` STYLE! **
  */
 .sprite-sites-zce a:before,
 .sprite-sites-youtube a:before,
@@ -401,6 +490,7 @@ footer ul li a {
 .sprite-sites-qt a:before,
 .sprite-sites-python a:before,
 .sprite-sites-php a:before,
+.sprite-sites-pdf a:before,
 .sprite-sites-nusphere a:before,
 .sprite-sites-msghelp a:before,
 .sprite-sites-misc a:before,
@@ -418,6 +508,7 @@ footer ul li a {
 .sprite-sites-flickr a:before,
 .sprite-sites-facebook a:before,
 .sprite-sites-dwpriests a:before,
+.sprite-sites-docx a:before,
 .sprite-sites-css a:before,
 .sprite-sites-csharp a:before,
 .sprite-sites-cpp a:before,
@@ -441,27 +532,30 @@ footer ul li a {
 .sprite-sites-qt a:before{background-position:0px -144px;}
 .sprite-sites-python a:before{background-position:0px -160px;}
 .sprite-sites-php a:before{background-position:0px -176px;}
-.sprite-sites-nusphere a:before{background-position:0px -192px;}
-.sprite-sites-msghelp a:before{background-position:0px -208px;}
-.sprite-sites-misc a:before{background-position:0px -224px;}
-.sprite-sites-messbe a:before{background-position:0px -240px;}
-.sprite-sites-linkedin a:before{background-position:0px -256px;}
-.sprite-sites-lastfm a:before{background-position:0px -272px;}
-.sprite-sites-js a:before{background-position:0px -288px;}
-.sprite-sites-jquery a:before{background-position:0px -304px;}
-.sprite-sites-java a:before{background-position:0px -320px;}
-.sprite-sites-html5 a:before{background-position:0px -336px;}
-.sprite-sites-html a:before{background-position:0px -352px;}
-.sprite-sites-gplus a:before{background-position:0px -368px;}
-.sprite-sites-githubfork a:before{background-position:0px -384px;}
-.sprite-sites-github a:before{background-position:0px -400px;}
-.sprite-sites-flickr a:before{background-position:0px -416px;}
-.sprite-sites-facebook a:before{background-position:0px -432px;}
-.sprite-sites-dwpriests a:before{background-position:0px -448px;}
-.sprite-sites-css a:before{background-position:0px -464px;}
-.sprite-sites-csharp a:before{background-position:0px -480px;}
-.sprite-sites-cpp a:before{background-position:0px -496px;}
-.sprite-sites-cbsys a:before{background-position:0px -512px;}
+.sprite-sites-pdf a:before{background-position:0px -192px;}
+.sprite-sites-nusphere a:before{background-position:0px -208px;}
+.sprite-sites-msghelp a:before{background-position:0px -224px;}
+.sprite-sites-misc a:before{background-position:0px -240px;}
+.sprite-sites-messbe a:before{background-position:0px -256px;}
+.sprite-sites-linkedin a:before{background-position:0px -272px;}
+.sprite-sites-lastfm a:before{background-position:0px -288px;}
+.sprite-sites-js a:before{background-position:0px -304px;}
+.sprite-sites-jquery a:before{background-position:0px -320px;}
+.sprite-sites-java a:before{background-position:0px -336px;}
+.sprite-sites-html5 a:before{background-position:0px -352px;}
+.sprite-sites-html a:before{background-position:0px -368px;}
+.sprite-sites-gplus a:before{background-position:0px -384px;}
+.sprite-sites-githubfork a:before{background-position:0px -400px;}
+.sprite-sites-github a:before{background-position:0px -416px;}
+.sprite-sites-flickr a:before{background-position:0px -432px;}
+.sprite-sites-facebook a:before{background-position:0px -448px;}
+.sprite-sites-dwpriests a:before{background-position:0px -464px;}
+.sprite-sites-docx a:before{background-position:0px -480px;}
+.sprite-sites-css a:before{background-position:0px -496px;}
+.sprite-sites-csharp a:before{background-position:0px -512px;}
+.sprite-sites-cpp a:before{background-position:0px -528px;}
+.sprite-sites-cbsys a:before{background-position:0px -544px;}
+
 
 
 p.dwquote {

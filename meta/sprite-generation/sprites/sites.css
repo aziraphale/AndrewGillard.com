@@ -10,6 +10,7 @@
 .sprite-sites-qt a:before,
 .sprite-sites-python a:before,
 .sprite-sites-php a:before,
+.sprite-sites-pdf a:before,
 .sprite-sites-nusphere a:before,
 .sprite-sites-msghelp a:before,
 .sprite-sites-misc a:before,
@@ -27,6 +28,7 @@
 .sprite-sites-flickr a:before,
 .sprite-sites-facebook a:before,
 .sprite-sites-dwpriests a:before,
+.sprite-sites-docx a:before,
 .sprite-sites-css a:before,
 .sprite-sites-csharp a:before,
 .sprite-sites-cpp a:before,
@@ -50,24 +52,26 @@
 .sprite-sites-qt a:before{background-position:0px -144px;}
 .sprite-sites-python a:before{background-position:0px -160px;}
 .sprite-sites-php a:before{background-position:0px -176px;}
-.sprite-sites-nusphere a:before{background-position:0px -192px;}
-.sprite-sites-msghelp a:before{background-position:0px -208px;}
-.sprite-sites-misc a:before{background-position:0px -224px;}
-.sprite-sites-messbe a:before{background-position:0px -240px;}
-.sprite-sites-linkedin a:before{background-position:0px -256px;}
-.sprite-sites-lastfm a:before{background-position:0px -272px;}
-.sprite-sites-js a:before{background-position:0px -288px;}
-.sprite-sites-jquery a:before{background-position:0px -304px;}
-.sprite-sites-java a:before{background-position:0px -320px;}
-.sprite-sites-html5 a:before{background-position:0px -336px;}
-.sprite-sites-html a:before{background-position:0px -352px;}
-.sprite-sites-gplus a:before{background-position:0px -368px;}
-.sprite-sites-githubfork a:before{background-position:0px -384px;}
-.sprite-sites-github a:before{background-position:0px -400px;}
-.sprite-sites-flickr a:before{background-position:0px -416px;}
-.sprite-sites-facebook a:before{background-position:0px -432px;}
-.sprite-sites-dwpriests a:before{background-position:0px -448px;}
-.sprite-sites-css a:before{background-position:0px -464px;}
-.sprite-sites-csharp a:before{background-position:0px -480px;}
-.sprite-sites-cpp a:before{background-position:0px -496px;}
-.sprite-sites-cbsys a:before{background-position:0px -512px;}
+.sprite-sites-pdf a:before{background-position:0px -192px;}
+.sprite-sites-nusphere a:before{background-position:0px -208px;}
+.sprite-sites-msghelp a:before{background-position:0px -224px;}
+.sprite-sites-misc a:before{background-position:0px -240px;}
+.sprite-sites-messbe a:before{background-position:0px -256px;}
+.sprite-sites-linkedin a:before{background-position:0px -272px;}
+.sprite-sites-lastfm a:before{background-position:0px -288px;}
+.sprite-sites-js a:before{background-position:0px -304px;}
+.sprite-sites-jquery a:before{background-position:0px -320px;}
+.sprite-sites-java a:before{background-position:0px -336px;}
+.sprite-sites-html5 a:before{background-position:0px -352px;}
+.sprite-sites-html a:before{background-position:0px -368px;}
+.sprite-sites-gplus a:before{background-position:0px -384px;}
+.sprite-sites-githubfork a:before{background-position:0px -400px;}
+.sprite-sites-github a:before{background-position:0px -416px;}
+.sprite-sites-flickr a:before{background-position:0px -432px;}
+.sprite-sites-facebook a:before{background-position:0px -448px;}
+.sprite-sites-dwpriests a:before{background-position:0px -464px;}
+.sprite-sites-docx a:before{background-position:0px -480px;}
+.sprite-sites-css a:before{background-position:0px -496px;}
+.sprite-sites-csharp a:before{background-position:0px -512px;}
+.sprite-sites-cpp a:before{background-position:0px -528px;}
+.sprite-sites-cbsys a:before{background-position:0px -544px;}
