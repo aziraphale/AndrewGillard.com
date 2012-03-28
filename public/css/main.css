@@ -1,0 +1,542 @@
+body,html {
+    margin: 0px 0px;
+    padding: 0px;
+    font-family: Verdana,sans-serif;
+}
+body {
+    margin: 150px 0px 0px 20px;
+    background-color: white;
+}
+
+header a, nav a, aside.sidebar a, footer a, .pagination a, h1 a, h2 a, h3 a, h4 a, h5 a {
+/*header a:link, header a:visited, header a:active, header a:hover,
+nav a:link, nav a:visited, nav a:active, nav a:hover,
+aside.sidebar a:link, aside.sidebar a:visited, aside.sidebar a:active, aside.sidebar a:hover,
+footer a:link, footer a:visited, footer a:active, footer a:hover,
+.pagination a:link, .pagination a:visited, .pagination a:active, .pagination a:hover {*/
+    text-decoration: none;
+}
+a {
+    color: blue;
+}
+
+header {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 120px;
+    box-sizing: border-box;
+    background-color: #bbb;
+    box-shadow: 0px 4px 7px 2px #bbb;
+}
+header h1 {
+    margin: 15px 20px;
+}
+header nav {
+    text-align: center;
+    font-size: 0;
+}
+header .active > a, header nav ul > li:hover > ul .active a {
+    color: white;
+    font-weight: bold;
+}
+header nav ul ul {
+    display: none;
+    margin: 5px 0px 0px 0px;
+    padding: 0;
+    text-align: left;
+    position: absolute;
+/*    background-color: rgba(128, 128, 128, 1.0);*/
+    font-size: initial;
+    white-space: nowrap;
+}
+header nav ul ul li a {
+    padding: 3px 5px 3px 5px;
+    display: block;
+}
+header nav ul ul li:last-child a {
+    padding-bottom: 8px;
+}
+header nav ul li {
+    display: inline;
+    position: relative;
+}
+header nav > ul > li > a:not(:only-child):after {
+/*    padding-right: 20px;*/
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: 3px;
+    left: 2px;
+    background-image: url(http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/redmond/images/ui-icons_469bdd_256x240.png);
+    background-position: -64px 0;
+    background-repeat: no-repeat;
+}
+header nav > ul > li > a {
+    padding: 5px 8px;
+    font-size: initial;
+}
+header nav ul > li:hover > a {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+header nav ul > li:hover > ul {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+header nav ul > li:hover > ul a {
+    color: #ccc;
+}
+header nav ul > li > ul > li:hover > a {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #fff;
+}
+header nav ul li ul li {
+    display: block;
+}
+header nav ul li:hover ul {
+    display: block;
+}
+header #breadcrumbs {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    padding: 2px 10px;
+    font-size: 0.8em;
+}
+
+aside.sidebar {
+    float: right;
+/*    position: absolute;
+    right: 0px;*/
+    width: 200px;
+    font-size: small;
+}
+aside.sidebar h1 {
+    margin: 0px 0px;
+    padding: 3px 5px 1px 7px;
+    font-size: 1.2em;
+    background-color: #888;
+/*    border-radius-topleft: 15px;*/
+    border-top-left-radius: 15px;
+}
+aside.sidebar div.boxcontent {
+    margin-bottom: 10px;
+    padding: 5px 5px 20px 7px;
+    background-color: #ccc;
+    background: -moz-linear-gradient(top,  rgba(127,127,127,0.2) 0%, rgba(127,127,127,0.4) 21%, rgba(127,127,127,0.4) 36%, rgba(127,127,127,0) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(127,127,127,0.2)), color-stop(21%,rgba(127,127,127,0.4)), color-stop(36%,rgba(127,127,127,0.4)), color-stop(100%,rgba(127,127,127,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(127,127,127,0.2) 0%,rgba(127,127,127,0.4) 21%,rgba(127,127,127,0.4) 36%,rgba(127,127,127,0) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(127,127,127,0.2) 0%,rgba(127,127,127,0.4) 21%,rgba(127,127,127,0.4) 36%,rgba(127,127,127,0) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(127,127,127,0.2) 0%,rgba(127,127,127,0.4) 21%,rgba(127,127,127,0.4) 36%,rgba(127,127,127,0) 100%); /* IE10+ */
+    background: linear-gradient(top,  rgba(127,127,127,0.2) 0%,rgba(127,127,127,0.4) 21%,rgba(127,127,127,0.4) 36%,rgba(127,127,127,0) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#337f7f7f', endColorstr='#007f7f7f',GradientType=0 ); /* IE6-9 */
+}
+aside.sidebar ul {
+    margin: 0px 0px;
+}
+
+ul.sites, ul.sites ul {
+    list-style-type: none;
+    padding-left: 0px;
+}
+ul.sites ul {
+    margin-bottom: 2px;
+}
+ul.sites li ul li a {
+    margin: 1px 0px 2px 10px;
+}
+ul.sites li ul li a:before {
+    opacity: 0.4;
+    margin-right: 5px;
+}
+ul.sites li ul li:hover a:before {
+    opacity: 1.0;
+}
+ul.sites li a {
+    display: block;
+}
+
+
+ul.github {
+    list-style-type: none;
+    padding-left: 0px;
+}
+ul.github li {
+/*    display: block;*/
+}
+ul.github li a {
+    margin: 1px 0px 2px 2px;
+    display: block;
+}
+ul.github li a:before {
+    opacity: 0.4;
+    margin-right: 5px;
+}
+ul.github li:hover a:before {
+    opacity: 1.0;
+}
+ul.github li.github-fork:before {
+    content: "";
+    float: right;
+    width: 16px;
+    height: 16px;
+    background-image: url(../img/sites.png);
+    background-repeat: no-repeat;
+    
+    /* copy the position from sprite-sites-githubfork */
+    background-position:0px -384px;
+}
+
+aside.sidebar .furry {
+    padding-left: 23px;
+}
+
+aside.sidebar .tweets {
+}
+aside.sidebar .tweets p {
+    margin-top: 10px;
+    padding: 0px 5px;
+    font-size: 0.9em;
+}
+aside.sidebar .tweets .tweetbody {
+    display: block;
+}
+aside.sidebar .tweets .tweetdate {
+    font-style: oblique;
+    font-size: 0.9em;
+}
+aside.sidebar .tweets p:first-child {
+    margin-top: 0px;
+    padding-top: 5px;
+}
+aside.sidebar .tweets p:not(:last-child) {
+    padding-bottom: 10px;
+    margin-bottom: 0px;
+    border-bottom: 1px dashed;
+}
+
+aside.sidebar .flickr {
+    text-align: center;
+    padding-top: 5px;
+}
+
+#mainbody {
+    margin: 0px 230px 0px 10px;
+}
+#mainbody article {
+    margin: 20px 0px 20px 0px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
+    padding: 10px 20px;
+    text-align: justify;
+    background-color: white;
+}
+#mainbody article h2 {
+    margin: -10px -20px 30px -20px;
+    padding: 2px 10px 4px 20px;
+    background-color: #444;
+    color: #ddd;
+    font-size: 1.2em;
+    border-radius-topleft: 8px;
+    border-radius-topright: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+#mainbody article h2 a {
+    color: #ddd;
+}
+#mainbody article h3.blogsubheading {
+    font-size: 0.8em;
+    float: right;
+    background-color: #ddd;
+    margin: -30px -20px 0px 0px;
+    padding: 2px 8px 4px 8px;
+    border-bottom-left-radius: 10px;
+    border-radius-bottomleft: 10px;
+}
+
+footer {
+    clear: both;
+    margin: 60px 230px 10px 10px;
+    text-align: center;
+    font-size: small;
+    color: #444;
+}
+footer ul {
+    margin: 10px 0px 0px 0px;
+}
+footer ul li {
+    display: inline;
+    opacity: 0.5;
+}
+footer ul li:hover {
+    opacity: 1.0;
+}
+footer ul li a {
+    
+}
+
+.pagination {
+    margin: 0px 0px 0px 0px;
+    padding: 10px 0px 10px 0px;
+    font-size: 0.9em;
+    text-align: center;
+}
+.pagination h1 {
+    display: inline;
+    font-size: 1.0em;
+    margin-right: 10px;
+}
+.pagination ul {
+    display: inline-block;
+    padding: 0px 0px;
+    margin: 0px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
+}
+.pagination li {
+    display: inline-block;
+}
+.pagination li a, .pagination li span {
+    display: inline-block;
+    padding: 5px 8px 6px 6px;
+}
+.pagination li span {
+    color: #aaa;
+}
+.pagination li a:hover {
+    background-color: #ccc;
+}
+.pagination li span:hover {
+}
+.pagination li:first-child a {
+    padding-left: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-radius-topleft: 10px;
+    border-radius-bottomleft: 10px;
+}
+.pagination li:last-child a {
+    padding-right: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-radius-topright: 10px;
+    border-radius-bottomright: 10px;
+}
+.pagination .paginationdesc {
+    margin-left: 10px;
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+
+.albumlistentry {
+    display: inline-block;
+}
+.albumlistentry a {
+    display: inline-block;
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    text-align: center;
+}
+.albumlistentry a:hover {
+    box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.3);
+    position: relative;
+    top: 2px;
+    left: 2px;
+}
+
+.pfs {
+    clear: left;
+}
+
+
+.code {
+    background-color: #ddd;
+    font-family: monospace;
+    font-size: 0.9em;
+    padding: 0px 5px 0px 5px;
+}
+
+
+.sprite-footer-zf,
+.sprite-footer-rss,
+.sprite-footer-php,
+.sprite-footer-mysql,
+.sprite-footer-html5,
+.sprite-footer-css{background-image:url(../img/footer.png);background-repeat:no-repeat;display:inline-block;}
+.sprite-footer-zf{background-position:0px 0px;width:80px;height:15px;}
+.sprite-footer-rss{background-position:0px -15px;width:80px;height:15px;}
+.sprite-footer-php{background-position:0px -30px;width:80px;height:15px;}
+.sprite-footer-mysql{background-position:0px -45px;width:80px;height:15px;}
+.sprite-footer-html5{background-position:0px -60px;width:80px;height:15px;}
+.sprite-footer-css{background-position:0px -75px;width:80px;height:15px;}
+
+/**
+ * Regex replacements to turn `glue`'s CSS into what we need here...
+ * 1. s/width:16px;height:16px;//
+ * 2. s/,$/ a:before,/
+ * 3. s/\{/ a:before{/
+ * 4. s/background-image:url\(sites.png\);background-repeat:no-repeat/content:"";float:left;width:16px;height:16px;background-image:url(../img/sites.png);background-repeat:no-repeat;/
+ * 
+ * (or just use the fix-sprite-css.php script in the meta/ dir)
+ */
+.sprite-sites-zce a:before,
+.sprite-sites-youtube a:before,
+.sprite-sites-xbl a:before,
+.sprite-sites-wikipedia a:before,
+.sprite-sites-vb a:before,
+.sprite-sites-twitter a:before,
+.sprite-sites-twitpic a:before,
+.sprite-sites-steam a:before,
+.sprite-sites-stackexchange a:before,
+.sprite-sites-qt a:before,
+.sprite-sites-python a:before,
+.sprite-sites-php a:before,
+.sprite-sites-nusphere a:before,
+.sprite-sites-msghelp a:before,
+.sprite-sites-misc a:before,
+.sprite-sites-messbe a:before,
+.sprite-sites-linkedin a:before,
+.sprite-sites-lastfm a:before,
+.sprite-sites-js a:before,
+.sprite-sites-jquery a:before,
+.sprite-sites-java a:before,
+.sprite-sites-html5 a:before,
+.sprite-sites-html a:before,
+.sprite-sites-gplus a:before,
+.sprite-sites-githubfork a:before,
+.sprite-sites-github a:before,
+.sprite-sites-flickr a:before,
+.sprite-sites-facebook a:before,
+.sprite-sites-dwpriests a:before,
+.sprite-sites-css a:before,
+.sprite-sites-csharp a:before,
+.sprite-sites-cpp a:before,
+.sprite-sites-cbsys a:before{
+    content: "";
+    float: left;
+    width: 16px;
+    height: 16px;
+    background-image: url(../img/sites.png);
+    background-repeat: no-repeat;
+}
+.sprite-sites-zce a:before{background-position:0px 0px;}
+.sprite-sites-youtube a:before{background-position:0px -16px;}
+.sprite-sites-xbl a:before{background-position:0px -32px;}
+.sprite-sites-wikipedia a:before{background-position:0px -48px;}
+.sprite-sites-vb a:before{background-position:0px -64px;}
+.sprite-sites-twitter a:before{background-position:0px -80px;}
+.sprite-sites-twitpic a:before{background-position:0px -96px;}
+.sprite-sites-steam a:before{background-position:0px -112px;}
+.sprite-sites-stackexchange a:before{background-position:0px -128px;}
+.sprite-sites-qt a:before{background-position:0px -144px;}
+.sprite-sites-python a:before{background-position:0px -160px;}
+.sprite-sites-php a:before{background-position:0px -176px;}
+.sprite-sites-nusphere a:before{background-position:0px -192px;}
+.sprite-sites-msghelp a:before{background-position:0px -208px;}
+.sprite-sites-misc a:before{background-position:0px -224px;}
+.sprite-sites-messbe a:before{background-position:0px -240px;}
+.sprite-sites-linkedin a:before{background-position:0px -256px;}
+.sprite-sites-lastfm a:before{background-position:0px -272px;}
+.sprite-sites-js a:before{background-position:0px -288px;}
+.sprite-sites-jquery a:before{background-position:0px -304px;}
+.sprite-sites-java a:before{background-position:0px -320px;}
+.sprite-sites-html5 a:before{background-position:0px -336px;}
+.sprite-sites-html a:before{background-position:0px -352px;}
+.sprite-sites-gplus a:before{background-position:0px -368px;}
+.sprite-sites-githubfork a:before{background-position:0px -384px;}
+.sprite-sites-github a:before{background-position:0px -400px;}
+.sprite-sites-flickr a:before{background-position:0px -416px;}
+.sprite-sites-facebook a:before{background-position:0px -432px;}
+.sprite-sites-dwpriests a:before{background-position:0px -448px;}
+.sprite-sites-css a:before{background-position:0px -464px;}
+.sprite-sites-csharp a:before{background-position:0px -480px;}
+.sprite-sites-cpp a:before{background-position:0px -496px;}
+.sprite-sites-cbsys a:before{background-position:0px -512px;}
+
+
+p.dwquote {
+    background-color: #000000;
+    color: #c0c0c0;
+    font-family: "Courier New", monospace;
+    font-size: 10pt;
+    border: 6px solid #808080;
+    padding: 3px;
+    margin: 10px 0px 10px 0px;
+}
+p.dwcaption {
+    font-style: italic;
+    margin: 0px 0px 10px 10px;
+}
+.dwq_discon, .dwq_system {
+    color: #ffffff;
+    background-color: #808080;
+}
+.dwq_typed {
+    color: #ffffff;
+    background-color: #0000ff;
+}
+.dwq_grey, .dwq_boldgrey, .dwq_red, .dwq_boldred, .dwq_green, .dwq_boldgreen, .dwq_yellow, .dwq_boldyellow, .dwq_blue, .dwq_boldblue, .dwq_pink, .dwq_boldpink, .dwq_cyan, .dwq_boldcyan, .dwq_white {
+    background-color: #000000;
+}
+.dwq_grey {
+    color: #808080;
+}
+.dwq_boldgrey {
+    color: #c0c0c0;
+}
+.dwq_red {
+    color: #800000;
+}
+.dwq_boldred {
+    color: #ff0000;
+}
+.dwq_green {
+    color: #008000;
+}
+.dwq_boldgreen {
+    color: #00ff00;
+}
+.dwq_yellow {
+    color: #808000;
+}
+.dwq_boldyellow {
+    color: #ffff00;
+}
+.dwq_blue {
+    color: #000080;
+}
+.dwq_boldblue {
+    color: #0000ff;
+}
+.dwq_pink {
+    color: #800080;
+}
+.dwq_boldpink {
+    color: #ff00ff;
+}
+.dwq_cyan {
+    color: #008080;
+}
+.dwq_boldcyan {
+    color: #00ffff;
+}
+.dwq_white {
+    color: #ffffff;
+}
+.dwpretitlelist {
+    border: 1px solid #000080;
+}
+.dwpretitlelist th, .dwpretitlelist td {
+    border: 1px solid #000080;
+    padding: 2px 3px 2px 3px;
+}

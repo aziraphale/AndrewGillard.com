@@ -1,0 +1,13 @@
+<h1><?php echo $this->escape($this->title) ?></h1>
+<div class="boxcontent">
+    <?php
+    if ($this->cache === 0)
+        $this->cache = 1;
+    $cache = Zend_Cache::factory("Output", "File", array('lifetime'=>$this->cache), array('cache_dir'=>APPLICATION_PATH.'/tmp'));
+    if (!($cache->start("box_{$this->box}"))) {
+        $view = new Zend_View();
+        echo $view->setScriptPath(APPLICATION_PATH."/views/scripts")->render("_sidebar/{$this->box}.phtml");
+        $cache->end();
+    }
+    ?>
+</div>

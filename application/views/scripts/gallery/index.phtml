@@ -1,0 +1,19 @@
+<article>
+    <h2>Album List</h2>
+    <?php if ($this->albums): ?>
+        <p>Please select an album you wish to view the contents of.</p>
+        <p>Note that I don't really use this gallery very much (if at all) any more; most of my photo uploads to go <a href="http://www.flickr.com/photos/lorddeath/">my Flickr profile</a>.</p>
+        <?php foreach ($this->albums as $album): ?>
+            <?php $img = $album->findFirstImage(); ?>
+            <div class="albumlistentry">
+                <a href="<?php echo $this->url(array('action'=>'album', 'id'=>$album->id)) ?>">
+                    <img src="<?php echo $this->baseUrl() ?>/img/gallery/<?php echo $this->escape($album->dirName) ?>/<?php echo $this->escape($img->filename)?>.thumb" width="<?php echo $img->tWidth ?>" height="<?php echo $img->tHeight ?>" alt="<?php echo $this->escape($album->name) ?>" />
+                    <br />
+                    <?php echo $this->escape($album->name) ?>
+                </a>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p>No albums to list.</p>
+    <?php endif; ?>
+</article>

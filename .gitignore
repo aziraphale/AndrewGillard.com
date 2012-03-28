@@ -1,0 +1,7 @@
+
+/.settings
+/application/tmp/*
+/application/configs/application.ini
+*.php_
+Thumbs.db
+*.*~

@@ -1,0 +1,104 @@
+<?php
+
+$request = Zend_Controller_Front::getInstance()->getRequest();
+
+$this
+    ->headMeta()->appendHttpEquiv("Content-Type", "text/html; charset=utf-8")
+	->headMeta()->appendName("verify-v1", "/Fs6hzL+GWMWHiljMdhbegI8FrPkqQ7brWp8Cfun0LU=")
+    ;
+
+$this->navigation()->breadcrumbs()->setMinDepth(0)->setPartial('breadcrumbs-title.phtml')->render();
+$this
+    ->headTitle()->setSeparator(" - ")
+    ->headTitle("Andrew's Stuff")
+    ;
+
+$this
+    ->headLink()->appendStylesheet($this->baseUrl() . "/css/main.css", "screen")
+    ->headLink()->appendStylesheet("http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/redmond/jquery-ui.css")
+//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/print.css", "print")
+//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/mobile.css", "handheld")
+    ;
+
+$this
+//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/ie6.css", "screen", "lte IE 6")
+//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/ie7.css", "screen", "lte IE 7")
+//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/main.css", "screen and (min-device-width: 601px)")
+//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/handheld.css", "all and (max-device-width: 600px)")
+//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/handheld.css", "all and (-webkit-device-pixel-ratio:0.75)")
+//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/handheld.css", "all and (-webkit-device-pixel-ratio:1.0)")
+//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/handheld.css", "all and (-webkit-device-pixel-ratio:1.5)")
+    ;
+
+
+$rssUrl = $this->url(array('controller'=>'blog', 'action'=>'rss'), 'default', true);
+$this
+    ->headLink()->appendAlternate($rssUrl, "application/rss+xml", "Andrew's Stuff - News")
+	->headLink(array('rel'=>'icon', 'href'=>$this->baseUrl() . '/img/favicon.ico'))
+//    ->headLink(array('rev'=>'canonical', 'href'=>$this->baseUrl()))
+    ;
+
+$this->headScript()
+    ->appendFile($this->baseUrl() . '/js/misc.js')
+    ->appendFile("http://platform.twitter.com/anywhere.js?id=i4bNsKCLceEAbuaGiZPhw&amp;v=1")
+    ->appendFile("http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js")
+    ->appendFile("http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js")
+    ;
+
+echo $this->doctype(); ?>
+<html>
+<head>
+	<?php echo $this->headMeta() ?>
+	<?php echo $this->headTitle() ?>
+	<?php echo $this->headLink() ?>
+    <?php echo $this->headScript() ?>
+</head>
+<body>
+    <header>
+        <h1><a href="<?php echo $this->url(array('controller'=>'blog'), null, true) ?>">Andrew's Stuff</a></h1>
+        <nav>
+            <?php echo $this->navigation()->menu(); ?>
+        </nav>
+        
+        <div id="breadcrumbs">Location: <?php echo $this->navigation()->breadcrumbs()->setPartial(null)->setLinkLast(true)->setSeparator(" &raquo; ")->setMinDepth(0); ?></div>
+    </header>
+    
+    <aside class="sidebar">
+        <?php echo $this->partial("sidebar-box.phtml", array("title"=>"Me Around the Web",      "box"=>"sites",     "cache"=>0      )) ?>
+        <?php echo $this->partial("sidebar-box.phtml", array("title"=>"My GitHub Projects",     "box"=>"github",    "cache"=>0      )) ?>
+        <?php echo $this->partial("sidebar-box.phtml", array("title"=>"Furry Stuff",            "box"=>"furry",     "cache"=>0      )) ?>
+        <?php echo $this->partial("sidebar-box.phtml", array("title"=>"My Recent Tweets",       "box"=>"twitter",   "cache"=>3000    )) ?>
+        <?php echo $this->partial("sidebar-box.phtml", array("title"=>"Latest Flickr Uploads",  "box"=>"flickr",    "cache"=>36000   )) ?>
+    </aside>
+
+    <div id="mainbody">
+        <?php echo $this->layout()->content; ?>
+    </div>
+
+    <footer>
+        <p>©2004-<?php echo Zend_Date::now()->toValue(Zend_Date::YEAR) ?> Andrew Gillard</p>
+
+        <?php $uri = $this->serverUrl() . $request->getRequestUri() ?>
+        <?php $footerImgPath = $this->baseUrl() . '/img/footer' ?>
+        <ul>
+            <li><a href="http://jigsaw.w3.org/css-validator/validator?uri=<?php echo $uri ?>" title="Valid CSS!" class="sprite-footer-css"></a></li>
+            <li><a href="http://validator.w3.org/check?uri=<?php echo $uri ?>" title="Valid HTML5!" class="sprite-footer-html5"></a></li>
+            <li><a href="http://www.php.net/" title="Powered by PHP" class="sprite-footer-php"></a></li>
+            <li><a href="http://framework.zend.com/" title="Powered by the Zend Framework" class="sprite-footer-zf"></a></li>
+            <li><a href="http://www.mysql.com/" title="Powered by MySQL" class=sprite-footer-mysql></a></li>
+            <li><a href="<?php echo $rssUrl ?>" title="RSS Feed" class="sprite-footer-rss"></a></li>
+        </ul>
+    </footer>
+    
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-4155842-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+</body>
+</html>

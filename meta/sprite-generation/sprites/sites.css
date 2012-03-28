@@ -1,0 +1,73 @@
+.sprite-sites-zce a:before,
+.sprite-sites-youtube a:before,
+.sprite-sites-xbl a:before,
+.sprite-sites-wikipedia a:before,
+.sprite-sites-vb a:before,
+.sprite-sites-twitter a:before,
+.sprite-sites-twitpic a:before,
+.sprite-sites-steam a:before,
+.sprite-sites-stackexchange a:before,
+.sprite-sites-qt a:before,
+.sprite-sites-python a:before,
+.sprite-sites-php a:before,
+.sprite-sites-nusphere a:before,
+.sprite-sites-msghelp a:before,
+.sprite-sites-misc a:before,
+.sprite-sites-messbe a:before,
+.sprite-sites-linkedin a:before,
+.sprite-sites-lastfm a:before,
+.sprite-sites-js a:before,
+.sprite-sites-jquery a:before,
+.sprite-sites-java a:before,
+.sprite-sites-html5 a:before,
+.sprite-sites-html a:before,
+.sprite-sites-gplus a:before,
+.sprite-sites-githubfork a:before,
+.sprite-sites-github a:before,
+.sprite-sites-flickr a:before,
+.sprite-sites-facebook a:before,
+.sprite-sites-dwpriests a:before,
+.sprite-sites-css a:before,
+.sprite-sites-csharp a:before,
+.sprite-sites-cpp a:before,
+.sprite-sites-cbsys a:before{
+    content: "";
+    float: left;
+    width: 16px;
+    height: 16px;
+    background-image: url(../img/sites.png);
+    background-repeat: no-repeat;
+}
+.sprite-sites-zce a:before{background-position:0px 0px;}
+.sprite-sites-youtube a:before{background-position:0px -16px;}
+.sprite-sites-xbl a:before{background-position:0px -32px;}
+.sprite-sites-wikipedia a:before{background-position:0px -48px;}
+.sprite-sites-vb a:before{background-position:0px -64px;}
+.sprite-sites-twitter a:before{background-position:0px -80px;}
+.sprite-sites-twitpic a:before{background-position:0px -96px;}
+.sprite-sites-steam a:before{background-position:0px -112px;}
+.sprite-sites-stackexchange a:before{background-position:0px -128px;}
+.sprite-sites-qt a:before{background-position:0px -144px;}
+.sprite-sites-python a:before{background-position:0px -160px;}
+.sprite-sites-php a:before{background-position:0px -176px;}
+.sprite-sites-nusphere a:before{background-position:0px -192px;}
+.sprite-sites-msghelp a:before{background-position:0px -208px;}
+.sprite-sites-misc a:before{background-position:0px -224px;}
+.sprite-sites-messbe a:before{background-position:0px -240px;}
+.sprite-sites-linkedin a:before{background-position:0px -256px;}
+.sprite-sites-lastfm a:before{background-position:0px -272px;}
+.sprite-sites-js a:before{background-position:0px -288px;}
+.sprite-sites-jquery a:before{background-position:0px -304px;}
+.sprite-sites-java a:before{background-position:0px -320px;}
+.sprite-sites-html5 a:before{background-position:0px -336px;}
+.sprite-sites-html a:before{background-position:0px -352px;}
+.sprite-sites-gplus a:before{background-position:0px -368px;}
+.sprite-sites-githubfork a:before{background-position:0px -384px;}
+.sprite-sites-github a:before{background-position:0px -400px;}
+.sprite-sites-flickr a:before{background-position:0px -416px;}
+.sprite-sites-facebook a:before{background-position:0px -432px;}
+.sprite-sites-dwpriests a:before{background-position:0px -448px;}
+.sprite-sites-css a:before{background-position:0px -464px;}
+.sprite-sites-csharp a:before{background-position:0px -480px;}
+.sprite-sites-cpp a:before{background-position:0px -496px;}
+.sprite-sites-cbsys a:before{background-position:0px -512px;}

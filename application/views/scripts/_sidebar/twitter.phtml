@@ -1,0 +1,39 @@
+<?php
+$twitter = new Zend_Service_Twitter();
+$tweets = $twitter->statusUserTimeline(array('id'=>18414634, 'count'=>10, 'trim_user'=>true, 'include_entities'=>true));
+//var_dump($tweets);
+?>
+<script type="text/javascript">
+twttr.anywhere(function(T) {
+    T.hovercards();
+});
+</script>
+<?php if (count($tweets->status)): ?>
+    <div class="tweets">
+        <?php foreach ($tweets->status as $tweet): ?>
+            <p class="tweet" title="Posted at <?php echo $tweet->created_at ?>">
+                <span class="tweetbody"><?php echo AG_Formatting::linkifyUrlsFromTwitter($tweet->text, $tweet->entities) ?></span>
+                <span class="tweetdate">
+                    <?php
+                    $d = new Zend_Date(strtotime($tweet->created_at));
+                    
+                    if ($d->isToday()) {
+                        echo "Today";
+                    } elseif ($d->isYesterday()) {
+                        echo "Yesterday";
+                    } elseif ($d->getYear()->equals(Zend_Date::now()->getYear())) {
+//                        if ($d->getMonth()->equals(Zend_Date::now()->getMonth())) {
+//                            echo $d->toString("EEE, d");
+//                        } else {
+                            echo $d->toString("EEE, d MMM");
+//                        }
+                    } else {
+                        echo $d->toString("EEE, d MMM YYYY");
+                    }
+                    echo " at " . $d->toString("HH:mm:ss");
+                    ?>
+                </span>
+            </p>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
