@@ -67,7 +67,7 @@ header nav ul ul {
     text-align: left;
     position: absolute;
     z-index: 10;
-    font-size: initial;
+    font-size: 12pt;
     white-space: nowrap;
 }
 header nav ul ul li a {
@@ -96,7 +96,7 @@ header nav > ul > li > a:not(:only-child):after {
 }
 header nav > ul > li > a {
     padding: 5px 8px;
-    font-size: initial;
+    font-size: 12pt;
 }
 header nav ul > li:hover > a {
     background-color: rgba(140, 185, 219, 0.7);
@@ -419,8 +419,11 @@ footer ul li a {
     text-align: center;
     font-size: 0; /* fixes a weird white space to the right of images */
 }
+#mainbody .albumlistentry img {
+    margin-bottom: 5px;
+}
 #mainbody .albumlistentry a .albumlisttitle {
-    font-size: initial;
+    font-size: 12pt;
 }
 #mainbody .albumlistentry a:hover {
     background-color: inherit;

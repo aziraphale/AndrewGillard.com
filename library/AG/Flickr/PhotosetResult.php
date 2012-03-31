@@ -119,42 +119,42 @@ class AG_Flickr_PhotosetResult
      *
      * @var Zend_Service_Flickr_Image
      */
-    public $Square;
+    protected $Square;
 
     /**
      * A 100 pixel thumbnail of the primary image.
      *
      * @var Zend_Service_Flickr_Image
      */
-    public $Thumbnail;
+    protected $Thumbnail;
 
     /**
      * A 240 pixel version of the primary image.
      *
      * @var Zend_Service_Flickr_Image
      */
-    public $Small;
+    protected $Small;
 
     /**
      * A 500 pixel version of the primary image.
      *
      * @var Zend_Service_Flickr_Image
      */
-    public $Medium;
+    protected $Medium;
 
     /**
      * A 640 pixel version of the primary image.
      *
      * @var Zend_Service_Flickr_Image
      */
-    public $Large;
+    protected $Large;
 
     /**
      * The original primary image.
      *
      * @var Zend_Service_Flickr_Image
      */
-    public $Original;
+    protected $Original;
 
     /**
      * Original Zend_Service_Flickr object.
@@ -182,9 +182,74 @@ class AG_Flickr_PhotosetResult
         $this->description = $xpath->evaluate("string(./description)", $image);
 
         $this->_flickr = $flickr;
-
+    }
+    
+    protected function populateImages() {
+        if (isset($this->Small))
+            return;
+        
         foreach ($this->_flickr->getImageDetails($this->primary) as $k => $v) {
             $this->$k = $v;
         }
+    }
+    
+    /**
+     * A 75x75 pixel square thumbnail of the primary image.
+     *
+     * @returns Zend_Service_Flickr_Image
+     */
+    public function Square() {
+        $this->populateImages();
+        return $this->Square;
+    }
+
+    /**
+     * A 100 pixel thumbnail of the primary image.
+     *
+     * @returns Zend_Service_Flickr_Image
+     */
+    public function Thumbnail() {
+        $this->populateImages();
+        return $this->Thumbnail;
+    }
+
+    /**
+     * A 240 pixel version of the primary image.
+     *
+     * @returns Zend_Service_Flickr_Image
+     */
+    public function Small() {
+        $this->populateImages();
+        return $this->Small;
+    }
+
+    /**
+     * A 500 pixel version of the primary image.
+     *
+     * @returns Zend_Service_Flickr_Image
+     */
+    public function Medium() {
+        $this->populateImages();
+        return $this->Medium;
+    }
+
+    /**
+     * A 640 pixel version of the primary image.
+     *
+     * @returns Zend_Service_Flickr_Image
+     */
+    public function Large() {
+        $this->populateImages();
+        return $this->Large;
+    }
+
+    /**
+     * The original primary image.
+     *
+     * @returns Zend_Service_Flickr_Image
+     */
+    public function Original() {
+        $this->populateImages();
+        return $this->Original;
     }
 }
