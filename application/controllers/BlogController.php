@@ -3,8 +3,8 @@
 class BlogController extends Zend_Controller_Action
 {
 
-    private $blogModel;
-    
+    private $blogModel = null;
+
     public function init()
     {
         $this->blogModel = new Application_Model_DbTable_Blog();
@@ -26,6 +26,21 @@ class BlogController extends Zend_Controller_Action
     {
     	$this->view->entry = $this->blogModel->getEntry($this->_getParam("id", 0));
     }
-    
+
+    public function rssAction()
+    {
+        header("Content-type: text/xml");
+        $this->view->paginator = Zend_Paginator::factory(
+                $this->blogModel->select()
+                            ->where("visible=1")
+                            ->order('date DESC')
+            )
+            ->setItemCountPerPage(5)
+            ->setCurrentPageNumber(1);
+    }
+
+
 }
+
+
 

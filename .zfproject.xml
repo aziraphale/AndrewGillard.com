@@ -15,6 +15,7 @@
         <controllerFile controllerName="Blog">
           <actionMethod actionName="index"/>
           <actionMethod actionName="view"/>
+          <actionMethod actionName="rss"/>
         </controllerFile>
         <controllerFile controllerName="Discworld">
           <actionMethod actionName="index"/>
@@ -155,6 +156,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="About">
             <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Blog">
+            <viewScriptFile forActionName="rss"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

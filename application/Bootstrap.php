@@ -11,6 +11,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $layout = $this->getResource('layout');
         $view = $layout->getView();
         
+        Zend_Controller_Front::getInstance()->getRouter()->addRoute('newsxml', new Zend_Controller_Router_Route_Static('news.xml', array('controller'=>'blog', 'action'=>'rss')));
+        
         $config = new Zend_Config_Json(APPLICATION_PATH.'/configs/navigation.json', 'nav');
         $navigation = new Zend_Navigation($config);
         $view->navigation($navigation);
