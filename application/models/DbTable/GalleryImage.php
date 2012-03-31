@@ -1,13 +1,12 @@
 <?php
 
-//class GalleryImage extends Zend_Db_Table_Abstract
-class Application_Model_DbTable_GalleryImage extends Zend_Db_Table_Abstract
+class Model_GalleryImage extends Zend_Db_Table_Abstract
 {
     protected $_name = 'galleryimages';
     protected $_referenceMap = array(
         'Album' => array(
             'columns' => 'album',
-            'refTableClass' => 'Application_Model_DbTable_GalleryAlbum',
+            'refTableClass' => 'Model_GalleryAlbum',
             'refColumns' => 'id'
         ),
     );
@@ -24,7 +23,7 @@ class Application_Model_DbTable_GalleryImage extends Zend_Db_Table_Abstract
         return $row;
     }
     
-    public function addImage(Application_Model_GalleryAlbum $album, $filename, $caption, $height, $width, $thumbHeight, $thumbWidth, $make, $model, $dateTime, $exposureTime, $fNumber, $isoSpeed) {
+    public function addImage(Model_GalleryAlbum $album, $filename, $caption, $height, $width, $thumbHeight, $thumbWidth, $make, $model, $dateTime, $exposureTime, $fNumber, $isoSpeed) {
         $this->insert(array(
                 'album' => $album->id,
                 'filename' => $filename,
@@ -42,7 +41,7 @@ class Application_Model_DbTable_GalleryImage extends Zend_Db_Table_Abstract
         ));
     }
     
-    public function updateImage($id, Application_Model_GalleryAlbum $album, $filename, $caption, $height, $width, $thumbHeight, $thumbWidth, $make, $model, $dateTime, $exposureTime, $fNumber, $isoSpeed) {
+    public function updateImage($id, Model_GalleryAlbum $album, $filename, $caption, $height, $width, $thumbHeight, $thumbWidth, $make, $model, $dateTime, $exposureTime, $fNumber, $isoSpeed) {
         $this->update(array(
                 'album' => $album->id,
                 'filename' => $filename,
@@ -75,8 +74,7 @@ class Application_Model_DbTable_GalleryImage extends Zend_Db_Table_Abstract
 
 class GalleryImage_Row extends Zend_Db_Table_Row_Abstract {
     public function findAlbum() {
-        return $this->findParentRow("Application_Model_DbTable_GalleryAlbum");
-//        return $this->findParentApplication_Model_DbTable_GalleryAlbum();
+        return $this->findParentModel_GalleryAlbum();
     }
     
     public function findFirstImage() {

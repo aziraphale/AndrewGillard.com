@@ -7,7 +7,7 @@ class BlogController extends Zend_Controller_Action
 
     public function init()
     {
-        $this->blogModel = new Application_Model_DbTable_Blog();
+        $this->blogModel = new Model_Blog();
         $this->view->bbcode = Zend_Markup::factory("Bbcode");
     }
 

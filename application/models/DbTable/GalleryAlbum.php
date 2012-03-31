@@ -1,7 +1,6 @@
 <?php
 
-//class GalleryAlbum extends Zend_Db_Table_Abstract
-class Application_Model_DbTable_GalleryAlbum extends Zend_Db_Table_Abstract
+class Model_GalleryAlbum extends Zend_Db_Table_Abstract
 {
     protected $_name = 'galleryalbums';
 
@@ -39,8 +38,7 @@ class Application_Model_DbTable_GalleryAlbum extends Zend_Db_Table_Abstract
 
 class GalleryAlbum_Row extends Zend_Db_Table_Row_Abstract {
     public function findImages() {
-        return $this->findDependentRowset("Application_Model_DbTable_GalleryImage");
-//        return $this->findApplication_Model_DbTable_GalleryImage();
+        return $this->findModel_GalleryImage();
     }
     
     public function findFirstImage() {

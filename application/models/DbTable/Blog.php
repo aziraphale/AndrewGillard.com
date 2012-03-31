@@ -1,6 +1,6 @@
 <?php
 
-class Application_Model_DbTable_Blog extends Zend_Db_Table_Abstract
+class Model_Blog extends Zend_Db_Table_Abstract
 {
 
     protected $_name = 'blog';
@@ -67,8 +67,7 @@ class Blog_Row extends Zend_Db_Table_Row_Abstract {
         if (!$includeHidden) {
             $select->where("visible=1");
         }
-        return $this->findDependentRowset("Application_Model_DbTable_BlogComment", null, $select);
-//        return $this->findApplication_Model_DbTable_BlogComment();
+        return $this->findModel_BlogComment($select);
     }
     
     public function findTopLevelComments($includeHidden=false) {
@@ -76,8 +75,7 @@ class Blog_Row extends Zend_Db_Table_Row_Abstract {
         if (!$includeHidden) {
             $select->where("visible=1");
         }
-        return $this->findDependentRowset("Application_Model_DbTable_BlogComment", null, $select);
-//        return $this->findApplication_Model_DbTable_BlogComment();
+        return $this->findModel_BlogComment($select);
     }
     
     public function getCommentCount($includeHidden=false) {

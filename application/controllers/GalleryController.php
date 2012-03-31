@@ -8,8 +8,8 @@ class GalleryController extends Zend_Controller_Action
     
     public function init()
     {
-        $this->imageModel = new Application_Model_DbTable_GalleryImage();
-        $this->albumModel = new Application_Model_DbTable_GalleryAlbum();
+        $this->imageModel = new Model_GalleryImage();
+        $this->albumModel = new Model_GalleryAlbum();
     }
 
     public function indexAction()

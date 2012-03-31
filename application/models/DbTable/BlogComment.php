@@ -1,17 +1,17 @@
 <?php
 
-class Application_Model_DbTable_BlogComment extends Zend_Db_Table_Abstract
+class Model_BlogComment extends Zend_Db_Table_Abstract
 {
     protected $_name = 'blogcomments';
     protected $_referenceMap = array(
         'Blog' => array(
             'columns' => 'blogPost',
-            'refTableClass' => 'Application_Model_DbTable_Blog',
+            'refTableClass' => 'Model_Blog',
             'refColumns' => 'id'
         ),
         'Parent' => array(
             'columns' => 'parentComment',
-            'refTableClass' => 'Application_Model_DbTable_BlogComment',
+            'refTableClass' => 'Model_BlogComment',
             'refColumns' => 'id'
         ),
     );
@@ -28,7 +28,7 @@ class Application_Model_DbTable_BlogComment extends Zend_Db_Table_Abstract
         return $row;
     }
     
-    public function addComment(Application_Model_Blog $blogPost, Application_Model_DbTable_BlogComment $parentComment=null, $posterName, $title, $comment, $ip, $visible=true, $method, $get, $post, $server) {
+    public function addComment(Model_Blog $blogPost, Model_BlogComment $parentComment=null, $posterName, $title, $comment, $ip, $visible=true, $method, $get, $post, $server) {
         $this->insert(array(
                 'blogPost' => $blogPost->id,
                 'parentComment' => ($parentComment ? $parentComment->id : null),
@@ -45,7 +45,7 @@ class Application_Model_DbTable_BlogComment extends Zend_Db_Table_Abstract
         ));
     }
     
-    public function updateComment($id, Application_Model_Blog $blogPost, Application_Model_DbTable_BlogComment $parentComment=null, $posterName, $title, $comment, $ip, $visible=true, $method, $get, $post, $server) {
+    public function updateComment($id, Model_Blog $blogPost, Model_BlogComment $parentComment=null, $posterName, $title, $comment, $ip, $visible=true, $method, $get, $post, $server) {
         $this->update(array(
                 'blogPost' => $blogPost->id,
                 'parentComment' => ($parentComment ? $parentComment->id : null),
@@ -78,7 +78,7 @@ class BlogComment_Row extends Zend_Db_Table_Row_Abstract {
         if (!$includeHidden) {
             $select->where("visible=1");
         }
-        return $this->findDependentRowset("Application_Model_DbTable_BlogComment", null, $select);
+        return $this->findDependentRowset("Model_BlogComment", null, $select);
     }
 }
 
