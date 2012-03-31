@@ -90,7 +90,7 @@ header nav > ul > li > a:not(:only-child):after {
     position: relative;
     top: 3px;
     left: 2px;
-    background-image: url(http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/redmond/images/ui-icons_469bdd_256x240.png);
+    background-image: url(./images/ui-icons_469bdd_256x240.png);
     background-position: -64px 0;
     background-repeat: no-repeat;
 }
@@ -227,7 +227,7 @@ ul.github li.github-fork:before {
     float: right;
     width: 16px;
     height: 16px;
-    background-image: url(../img/sites.png);
+    background-image: url(../img/sites.png?40f1aa);
     background-repeat: no-repeat;
     
     /* copy the position from sprite-sites-githubfork */
@@ -509,7 +509,7 @@ aside.cvdl span a {
 .sprite-footer-php,
 .sprite-footer-mysql,
 .sprite-footer-html5,
-.sprite-footer-css{background-image:url(../img/footer.png);background-repeat:no-repeat;display:inline-block;}
+.sprite-footer-css{background-image:url(../img/footer.png?340954);background-repeat:no-repeat;display:inline-block;}
 .sprite-footer-zf{background-position:0px 0px;width:80px;height:15px;}
 .sprite-footer-rss{background-position:0px -15px;width:80px;height:15px;}
 .sprite-footer-php{background-position:0px -30px;width:80px;height:15px;}
@@ -569,7 +569,7 @@ aside.cvdl span a {
     float: left;
     width: 16px;
     height: 16px;
-    background-image: url(../img/sites.png);
+    background-image: url(../img/sites.png?40f1aa);
     background-repeat: no-repeat;
 }
 .sprite-sites-zce a:before{background-position:0px 0px;}

@@ -15,7 +15,7 @@ $this
 
 $this
     ->headLink()->appendStylesheet($this->baseUrl() . "/css/main.css", "screen")
-    ->headLink()->appendStylesheet("http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/redmond/jquery-ui.css")
+    ->headLink()->appendStylesheet($this->baseUrl() . "/css/jquery-ui-1.8.18.redmond.css", "screen")
 //    ->headLink()->appendStylesheet($this->baseUrl() . "/css/print.css", "print")
 //    ->headLink()->appendStylesheet($this->baseUrl() . "/css/mobile.css", "handheld")
     ;
@@ -39,10 +39,10 @@ $this
     ;
 
 $this->headScript()
+    ->appendFile($this->baseUrl() . '/js/jquery-1.7.2.min.js')
+    ->appendFile($this->baseUrl() . '/js/jquery-ui-1.8.18.min.js')
     ->appendFile($this->baseUrl() . '/js/misc.js')
     ->appendFile("http://platform.twitter.com/anywhere.js?id=i4bNsKCLceEAbuaGiZPhw&amp;v=1")
-    ->appendFile("http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js")
-    ->appendFile("http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js")
     ;
 
 echo $this->doctype(); ?>

@@ -1,12 +1,19 @@
-.sprite-footer-zf,
-.sprite-footer-rss,
-.sprite-footer-php,
-.sprite-footer-mysql,
-.sprite-footer-html5,
-.sprite-footer-css{background-image:url(footer.png);background-repeat:no-repeat}
-.sprite-footer-zf{background-position:0px 0px;width:80px;height:15px;}
-.sprite-footer-rss{background-position:0px -15px;width:80px;height:15px;}
-.sprite-footer-php{background-position:0px -30px;width:80px;height:15px;}
-.sprite-footer-mysql{background-position:0px -45px;width:80px;height:15px;}
-.sprite-footer-html5{background-position:0px -60px;width:80px;height:15px;}
-.sprite-footer-css{background-position:0px -75px;width:80px;height:15px;}
+.sprite-footer-zf a:before,
+.sprite-footer-rss a:before,
+.sprite-footer-php a:before,
+.sprite-footer-mysql a:before,
+.sprite-footer-html5 a:before,
+.sprite-footer-css a:before{
+    content: "";
+    float: left;
+    width: 16px;
+    height: 16px;
+    background-image: url(../img/footer.png?340954);
+    background-repeat: no-repeat;
+}
+.sprite-footer-zf a:before{background-position:0px 0px;width:80px;height:15px;}
+.sprite-footer-rss a:before{background-position:0px -15px;width:80px;height:15px;}
+.sprite-footer-php a:before{background-position:0px -30px;width:80px;height:15px;}
+.sprite-footer-mysql a:before{background-position:0px -45px;width:80px;height:15px;}
+.sprite-footer-html5 a:before{background-position:0px -60px;width:80px;height:15px;}
+.sprite-footer-css a:before{background-position:0px -75px;width:80px;height:15px;}

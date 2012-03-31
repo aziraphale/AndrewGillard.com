@@ -1,0 +1,1 @@
+glue footer sprites --algorithm=vertical --cachebuster && optipng sprites\footer.png && php fix-sprite-css.php sprites\footer.css

@@ -39,7 +39,7 @@
     float: left;
     width: 16px;
     height: 16px;
-    background-image: url(../img/sites.png);
+    background-image: url(../img/sites.png?40f1aa);
     background-repeat: no-repeat;
 }
 .sprite-sites-zce a:before{background-position:0px 0px;}
