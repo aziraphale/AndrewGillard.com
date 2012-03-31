@@ -34,6 +34,11 @@ a img {
     border: none;
 }
 
+header, footer, nav, article {
+    /* Older browsers don't recognise that <article> and its friends should be block-level elements :( */
+    display: block;
+}
+
 header {
     position: absolute;
     top: 0px;
