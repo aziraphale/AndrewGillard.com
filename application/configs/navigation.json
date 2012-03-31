@@ -1,0 +1,108 @@
+{
+    "nav": {
+        "home": {
+            "label": "Blog",
+            "controller": "blog",
+            "action": "index",
+            "route": "default"
+        },
+        "about": {
+            "label": "About Me",
+            "controller": "about",
+            "action": "index",
+            "route": "default"
+        },
+        "cv": {
+            "label": "CV",
+            "controller": "cv",
+            "action": "index",
+            "route": "default"
+        },
+        "portfolio": {
+            "label": "Portfolio",
+            "controller": "portfolio",
+            "action": "index",
+            "route": "default"
+        },
+        "discworld": {
+            "label": "Discworld MUD",
+            "controller": "discworld",
+            "action": "index",
+            "route": "default",
+            "pages": {
+                "crecards": {
+                    "label": "Creator Cards",
+                    "controller": "discworld",
+                    "action": "cre-cards",
+                    "route": "default"
+                },
+                "deaths": {
+                    "label": "My Deaths",
+                    "controller": "discworld",
+                    "action": "deaths",
+                    "route": "default"
+                },
+                "grunthadeaths": {
+                    "label": "Gruntha's Deaths",
+                    "controller": "discworld",
+                    "action": "gruntha-deaths",
+                    "route": "default"
+                },
+                "info": {
+                    "label": "Information",
+                    "controller": "discworld",
+                    "action": "information",
+                    "route": "default"
+                },
+                "langgraphs": {
+                    "label": "Language Graphs",
+                    "controller": "discworld",
+                    "action": "language-graphs",
+                    "route": "default"
+                },
+                "locations": {
+                    "label": "Passage Locations",
+                    "controller": "discworld",
+                    "action": "locations",
+                    "route": "default"
+                },
+                "logs": {
+                    "label": "Logs",
+                    "controller": "discworld",
+                    "action": "logs",
+                    "route": "default"
+                },
+                "maps": {
+                    "label": "Maps",
+                    "controller": "discworld",
+                    "action": "maps",
+                    "route": "default"
+                },
+                "rods": {
+                    "label": "Faith Rods",
+                    "controller": "discworld",
+                    "action": "rods",
+                    "route": "default"
+                },
+                "sbscript": {
+                    "label": "Status Bar Script",
+                    "controller": "discworld",
+                    "action": "status-bar-script",
+                    "route": "default"
+                }
+            }
+        },
+        "gallery": {
+            "label": "Photo Gallery",
+            "controller": "gallery",
+            "action": "index",
+            "route": "default"
+        },
+        "w2m": {
+            "label": "Web2Messenger",
+            "controller": "web2messenger",
+            "action": "index",
+            "route": "default"
+        }
+    }
+}

@@ -11,7 +11,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $layout = $this->getResource('layout');
         $view = $layout->getView();
         
-        $config = new Zend_Config_Xml(APPLICATION_PATH.'/configs/navigation.xml', 'nav');
+        $config = new Zend_Config_Json(APPLICATION_PATH.'/configs/navigation.json', 'nav');
         $navigation = new Zend_Navigation($config);
         $view->navigation($navigation);
         
