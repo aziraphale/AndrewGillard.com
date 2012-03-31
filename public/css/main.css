@@ -132,6 +132,7 @@ header #breadcrumbs {
     bottom: 0px;
     left: 0px;
     width: 100%;
+    box-sizing: border-box;
     z-index: 0;
     padding: 2px 10px;
     font-size: 0.8em;
@@ -347,13 +348,13 @@ footer ul {
 }
 footer ul li {
     display: inline;
-    opacity: 0.5;
-}
-footer ul li:hover {
-    opacity: 1.0;
 }
 footer ul li a {
-    
+    opacity: 0.5;
+}
+footer ul li a:hover {
+    opacity: 1.0;
+    background-color: white;
 }
 
 .pagination {
