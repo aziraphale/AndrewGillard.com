@@ -1,8 +1,26 @@
-var f={
+{
     "nav": {
         "home": {
-            "label": "Home",
+            "label": "Blog",
             "controller": "blog",
+            "action": "index",
+            "route": "default"
+        },
+        "about": {
+            "label": "About Me",
+            "controller": "about",
+            "action": "index",
+            "route": "default"
+        },
+        "cv": {
+            "label": "CV",
+            "controller": "cv",
+            "action": "index",
+            "route": "default"
+        },
+        "portfolio": {
+            "label": "Portfolio",
+            "controller": "portfolio",
             "action": "index",
             "route": "default"
         },
@@ -17,134 +35,74 @@ var f={
                     "controller": "discworld",
                     "action": "cre-cards",
                     "route": "default"
+                },
+                "deaths": {
+                    "label": "My Deaths",
+                    "controller": "discworld",
+                    "action": "deaths",
+                    "route": "default"
+                },
+                "grunthadeaths": {
+                    "label": "Gruntha's Deaths",
+                    "controller": "discworld",
+                    "action": "gruntha-deaths",
+                    "route": "default"
+                },
+                "info": {
+                    "label": "Information",
+                    "controller": "discworld",
+                    "action": "information",
+                    "route": "default"
+                },
+                "langgraphs": {
+                    "label": "Language Graphs",
+                    "controller": "discworld",
+                    "action": "language-graphs",
+                    "route": "default"
+                },
+                "locations": {
+                    "label": "Passage Locations",
+                    "controller": "discworld",
+                    "action": "locations",
+                    "route": "default"
+                },
+                "logs": {
+                    "label": "Logs",
+                    "controller": "discworld",
+                    "action": "logs",
+                    "route": "default"
+                },
+                "maps": {
+                    "label": "Maps",
+                    "controller": "discworld",
+                    "action": "maps",
+                    "route": "default"
+                },
+                "rods": {
+                    "label": "Faith Rods",
+                    "controller": "discworld",
+                    "action": "rods",
+                    "route": "default"
+                },
+                "sbscript": {
+                    "label": "Status Bar Script",
+                    "controller": "discworld",
+                    "action": "status-bar-script",
+                    "route": "default"
                 }
             }
+        },
+        "gallery": {
+            "label": "Photo Gallery",
+            "controller": "gallery",
+            "action": "index",
+            "route": "default"
+        },
+        "w2m": {
+            "label": "Web2Messenger",
+            "controller": "web2messenger",
+            "action": "index",
+            "route": "default"
         }
     }
 }
-    
-    <nav>
-        <discworld>
-            <pages>
-                <deaths>
-                    <label>My Deaths</label>
-                    <controller>discworld</controller>
-                    <action>deaths</action>
-                    <route>default</route>
-                </deaths>
-                <grunthadeaths>
-                    <label>Gruntha's Deaths</label>
-                    <controller>discworld</controller>
-                    <action>gruntha-deaths</action>
-                    <route>default</route>
-                </grunthadeaths>
-                <info>
-                    <label>Information</label>
-                    <controller>discworld</controller>
-                    <action>information</action>
-                    <route>default</route>
-                </info>
-                <langgraphs>
-                    <label>Language Graphs</label>
-                    <controller>discworld</controller>
-                    <action>language-graphs</action>
-                    <route>default</route>
-                </langgraphs>
-                <locations>
-                    <label>Passage Locations</label>
-                    <controller>discworld</controller>
-                    <action>locations</action>
-                    <route>default</route>
-                </locations>
-                <logs>
-                    <label>Logs</label>
-                    <controller>discworld</controller>
-                    <action>logs</action>
-                    <route>default</route>
-                </logs>
-                <maps>
-                    <label>Maps</label>
-                    <controller>discworld</controller>
-                    <action>maps</action>
-                    <route>default</route>
-<!--                    <pages>
-                        <cool>
-                            <label>Monks of Cool</label>
-                            <controller>discworld</controller>
-                            <action>maps</action>
-                            <route>default</route>
-                            <params>
-                                <map>monks-of-cool</map>
-                            </params>
-                        </cool>
-                        <pictsies>
-                            <label>Pictsie Barrows</label>
-                            <controller>discworld</controller>
-                            <action>maps</action>
-                            <route>default</route>
-                            <params>
-                                <map>pictsie-barrows</map>
-                            </params>
-                        </pictsies>
-                    </pages>-->
-                </maps>
-                <rods>
-                    <label>Faith Rods</label>
-                    <controller>discworld</controller>
-                    <action>rods</action>
-                    <route>default</route>
-                </rods>
-                <sbscript>
-                    <label>Status Bar Script</label>
-                    <controller>discworld</controller>
-                    <action>status-bar-script</action>
-                    <route>default</route>
-                </sbscript>
-            </pages>
-        </discworld>
-        <gallery>
-            <label>Gallery</label>
-            <controller>gallery</controller>
-            <action>index</action>
-            <route>default</route>
-        </gallery>
-        <!--<other>
-            <label>Miscellaneous</label>
-            <controller>other</controller>
-            <action>index</action>
-            <route>default</route>
-            <pages>
-                <colournick>
-                    <label>Coloured Nicks</label>
-                    <controller>other</controller>
-                    <action>colour-nick</action>
-                    <route>default</route>
-                </colournick>
-            </pages>
-        </other>-->
-        <portfolio>
-            <label>Portfolio</label>
-            <controller>portfolio</controller>
-            <action>index</action>
-            <route>default</route>
-        </portfolio>
-        <cv>
-            <label>CV</label>
-            <controller>cv</controller>
-            <action>index</action>
-            <route>default</route>
-        </cv>
-        <w2m>
-            <label>Web2Messenger</label>
-            <controller>web2messenger</controller>
-            <action>index</action>
-            <route>default</route>
-        </w2m>
-        <!--<xbox>
-            <label>Xbox 360 Blog</label>
-            <controller>xbox-blog</controller>
-            <action>index</action>
-            <route>default</route>
-        </xbox>-->
-    </nav>
-</config>
