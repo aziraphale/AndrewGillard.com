@@ -418,10 +418,13 @@ footer ul li a {
     padding-left: 15px;
 }
 
-#mainbody .albumlistentry {
+#mainbody .albumlistentry, #mainbody .albumimg {
     display: inline-block;
 }
-#mainbody .albumlistentry a {
+#mainbody .albumimg {
+    max-width: 200px;
+}
+#mainbody .albumlistentry a, #mainbody .albumimg a {
     display: inline-block;
     margin: 20px;
     padding: 10px;
@@ -432,13 +435,13 @@ footer ul li a {
     text-align: center;
     font-size: 0; /* fixes a weird white space to the right of images */
 }
-#mainbody .albumlistentry img {
+#mainbody .albumlistentry img, #mainbody .albumimg img {
     margin-bottom: 5px;
 }
-#mainbody .albumlistentry a .albumlisttitle {
+#mainbody .albumlistentry a .albumlisttitle, #mainbody .albumimg a .albumimgcaption {
     font-size: 12pt;
 }
-#mainbody .albumlistentry a:hover {
+#mainbody .albumlistentry a:hover, #mainbody .albumimg a:hover {
     background-color: inherit;
     color: inherit;
     text-decoration: inherit;
