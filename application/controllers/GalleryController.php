@@ -15,6 +15,9 @@ class GalleryController extends Zend_Controller_Action
     public function indexAction()
     {
         $this->view->albums = $this->albumModel->fetchAll();
+        
+        $flickr = new AG_Flickr($this->getInvokeArg('bootstrap')->getOption('flickrApiKey'));
+        $this->view->flickrAlbums = $flickr->userPhotosets($this->getInvokeArg('bootstrap')->getOption('flickrUsername'));
     }
 
     public function albumAction()

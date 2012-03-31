@@ -19,6 +19,17 @@ footer a:link, footer a:visited, footer a:active, footer a:hover,
 a {
     color: #2E648E;
 }
+#mainbody a:hover {
+    background-color: #2E648E;
+    color: #ffffff;
+    text-decoration: none;
+}
+.strike {
+    text-decoration: line-through;
+}
+a[href$=".jpg"] img[src$=".jpg"] {
+    cursor: url(../img/magnify.cur), default;
+}
 
 header {
     position: absolute;
@@ -159,6 +170,18 @@ aside.sidebar ul {
     margin: 0px 0px;
 }
 
+.about-box-photo {
+    width: 75px;
+    height: 115px;
+    border: none;
+    float: right;
+    margin: 0px 0px 0px 5px;
+}
+.about-box-morelink {
+    clear: right;
+    text-align: center;
+    padding-top: 0px;
+}
 ul.sites, ul.sites ul {
     list-style-type: none;
     padding-left: 0px;
@@ -247,7 +270,24 @@ aside.sidebar .flickr {
 #mainbody {
     margin: 0px 30px 0px 10px;
 }
+#mainbody aside.pullquoteimg {
+    margin: 20px 0px 20px 0px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
+    padding: 20px 20px;
+    text-align: center;
+    background-color: #ffffff;
+    float: right;
+}
+img.about-page-photo {
+    float: right;
+    margin: -10px 0px 10px 20px;
+    width: 300px;
+    height: 461px;
+}
 #mainbody article {
+    overflow: auto;
     margin: 20px 0px 20px 0px;
     border: 1px solid #888;
     border-radius: 10px;
@@ -365,10 +405,10 @@ footer ul li a {
 }
 
 
-.albumlistentry {
+#mainbody .albumlistentry {
     display: inline-block;
 }
-.albumlistentry a {
+#mainbody .albumlistentry a {
     display: inline-block;
     margin: 20px;
     padding: 10px;
@@ -377,8 +417,15 @@ footer ul li a {
     box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.3);
     text-decoration: none;
     text-align: center;
+    font-size: 0; /* fixes a weird white space to the right of images */
 }
-.albumlistentry a:hover {
+#mainbody .albumlistentry a .albumlisttitle {
+    font-size: initial;
+}
+#mainbody .albumlistentry a:hover {
+    background-color: inherit;
+    color: inherit;
+    text-decoration: inherit;
     box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.3);
     position: relative;
     top: 2px;
@@ -505,6 +552,8 @@ aside.cvdl span a {
 .sprite-sites-gplus a:before,
 .sprite-sites-githubfork a:before,
 .sprite-sites-github a:before,
+.sprite-sites-fuelly a:before,
+.sprite-sites-foursquare a:before,
 .sprite-sites-flickr a:before,
 .sprite-sites-facebook a:before,
 .sprite-sites-dwpriests a:before,
@@ -547,14 +596,17 @@ aside.cvdl span a {
 .sprite-sites-gplus a:before{background-position:0px -384px;}
 .sprite-sites-githubfork a:before{background-position:0px -400px;}
 .sprite-sites-github a:before{background-position:0px -416px;}
-.sprite-sites-flickr a:before{background-position:0px -432px;}
-.sprite-sites-facebook a:before{background-position:0px -448px;}
-.sprite-sites-dwpriests a:before{background-position:0px -464px;}
-.sprite-sites-docx a:before{background-position:0px -480px;}
-.sprite-sites-css a:before{background-position:0px -496px;}
-.sprite-sites-csharp a:before{background-position:0px -512px;}
-.sprite-sites-cpp a:before{background-position:0px -528px;}
-.sprite-sites-cbsys a:before{background-position:0px -544px;}
+.sprite-sites-fuelly a:before{background-position:0px -432px;}
+.sprite-sites-foursquare a:before{background-position:0px -448px;}
+.sprite-sites-flickr a:before{background-position:0px -464px;}
+.sprite-sites-facebook a:before{background-position:0px -480px;}
+.sprite-sites-dwpriests a:before{background-position:0px -496px;}
+.sprite-sites-docx a:before{background-position:0px -512px;}
+.sprite-sites-css a:before{background-position:0px -528px;}
+.sprite-sites-csharp a:before{background-position:0px -544px;}
+.sprite-sites-cpp a:before{background-position:0px -560px;}
+.sprite-sites-cbsys a:before{background-position:0px -576px;}
+
 
 
 

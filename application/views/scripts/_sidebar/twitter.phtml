@@ -1,7 +1,9 @@
 <?php
+$limit = 10;
 $twitter = new Zend_Service_Twitter();
-$tweets = $twitter->statusUserTimeline(array('id'=>18414634, 'count'=>10, 'trim_user'=>true, 'include_entities'=>true));
+$tweets = $twitter->statusUserTimeline(array('id'=>18414634, 'count'=>50, 'trim_user'=>true, 'include_entities'=>true));
 //var_dump($tweets);
+$shown = 0;
 ?>
 <script type="text/javascript">
 twttr.anywhere(function(T) {
@@ -11,29 +13,34 @@ twttr.anywhere(function(T) {
 <?php if (count($tweets->status)): ?>
     <div class="tweets">
         <?php foreach ($tweets->status as $tweet): ?>
+            <?php if (!empty($tweet->in_reply_to_user_id)) continue; /* skip replies */ ?>
             <p class="tweet" title="Posted at <?php echo $tweet->created_at ?>">
                 <span class="tweetbody"><?php echo AG_Formatting::linkifyUrlsFromTwitter($tweet->text, $tweet->entities) ?></span>
-                <span class="tweetdate">
-                    <?php
-                    $d = new Zend_Date(strtotime($tweet->created_at));
-                    
-                    if ($d->isToday()) {
-                        echo "Today";
-                    } elseif ($d->isYesterday()) {
-                        echo "Yesterday";
-                    } elseif ($d->getYear()->equals(Zend_Date::now()->getYear())) {
-//                        if ($d->getMonth()->equals(Zend_Date::now()->getMonth())) {
-//                            echo $d->toString("EEE, d");
-//                        } else {
-                            echo $d->toString("EEE, d MMM");
-//                        }
-                    } else {
-                        echo $d->toString("EEE, d MMM YYYY");
-                    }
-                    echo " at " . $d->toString("HH:mm:ss");
-                    ?>
-                </span>
+                <a href="https://twitter.com/lorddeath/status/<?php echo $tweet->id ?>">
+                    <span class="tweetdate">
+                        <?php
+                        $d = new Zend_Date(strtotime($tweet->created_at));
+                        
+                        if ($d->isToday()) {
+                            echo "Today";
+                        } elseif ($d->isYesterday()) {
+                            echo "Yesterday";
+                        } elseif ($d->getYear()->equals(Zend_Date::now()->getYear())) {
+    //                        if ($d->getMonth()->equals(Zend_Date::now()->getMonth())) {
+    //                            echo $d->toString("EEE, d");
+    //                        } else {
+                                echo $d->toString("EEE, d MMM");
+    //                        }
+                        } else {
+                            echo $d->toString("EEE, d MMM YYYY");
+                        }
+                        echo " at " . $d->toString("HH:mm:ss");
+                        ?>
+                    </span>
+                </a>
             </p>
+            <?php if (++$shown >= $limit) break; ?>
         <?php endforeach; ?>
+        <p class="tweet" style="text-align: right;"><a href="http://twitter.com/lorddeath">More...</a></p>
     </div>
 <?php endif; ?>

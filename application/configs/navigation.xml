@@ -2,10 +2,25 @@
 <config>
     <nav>
         <home>
-            <label>Home</label>
+            <label>Blog</label>
             <controller>blog</controller>
             <action>index</action>
         </home>
+        <about>
+            <label>About Me</label>
+            <controller>about</controller>
+            <action>index</action>
+        </about>
+        <cv>
+            <label>CV</label>
+            <controller>cv</controller>
+            <action>index</action>
+        </cv>
+        <portfolio>
+            <label>Portfolio</label>
+            <controller>portfolio</controller>
+            <action>index</action>
+        </portfolio>
         <discworld>
             <label>Discworld MUD</label>
             <controller>discworld</controller>
@@ -82,10 +97,15 @@
             </pages>
         </discworld>
         <gallery>
-            <label>Gallery</label>
+            <label>Photo Gallery</label>
             <controller>gallery</controller>
             <action>index</action>
         </gallery>
+        <w2m>
+            <label>Web2Messenger</label>
+            <controller>web2messenger</controller>
+            <action>index</action>
+        </w2m>
         <!--<other>
             <label>Miscellaneous</label>
             <controller>other</controller>
@@ -98,21 +118,6 @@
                 </colournick>
             </pages>
         </other>-->
-        <portfolio>
-            <label>Portfolio</label>
-            <controller>portfolio</controller>
-            <action>index</action>
-        </portfolio>
-        <cv>
-            <label>CV</label>
-            <controller>cv</controller>
-            <action>index</action>
-        </cv>
-        <w2m>
-            <label>Web2Messenger</label>
-            <controller>web2messenger</controller>
-            <action>index</action>
-        </w2m>
         <!--<xbox>
             <label>Xbox 360 Blog</label>
             <controller>xbox-blog</controller>

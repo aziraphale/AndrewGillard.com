@@ -25,6 +25,8 @@
 .sprite-sites-gplus a:before,
 .sprite-sites-githubfork a:before,
 .sprite-sites-github a:before,
+.sprite-sites-fuelly a:before,
+.sprite-sites-foursquare a:before,
 .sprite-sites-flickr a:before,
 .sprite-sites-facebook a:before,
 .sprite-sites-dwpriests a:before,
@@ -67,11 +69,13 @@
 .sprite-sites-gplus a:before{background-position:0px -384px;}
 .sprite-sites-githubfork a:before{background-position:0px -400px;}
 .sprite-sites-github a:before{background-position:0px -416px;}
-.sprite-sites-flickr a:before{background-position:0px -432px;}
-.sprite-sites-facebook a:before{background-position:0px -448px;}
-.sprite-sites-dwpriests a:before{background-position:0px -464px;}
-.sprite-sites-docx a:before{background-position:0px -480px;}
-.sprite-sites-css a:before{background-position:0px -496px;}
-.sprite-sites-csharp a:before{background-position:0px -512px;}
-.sprite-sites-cpp a:before{background-position:0px -528px;}
-.sprite-sites-cbsys a:before{background-position:0px -544px;}
+.sprite-sites-fuelly a:before{background-position:0px -432px;}
+.sprite-sites-foursquare a:before{background-position:0px -448px;}
+.sprite-sites-flickr a:before{background-position:0px -464px;}
+.sprite-sites-facebook a:before{background-position:0px -480px;}
+.sprite-sites-dwpriests a:before{background-position:0px -496px;}
+.sprite-sites-docx a:before{background-position:0px -512px;}
+.sprite-sites-css a:before{background-position:0px -528px;}
+.sprite-sites-csharp a:before{background-position:0px -544px;}
+.sprite-sites-cpp a:before{background-position:0px -560px;}
+.sprite-sites-cbsys a:before{background-position:0px -576px;}

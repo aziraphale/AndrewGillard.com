@@ -64,6 +64,7 @@ echo $this->doctype(); ?>
     </header>
     
     <aside class="sidebar">
+        <?php echo $this->partial("sidebar-box.phtml", array("title"=>"Who Am I?",              "box"=>"about",     "cache"=>0      )) ?>
         <?php echo $this->partial("sidebar-box.phtml", array("title"=>"Me Around the Web",      "box"=>"sites",     "cache"=>0      )) ?>
         <?php echo $this->partial("sidebar-box.phtml", array("title"=>"My GitHub Projects",     "box"=>"github",    "cache"=>0      )) ?>
         <?php echo $this->partial("sidebar-box.phtml", array("title"=>"Furry Stuff",            "box"=>"furry",     "cache"=>0      )) ?>

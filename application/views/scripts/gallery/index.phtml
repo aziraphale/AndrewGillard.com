@@ -1,15 +1,37 @@
+<?php
+$cache = Zend_Cache::factory("Output", "File", array('lifetime'=>3600), array('cache_dir'=>APPLICATION_PATH.'/tmp'));
+if (!($cache->start("albums"))) {
+    ?>
+
 <article>
-    <h2>Album List</h2>
+    <h2>Flickr Albums (Sets)</h2>
+    <?php if ($this->flickrAlbums): ?>
+        <?php foreach ($this->flickrAlbums as /** @var AG_Flickr_PhotosetResult */ $album): ?>
+            <?php $img = $album->Small; ?>
+            <div class="albumlistentry">
+                <a href="http://www.flickr.com/photos/lorddeath/sets/<?php echo $album->id ?>" title="<?php echo $this->escape($album->description) ?>">
+                    <img src="<?php echo $img->uri ?>" width="<?php echo $img->width ?>" height="<?php echo $img->height ?>" alt="<?php echo $this->escape($album->title) ?>" />
+                    <br />
+                    <span class="albumlisttitle"><?php echo $this->escape($album->title) ?></span>
+                </a>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p>No Flickr albums to list.</p>
+    <?php endif; ?>
+</article>
+
+<article>
+    <h2>Local Albums</h2>
     <?php if ($this->albums): ?>
-        <p>Please select an album you wish to view the contents of.</p>
-        <p>Note that I don't really use this gallery very much (if at all) any more; most of my photo uploads to go <a href="http://www.flickr.com/photos/lorddeath/">my Flickr profile</a>.</p>
+        <p>Note that I don't really use this gallery very much (if at all) any more; most of my photo uploads go to <a href="http://www.flickr.com/photos/lorddeath/">my Flickr profile</a>.</p>
         <?php foreach ($this->albums as $album): ?>
             <?php $img = $album->findFirstImage(); ?>
             <div class="albumlistentry">
                 <a href="<?php echo $this->url(array('action'=>'album', 'id'=>$album->id)) ?>">
                     <img src="<?php echo $this->baseUrl() ?>/img/gallery/<?php echo $this->escape($album->dirName) ?>/<?php echo $this->escape($img->filename)?>.thumb" width="<?php echo $img->tWidth ?>" height="<?php echo $img->tHeight ?>" alt="<?php echo $this->escape($album->name) ?>" />
                     <br />
-                    <?php echo $this->escape($album->name) ?>
+                    <span class="albumlisttitle"><?php echo $this->escape($album->name) ?></span>
                 </a>
             </div>
         <?php endforeach; ?>
@@ -17,3 +39,8 @@
         <p>No albums to list.</p>
     <?php endif; ?>
 </article>
+
+<?php
+    $cache->end();
+}
+?>
