@@ -1,7 +1,7 @@
 <article>
 <div class="blogpost">
     <h2>
-        <a href="<?php echo $this->url(array('controller'=>'blog', 'action'=>'view', 'id'=>$this->entry->id, null, true)) ?>">
+        <a href="<?php echo $this->url(array('controller'=>'blog', 'action'=>'view', 'id'=>$this->entry->id, 'title'=>$this->entry->title), 'blogpost', true) ?>">
             <?php echo $this->escape($this->entry->title) ?>
         </a>
     </h2>
@@ -22,7 +22,7 @@
     <?php if (APPLICATION_ENV != 'production'): ?>
         var disqus_developer = 1;
     <?php else: ?>
-        var disqus_url = "<?php echo $this->url(array('controller'=>'blog', 'action'=>'view', 'id'=>$this->entry->id, null, true)) ?>";
+        var disqus_url = "<?php echo $this->url(array('controller'=>'blog', 'action'=>'view', 'id'=>$this->entry->id, 'title'=>$this->entry->title), 'blogpost', true) ?>";
     <?php endif; ?>
     var disqus_identifier = '<?php echo $this->entry->id ?>';
     var disqus_title = "<?php echo $this->escape($this->entry->title) ?>";
