@@ -1,6 +1,6 @@
 <article>
     <h2>Image List - <?php echo $this->escape($this->album->name) ?></h2>
-    <p><a href="<?php echo $this->url(array('action'=>'index'))?>">« Back</a></p>
+    <p><a href="<?php echo $this->url(array('controller'=>'gallery', 'action'=>'index'), 'default', true)?>">« Back</a></p>
     <?php if ($this->album): ?>
         <?php if ($this->images): ?>
             <p class="gallery_imglist">
@@ -13,7 +13,7 @@
         <?php else: ?>
             <p>No images to display from this album.</p>
         <?php endif; ?>
-        <p><a href="<?php echo $this->url(array('action'=>'index'))?>">« Back</a></p>
+        <p><a href="<?php echo $this->url(array('controller'=>'gallery', 'action'=>'index'), 'default', true)?>">« Back</a></p>
     <?php else: ?>
         <p>Invalid album.</p>
     <?php endif;?>

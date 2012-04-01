@@ -6,7 +6,7 @@
         <?php foreach ($this->albums as $album): ?>
             <?php $img = $album->findFirstImage(); ?>
             <div class="albumlistentry">
-                <a href="<?php echo $this->url(array('action'=>'album', 'id'=>$album->id)) ?>">
+                <a href="<?php echo $this->url(array('action'=>'album', 'id'=>$album->id), 'galleryalbum') ?>">
                     <img src="<?php echo $this->baseUrl() ?>/img/gallery/<?php echo $this->escape($album->dirName) ?>/<?php echo $this->escape($img->filename)?>.thumb" width="<?php echo $img->tWidth ?>" height="<?php echo $img->tHeight ?>" alt="<?php echo $this->escape($album->name) ?>" />
                     <br />
                     <?php echo $this->escape($album->name) ?>

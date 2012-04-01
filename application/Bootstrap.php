@@ -13,13 +13,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         
         $front = Zend_Controller_Front::getInstance();
         $router = $front->getRouter();
-        $route = new Zend_Controller_Router_Route('blog/:id/:title', array('controller'=>'blog', 'action'=>'view'));
-        $router->addRoute('blogpost', $route);
-//        $router->addConfig(new Zend_Config_Ini(APPLICATION_PATH.'/configs/application.ini', 'production'), 'routes');
+        $router->addRoute('blogpost', new Zend_Controller_Router_Route('blog/:id/:title', array('controller'=>'blog', 'action'=>'view')));
+        $router->addRoute('galleryalbum', new Zend_Controller_Router_Route('gallery/album/:id', array('controller'=>'gallery', 'action'=>'album')));
+        $router->addRoute('dwmap', new Zend_Controller_Router_Route('discworld/maps/:map', array('controller'=>'discworld', 'action'=>'maps')));
         
         $config = new Zend_Config_Xml(APPLICATION_PATH.'/configs/navigation.xml', 'nav');
         $navigation = new Zend_Navigation($config);
         $view->navigation($navigation);
+        
+        $front->registerPlugin(new AG_Plugin_Navigation());
         
         Zend_Paginator::setDefaultItemCountPerPage(10);
         Zend_Paginator::setDefaultScrollingStyle("Sliding"); // "Sliding" or "Elastic"

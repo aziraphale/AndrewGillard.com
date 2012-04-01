@@ -6,7 +6,7 @@
             <controller>blog</controller>
             <action>index</action>
             <route>default</route>
-            <pages>
+<!--            <pages>
                 <blog>
                     <label>Post</label>
                     <controller>blog</controller>
@@ -17,7 +17,7 @@
                     </params>
                     <route>blogpost</route>
                 </blog>
-            </pages>
+            </pages>-->
         </home>
         <discworld>
             <label>Discworld MUD</label>
