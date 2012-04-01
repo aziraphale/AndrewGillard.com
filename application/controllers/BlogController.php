@@ -25,6 +25,8 @@ class BlogController extends Zend_Controller_Action
     public function viewAction()
     {
     	$this->view->entry = $this->blogModel->getEntry($this->_getParam("id", 0));
+        
+        Zend_Registry::set("extrabreadcrumbs", Zend_Registry::get("extrabreadcrumbs") + array(array($this->view->entry->title)));
     }
 
     public function rssAction()

@@ -24,6 +24,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $navigation = new Zend_Navigation($config);
         $view->navigation($navigation);
         
+        Zend_Registry::set("extrabreadcrumbs", array());
+        
         Zend_Controller_Front::getInstance()->registerPlugin(new AG_Plugin_Navigation());
     }
     

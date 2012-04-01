@@ -25,6 +25,8 @@ class GalleryController extends Zend_Controller_Action
         $this->view->album = $this->albumModel->getAlbum($this->_getParam("id", 0));
         if ($this->view->album) {
             $this->view->images = $this->view->album->findImages();
+            
+            Zend_Registry::set("extrabreadcrumbs", Zend_Registry::get("extrabreadcrumbs") + array(array($this->view->album->name)));
         }
     }
 
@@ -51,6 +53,11 @@ class GalleryController extends Zend_Controller_Action
         if ($image) {
             $this->view->image = $image;
             $this->view->album = $this->view->image->findAlbum();
+            
+            Zend_Registry::set("extrabreadcrumbs", Zend_Registry::get("extrabreadcrumbs") + array(
+                array($this->view->album->name, $this->view->url(array('controller'=>'gallery', 'action'=>'album', 'id'=>$this->view->image->album, 'atitle'=>$this->view->image->findAlbum()->name), 'galleryalbum', true)),
+                array($this->view->image->caption),
+                ));
             
             $exifData = array();
             $exifData['Description'] = $image->caption;

@@ -1,6 +1,7 @@
 <?php
 
 $request = Zend_Controller_Front::getInstance()->getRequest();
+$requestUri = $this->serverUrl() . $request->getRequestUri();
 
 $this
     ->headMeta()->appendHttpEquiv("Content-Type", "text/html; charset=utf-8")
@@ -66,7 +67,24 @@ echo $this->doctype(); ?>
             <?php echo $this->navigation()->menu(); ?>
         </nav>
         
-        <div id="breadcrumbs"><strong>Location:</strong> <?php echo $this->navigation()->breadcrumbs()->setPartial(null)->setLinkLast(true)->setSeparator(" &raquo; ")->setMinDepth(0); ?></div>
+        <div id="breadcrumbs">
+            <strong>Location:</strong>
+            <?php echo $this->navigation()->breadcrumbs()->setPartial(null)->setLinkLast(true)->setSeparator(" » ")->setMinDepth(0); ?>
+            <?php if (Zend_Registry::isRegistered("extrabreadcrumbs")): ?>
+                <?php /* another fun hack.. */ ?>
+                <?php $extraBreadcrumbs = Zend_Registry::get("extrabreadcrumbs"); ?>
+                <?php if ($extraBreadcrumbs): ?>
+                    <?php foreach ($extraBreadcrumbs as $extraBreadcrumb): ?>
+                        <?php
+                        if(count($extraBreadcrumb) < 2 || empty($extraBreadcrumb[1])) {
+                            $extraBreadcrumb[1] = $requestUri;
+                        }
+                        ?>
+                        » <a href="<?php echo $extraBreadcrumb[1] ?>"><?php echo $this->escape($extraBreadcrumb[0]) ?></a>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            <?php endif; ?>
+        </div>
     </header>
     
     <aside class="sidebar">
@@ -85,11 +103,10 @@ echo $this->doctype(); ?>
     <footer>
         <p>©2004-<?php echo Zend_Date::now()->toValue(Zend_Date::YEAR) ?> Andrew Gillard</p>
 
-        <?php $uri = $this->serverUrl() . $request->getRequestUri() ?>
         <?php $footerImgPath = $this->baseUrl() . '/img/footer' ?>
         <ul>
-            <li><a href="http://jigsaw.w3.org/css-validator/validator?uri=<?php echo $uri ?>" title="Valid CSS!" class="sprite-footer-css"></a></li>
-            <li><a href="http://validator.w3.org/check?uri=<?php echo $uri ?>" title="Valid HTML5!" class="sprite-footer-html5"></a></li>
+            <li><a href="http://jigsaw.w3.org/css-validator/validator?uri=<?php echo $requestUri ?>" title="Valid CSS!" class="sprite-footer-css"></a></li>
+            <li><a href="http://validator.w3.org/check?uri=<?php echo $requestUri ?>" title="Valid HTML5!" class="sprite-footer-html5"></a></li>
             <li><a href="http://www.php.net/" title="Powered by PHP" class="sprite-footer-php"></a></li>
             <li><a href="http://framework.zend.com/" title="Powered by the Zend Framework" class="sprite-footer-zf"></a></li>
             <li><a href="http://www.mysql.com/" title="Powered by MySQL" class=sprite-footer-mysql></a></li>

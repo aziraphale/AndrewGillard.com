@@ -17,6 +17,7 @@ class AG_Plugin_Navigation extends Zend_Controller_Plugin_Abstract {
             case 'gallery':
                 switch (strtolower($request->getActionName())) {
                     case 'album':
+                    case 'view':
                         $nav->findOneBy('controller', 'gallery')->active = true;
                         break;
                 }

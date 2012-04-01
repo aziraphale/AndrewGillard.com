@@ -204,6 +204,15 @@ class DiscworldController extends Zend_Controller_Action
     public function mapsAction()
     {
         $this->view->requestedMap = strtolower($this->_getParam('map', ''));
+        
+        switch ($this->view->requestedMap) {
+            case 'monks-of-cool':
+                Zend_Registry::set("extrabreadcrumbs", Zend_Registry::get("extrabreadcrumbs") + array(array("Temple of the Monks of Cool")));
+                break;
+            case 'pictsie-barrows':
+                Zend_Registry::set("extrabreadcrumbs", Zend_Registry::get("extrabreadcrumbs") + array(array("Pictsie Barrows")));
+                break;
+        }
     }
 
     public function rodsAction()
