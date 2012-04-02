@@ -1,0 +1,281 @@
+body,html {
+    margin: 0px 0px;
+    padding: 0px;
+    font-family: Verdana,sans-serif;
+    font-size: 0.9em;
+}
+body {
+    margin: 90px 20px 0px 20px;
+}
+
+header a, nav a, aside.sidebar a, footer a, .pagination a, h1 a, h2 a, h3 a, h4 a, h5 a {
+    text-decoration: none;
+}
+a {
+    color: #2E648E;
+}
+.strike {
+    text-decoration: line-through;
+}
+a img {
+    border: none;
+}
+
+header, footer, nav, article, section {
+    /* Older browsers don't recognise that <article> and its friends should be block-level elements :( */
+    display: block;
+}
+
+header {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 70px;
+    box-sizing: border-box;
+}
+header h1 {
+    margin: 15px 20px;
+    font-size: 1.2em;
+}
+header h1 a {
+    color: inherit;
+}
+header nav {
+    display: none;
+}
+header #breadcrumbs {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 0;
+    padding: 2px 10px;
+    font-size: 0.8em;
+}
+header #breadcrumbs a {
+    color: inherit;
+}
+
+aside.sidebar {
+    display: none;
+}
+
+#mainbody {
+    margin: 0px 10px 0px 10px;
+}
+img.about-page-photo {
+    float: right;
+    margin: -10px 0px 10px 20px;
+    width: 300px;
+    height: 461px;
+}
+#mainbody article, #mainbody section {
+    overflow: auto;
+    margin: 20px 0px 20px 0px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    padding: 10px 20px;
+    text-align: justify;
+}
+#mainbody article h1, #mainbody article h2, #mainbody article h3, #mainbody article h4, #mainbody article h5,
+    #mainbody section h1, #mainbody section h2, #mainbody section h3, #mainbody section h4, #mainbody section h5 {
+    text-align: left;
+}
+#mainbody article th, #mainbody article td, #mainbody section th, #mainbody section td {
+    text-align: initial;
+}
+#mainbody article h2, #mainbody section h2 {
+    margin: -10px -20px 10px -20px;
+    padding: 2px 10px 4px 20px;
+    color: #000000;
+    font-size: 1.2em;
+}
+#mainbody article h2 a, #mainbody section h2 a {
+    color: inherit;
+}
+#mainbody article h3.blogsubheading, #mainbody section h3.blogsubheading {
+    font-size: 0.8em;
+    float: right;
+    margin: -30px -20px 0px 0px;
+    padding: 2px 8px 4px 8px;
+}
+
+footer {
+    display: none;
+}
+
+.pagination {
+    display: none;
+}
+
+
+.aboutme ul {
+    margin: 0px;
+    padding-left: 15px;
+}
+
+#mainbody .albumlistentry, #mainbody .albumimg {
+    display: inline-block;
+}
+#mainbody .albumimg {
+    max-width: 200px;
+}
+#mainbody .albumlistentry a, #mainbody .albumimg a {
+    display: inline-block;
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #2E648E;
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 0; /* fixes a weird white space to the right of images */
+}
+#mainbody .albumlistentry img, #mainbody .albumimg img {
+    margin-bottom: 5px;
+}
+#mainbody .albumlistentry a .albumlisttitle, #mainbody .albumimg a .albumimgcaption {
+    font-size: 12pt;
+}
+#mainbody .albumlistentry a:hover, #mainbody .albumimg a:hover {
+    color: inherit;
+    text-decoration: inherit;
+    position: relative;
+    top: 2px;
+    left: 2px;
+}
+
+.portfoliosite {
+    overflow: auto;
+}
+.portfoliosite img {
+    margin: 10px;
+}
+.portfoliosite:nth-child(odd) img {
+    float: left;
+}
+.portfoliosite:nth-child(even) img {
+    float: right;
+}
+
+
+aside.cvdl {
+    display: none;
+}
+.cvredacted {
+    font-style: oblique;
+    color: #666;
+}
+.cvcentre {
+    text-align: center;
+}
+.cvcontacttable {
+    margin: 0px auto;
+}
+.cvcontacttable td {
+    padding: 0px 50px;
+}
+
+.cvqualificationtable {
+    width: 80%;
+    margin: 0px auto;
+}
+.cvqualificationtable, .cvqualificationtable th, .cvqualificationtable td {
+    border: 1px solid;
+    padding: 5px 8px;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+
+.cv h3 {
+    border: 1px solid #000;
+    border-width: 1px 3px 3px 1px;
+    padding: 2px 10px 3px 5px;
+    font-style: oblique;
+    font-variant: small-caps;
+}
+
+.code {
+    font-family: monospace;
+    font-size: 0.9em;
+    padding: 0px 5px 0px 5px;
+}
+
+
+p.dwquote {
+    background-color: #ffffff;
+    color: #303030;
+    font-family: "Courier New", monospace;
+    font-size: 10pt;
+    border: 4px solid #808080;
+    padding: 3px;
+    margin: 10px 0px 10px 0px;
+}
+p.dwcaption {
+    font-style: italic;
+    margin: 0px 0px 10px 10px;
+}
+.dwq_discon, .dwq_system {
+    color: #ffffff;
+    background-color: #808080;
+}
+.dwq_typed {
+    color: #ffffff;
+    background-color: #8080f0;
+}
+.dwq_grey, .dwq_boldgrey, .dwq_red, .dwq_boldred, .dwq_green, .dwq_boldgreen, .dwq_yellow, .dwq_boldyellow, .dwq_blue, .dwq_boldblue, .dwq_pink, .dwq_boldpink, .dwq_cyan, .dwq_boldcyan, .dwq_white {
+    background-color: #ffffff;
+}
+.dwq_grey {
+    color: #808080;
+}
+.dwq_boldgrey {
+    color: #c0c0c0;
+}
+.dwq_red {
+    color: #300000;
+}
+.dwq_boldred {
+    color: #800000;
+}
+.dwq_green {
+    color: #003000;
+}
+.dwq_boldgreen {
+    color: #008000;
+}
+.dwq_yellow {
+    color: #303000;
+}
+.dwq_boldyellow {
+    color: #808000;
+}
+.dwq_blue {
+    color: #000030;
+}
+.dwq_boldblue {
+    color: #000080;
+}
+.dwq_pink {
+    color: #300030;
+}
+.dwq_boldpink {
+    color: #800080;
+}
+.dwq_cyan {
+    color: #003030;
+}
+.dwq_boldcyan {
+    color: #008080;
+}
+.dwq_white {
+    color: #000000;
+}
+.dwpretitlelist {
+    border: 1px solid #000080;
+}
+.dwpretitlelist th, .dwpretitlelist td {
+    border: 1px solid #000080;
+    padding: 2px 3px 2px 3px;
+}
