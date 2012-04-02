@@ -17,7 +17,7 @@ $this
 $this
     ->headLink()->appendStylesheet($this->baseUrl() . "/css/main.css", "screen")
     ->headLink()->appendStylesheet($this->baseUrl() . "/css/jquery-ui-1.8.18.redmond.css", "screen")
-//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/print.css", "print")
+    ->headLink()->appendStylesheet($this->baseUrl() . "/css/print.css", "print")
 //    ->headLink()->appendStylesheet($this->baseUrl() . "/css/mobile.css", "handheld")
     ;
 
@@ -92,8 +92,8 @@ echo $this->doctype(); ?>
         <?php echo $this->partial("sidebar-box.phtml", array("title"=>"Me Around the Web",      "box"=>"sites",     "cache"=>0      )) ?>
         <?php echo $this->partial("sidebar-box.phtml", array("title"=>"My GitHub Projects",     "box"=>"github",    "cache"=>0      )) ?>
         <?php echo $this->partial("sidebar-box.phtml", array("title"=>"Furry Stuff",            "box"=>"furry",     "cache"=>0      )) ?>
-        <?php echo $this->partial("sidebar-box.phtml", array("title"=>"My Recent Tweets",       "box"=>"twitter",   "cache"=>3000    )) ?>
-        <?php echo $this->partial("sidebar-box.phtml", array("title"=>"Latest Flickr Uploads",  "box"=>"flickr",    "cache"=>36000   )) ?>
+        <?php echo $this->partial("sidebar-box.phtml", array("title"=>"My Recent Tweets",       "box"=>"twitter",   "cache"=>300    )) ?>
+        <?php echo $this->partial("sidebar-box.phtml", array("title"=>"Latest Flickr Uploads",  "box"=>"flickr",    "cache"=>3600   )) ?>
     </aside>
 
     <div id="mainbody">
@@ -103,7 +103,6 @@ echo $this->doctype(); ?>
     <footer>
         <p>©2004-<?php echo Zend_Date::now()->toValue(Zend_Date::YEAR) ?> Andrew Gillard</p>
 
-        <?php $footerImgPath = $this->baseUrl() . '/img/footer' ?>
         <ul>
             <li><a href="http://jigsaw.w3.org/css-validator/validator?uri=<?php echo $requestUri ?>" title="Valid CSS!" class="sprite-footer-css"></a></li>
             <li><a href="http://validator.w3.org/check?uri=<?php echo $requestUri ?>" title="Valid HTML5!" class="sprite-footer-html5"></a></li>

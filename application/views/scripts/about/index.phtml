@@ -60,9 +60,12 @@
     <ul>
         <li>Built using <a href="http://www.php.net/">PHP 5.2</a> and the <a href="http://framework.zend.com/">Zend Framework</a>, with a <a href="http://www.mysql.com/">MySQL</a> database.</li>
         <li>Utilising <a href="http://www.jquery.com/">jQuery</a> and <a href="http://www.jqueryui.com/">jQuery UI</a> (currently very selectively, due to a lack of things requiring client-side code).</li>
-        <li>Using <a href="http://www.w3.org/TR/html5/">HTML5</a> markup and <a href="http://www.w3.org/TR/CSS/#css3">CSS 3</a> styling.</li>
+        <li>Using fairly semantic <a href="http://www.w3.org/TR/html5/">HTML5</a> markup and <a href="http://www.w3.org/TR/CSS/#css3">CSS 3</a> styling.</li>
         <li class="strike">Has full mobile device browser support.</li>
+        <li>Has a dedicated printer-friendly stylesheet.</li>
         <li>Has an <a href="<?php echo $this->url(array('controller'=>'blog', 'action'=>'rss'), 'default', true) ?>">RSS feed of blog posts</a>.
         <li>Tested in <a href="https://www.google.com/chrome">Google Chrome 18</a> (primarily), <a href="http://www.mozilla.org/firefox/">Firefox 4</a>, <a href="http://www.opera.com/browser/">Opera 11.5</a> and <a href="http://windows.microsoft.com/ie">Internet Explorer 10 (preview)</a>. Slightly older browsers (Firefox 3.6, Opera 10, IE9, Safari 4 on Windows...) <strong>should</strong> work with minor style issues, but you're on your own with older versions of Internet Explorer - this is my personal space, so I have no intention of spending days hacking IE6 into submission. That said, IE6, IE7 and IE8 have all been tested to the point that I know that the site is usable, but they have progressively more significant styling issues as the version number drops.</li>
     </ul>
 </section>
+
+<?php echo $this->partial("last-mod-time.phtml", array("filename"=>__FILE__)) ?>

@@ -1,0 +1,7 @@
+<?php
+if (empty($this->filename) || !file_exists($this->filename))
+    throw new Exception("No filename specified.");
+?>
+<section class="lastmodtime">
+    <p>Last updated: <?php $d = new Zend_Date(filemtime($this->filename)); echo $d->toString('d MMM, yyyy') ?></p>
+</section>

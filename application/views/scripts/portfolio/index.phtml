@@ -29,3 +29,5 @@
     <h3>Lord d'Eath's RSS Aggregator &ndash; (no absolute URL — hosted and accessed locally)</h3>
     <p><img src="<?php echo $this->baseUrl() ?>/img/portfolio/rss.png" alt="RSS Aggregator Screenshot" width="200" height="118">This is not a Web site in the strictest sense but more of an experiment that I did to learn more about RSS and user interfaces.  I was unable to find an RSS aggregator program that suited my needs so I created one myself.  A Windows Scheduled Task runs every hour and calls a PHP script that fetches the RSS feeds of various Web sites of my choosing and updates the back-end MySQL database to reflect any changes to the RSS feeds.  I can then visit the aggregator's front-end which runs on a locally installed Apache Web server and read the updated articles.  Due to the prominent use of HTML frames in this system Smarty is not used as the processing overhead would be too great</p>
 </section>
+
+<?php echo $this->partial("last-mod-time.phtml", array("filename"=>__FILE__)) ?>

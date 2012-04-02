@@ -153,7 +153,7 @@ aside.sidebar {
     position: absolute;
     right: 0px;
     width: 200px;
-    font-size: small;
+    font-size: 0.8em;
 }
 aside.sidebar h1 {
     margin: 0px 0px;
@@ -279,16 +279,8 @@ aside.sidebar .flickr {
 
 #mainbody {
     margin: 0px 30px 0px 10px;
-}
-#mainbody aside.pullquoteimg {
-    margin: 20px 0px 20px 0px;
-    border: 1px solid #888;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
-    padding: 20px 20px;
-    text-align: center;
-    background-color: #ffffff;
-    float: right;
+    font-size: 0.9em;
+    line-height: 1.4em;
 }
 img.about-page-photo {
     float: right;
@@ -309,6 +301,10 @@ img.about-page-photo {
 #mainbody article h1, #mainbody article h2, #mainbody article h3, #mainbody article h4, #mainbody article h5,
     #mainbody section h1, #mainbody section h2, #mainbody section h3, #mainbody section h4, #mainbody section h5 {
     text-align: left;
+}
+#mainbody article h1 a:hover, #mainbody article h2 a:hover, #mainbody article h3 a:hover, #mainbody article h4 a:hover, #mainbody article h5 a:hover,
+    #mainbody section h1 a:hover, #mainbody section h2 a:hover, #mainbody section h3 a:hover, #mainbody section h4 a:hover, #mainbody section h5 a:hover {
+    background-color: transparent;
 }
 #mainbody article th, #mainbody article td, #mainbody section th, #mainbody section td {
     text-align: initial;
@@ -335,6 +331,18 @@ img.about-page-photo {
     padding: 2px 8px 4px 8px;
     border-bottom-left-radius: 10px;
     border-radius-bottomleft: 10px;
+}
+#mainbody article h3.blogsubheading a, #mainbody section h3.blogsubheading a {
+    color: #2E648E;
+}
+#mainbody article h3.blogsubheading a:hover, #mainbody section h3.blogsubheading a:hover {
+    color: #5E94aE;
+}
+
+.lastmodtime {
+    font-style: oblique;
+    font-size: 0.8em;
+    color: #777777;
 }
 
 footer {
@@ -418,6 +426,9 @@ footer ul li a:hover {
 
 .aboutme ul {
     padding-left: 15px;
+}
+.aboutme ul li {
+    margin-bottom: 5px;
 }
 
 #mainbody .albumlistentry, #mainbody .albumimg {
