@@ -16,7 +16,7 @@
 </div>
 </article>
 
-<article>
+<section>
     <div id="disqus_thread"></div>
     <script type="text/javascript">
     <?php if (APPLICATION_ENV != 'production'): ?>
@@ -35,14 +35,16 @@
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
 
-    <?php if (count($this->entry->findTopLevelComments())): ?>
+<?php if (count($this->entry->findTopLevelComments())): ?>
+    <section>
         <h3>Archived Comments</h3>
         <div class="blogcomments">
             <?php function printComments($view, $comments) { ?>
                 <?php foreach ($comments as $comment): ?>
                     <div class="comment">
-                        <h4><?php echo $view->escape($comment->title) ?> by <?php echo $view->escape($comment->posterName) ?> at <?php echo $comment->date ?></h4>
+                        <h4><?php echo $comment->title ?> by <?php echo $comment->posterName ?> at <?php echo $comment->date ?></h4>
                         <p><?php echo $view->bbcode->render($comment->comment) ?></p>
                         
                         <?php if (count($comment->findChildComments())): ?>
@@ -53,5 +55,5 @@
             <?php } ?>
             <?php printComments($this, $this->entry->findTopLevelComments()); ?>
         </div>
-    <?php endif; ?>
-</article>
+    </section>
+<?php endif; ?>

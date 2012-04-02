@@ -34,7 +34,7 @@ a img {
     border: none;
 }
 
-header, footer, nav, article {
+header, footer, nav, article, section {
     /* Older browsers don't recognise that <article> and its friends should be block-level elements :( */
     display: block;
 }
@@ -296,7 +296,7 @@ img.about-page-photo {
     width: 300px;
     height: 461px;
 }
-#mainbody article {
+#mainbody article, #mainbody section {
     overflow: auto;
     margin: 20px 0px 20px 0px;
     border: 1px solid #888;
@@ -306,13 +306,14 @@ img.about-page-photo {
     text-align: justify;
     background-color: #ffffff;
 }
-#mainbody article h1, #mainbody article h2, #mainbody article h3, #mainbody article h4, #mainbody article h5 {
+#mainbody article h1, #mainbody article h2, #mainbody article h3, #mainbody article h4, #mainbody article h5,
+    #mainbody section h1, #mainbody section h2, #mainbody section h3, #mainbody section h4, #mainbody section h5 {
     text-align: left;
 }
-#mainbody article th, #mainbody article td {
+#mainbody article th, #mainbody article td, #mainbody section th, #mainbody section td {
     text-align: initial;
 }
-#mainbody article h2 {
+#mainbody article h2, #mainbody section h2 {
     margin: -10px -20px 30px -20px;
     padding: 2px 10px 4px 20px;
     background-color: #2E648E;
@@ -323,10 +324,10 @@ img.about-page-photo {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
-#mainbody article h2 a {
+#mainbody article h2 a, #mainbody section h2 a {
     color: #BED9ED;
 }
-#mainbody article h3.blogsubheading {
+#mainbody article h3.blogsubheading, #mainbody section h3.blogsubheading {
     font-size: 0.8em;
     float: right;
     background-color: #BED9ED;
