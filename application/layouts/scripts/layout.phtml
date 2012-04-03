@@ -5,6 +5,7 @@ $requestUri = $this->serverUrl() . $request->getRequestUri();
 
 $this
     ->headMeta()->appendHttpEquiv("Content-Type", "text/html; charset=utf-8")
+    ->headMeta()->appendName("viewport", "width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no")
 	->headMeta()->appendName("verify-v1", "/Fs6hzL+GWMWHiljMdhbegI8FrPkqQ7brWp8Cfun0LU=")
     ;
 
@@ -16,25 +17,20 @@ $this
 
 $this
     ->headLink()->appendStylesheet($this->baseUrl() . "/css/main.css", "screen")
+//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/main.css", "screen and (min-device-width: 601px)")
     ->headLink()->appendStylesheet($this->baseUrl() . "/css/jquery-ui-1.8.18.redmond.css", "screen")
     ->headLink()->appendStylesheet($this->baseUrl() . "/css/print.css", "print")
-//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/mobile.css", "handheld")
+    ->headLink()->appendStylesheet($this->baseUrl() . "/css/mobile.css", "handheld")
+    ->headLink(array('href'=>$this->baseUrl() . "/css/mobile.css", 'media'=>"all and (max-device-width: 600px)", 'rel'=>'stylesheet', 'type'=>'text/css'))
+//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/mobile.css", "all and (max-device-width: 600px)")
+//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/mobile.css", "all and (-webkit-device-pixel-ratio:0.75)")
+//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/mobile.css", "all and (-webkit-device-pixel-ratio:1.0)")
+//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/mobile.css", "all and (-webkit-device-pixel-ratio:1.5)")
     ;
 
 $this
     ->headStyle()->appendStyle("header nav { font-size: 12pt ! important; }", array('conditional'=>'lt IE 7'))
     ;
-
-$this
-//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/ie6.css", "screen", "lte IE 6")
-//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/ie7.css", "screen", "lte IE 7")
-//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/main.css", "screen and (min-device-width: 601px)")
-//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/handheld.css", "all and (max-device-width: 600px)")
-//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/handheld.css", "all and (-webkit-device-pixel-ratio:0.75)")
-//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/handheld.css", "all and (-webkit-device-pixel-ratio:1.0)")
-//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/handheld.css", "all and (-webkit-device-pixel-ratio:1.5)")
-    ;
-
 
 $rssUrl = $this->url(array('controller'=>'blog', 'action'=>'rss'), 'default', true);
 $this
@@ -86,19 +82,19 @@ echo $this->doctype(); ?>
             <?php endif; ?>
         </div>
     </header>
-    
-    <aside class="sidebar">
-        <?php echo $this->partial("sidebar-box.phtml", array("title"=>"Who Am I?",              "box"=>"about",     "cache"=>0      )) ?>
-        <?php echo $this->partial("sidebar-box.phtml", array("title"=>"Me Around the Web",      "box"=>"sites",     "cache"=>0      )) ?>
-        <?php echo $this->partial("sidebar-box.phtml", array("title"=>"My GitHub Projects",     "box"=>"github",    "cache"=>0      )) ?>
-        <?php echo $this->partial("sidebar-box.phtml", array("title"=>"Furry Stuff",            "box"=>"furry",     "cache"=>0      )) ?>
-        <?php echo $this->partial("sidebar-box.phtml", array("title"=>"My Recent Tweets",       "box"=>"twitter",   "cache"=>300    )) ?>
-        <?php echo $this->partial("sidebar-box.phtml", array("title"=>"Latest Flickr Uploads",  "box"=>"flickr",    "cache"=>3600   )) ?>
-    </aside>
 
     <div id="mainbody">
         <?php echo $this->layout()->content; ?>
     </div>
+    
+    <aside class="sidebar">
+        <div class="box box_about"  ><?php echo $this->partial("sidebar-box.phtml", array("title"=>"Who Am I?",              "box"=>"about",     "cache"=>0      )) ?></div>
+        <div class="box box_sites"  ><?php echo $this->partial("sidebar-box.phtml", array("title"=>"Me Around the Web",      "box"=>"sites",     "cache"=>0      )) ?></div>
+        <div class="box box_github" ><?php echo $this->partial("sidebar-box.phtml", array("title"=>"My GitHub Projects",     "box"=>"github",    "cache"=>0      )) ?></div>
+        <div class="box box_furry"  ><?php echo $this->partial("sidebar-box.phtml", array("title"=>"Furry Stuff",            "box"=>"furry",     "cache"=>0      )) ?></div>
+        <div class="box box_twitter"><?php echo $this->partial("sidebar-box.phtml", array("title"=>"My Recent Tweets",       "box"=>"twitter",   "cache"=>300    )) ?></div>
+        <div class="box box_flickr" ><?php echo $this->partial("sidebar-box.phtml", array("title"=>"Latest Flickr Uploads",  "box"=>"flickr",    "cache"=>3600   )) ?></div>
+    </aside>
 
     <footer>
         <p>©2004-<?php echo Zend_Date::now()->toValue(Zend_Date::YEAR) ?> Andrew Gillard</p>

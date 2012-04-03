@@ -151,6 +151,7 @@ header #breadcrumbs a {
 
 aside.sidebar {
     position: absolute;
+    top: 150px;
     right: 0px;
     width: 200px;
     font-size: 0.8em;
@@ -211,6 +212,9 @@ ul.sites li ul li:hover a:before {
 }
 ul.sites li a {
     display: block;
+}
+ul.sites > li > strong {
+    color: #2E648E;
 }
 
 
@@ -337,6 +341,12 @@ img.about-page-photo {
 }
 #mainbody article h3.blogsubheading a:hover, #mainbody section h3.blogsubheading a:hover {
     color: #5E94aE;
+}
+#mainbody article h3.blogsubheading .commentslink:before {
+    content: " — ";
+}
+.readmorelink {
+    margin-top: 0px;
 }
 
 .lastmodtime {

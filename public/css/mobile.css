@@ -1,0 +1,348 @@
+body {
+    margin: 0px 0px 0px 0px;
+}
+
+a[href$=".jpg"] img[src$=".jpg"] {
+    cursor: pointer;
+}
+
+header {
+    position: static;
+    box-shadow: 0px 4px 7px 2px rgba(0, 0, 0, 0.2);
+    height: auto;
+}
+header h1 {
+    margin: 0px 20px 5px 20px;
+    padding-top: 10px;
+}
+header h1 a {
+    color: #2E648E;
+}
+header nav {
+    text-align: center;
+    font-size: 0;
+    background-color: #2E648E;
+}
+header nav ul {
+    padding-left: 0px;
+    margin: 0px;
+}
+header nav ul ul {
+    display: none;
+}
+header nav ul li {
+    display: inline-block;
+    background-color: #2E648E;
+    white-space: nowrap;
+    line-height: 28px;
+}
+header nav > ul > li > a:not(:only-child):after {
+    display: none;
+    background-image: none;
+}
+header nav > ul > li > a {
+    padding: 5px 10px;
+    font-size: 12pt;
+    background-color: transparent;
+}
+header nav ul li:hover ul {
+    display: none;
+}
+header #breadcrumbs {
+    position: static;
+    padding: 6px 10px 2px 10px;
+    margin: 0px;
+    font-size: 0.8em;
+    background-color: #2E648E;
+    width: auto;
+}
+header #breadcrumbs a {
+    color: #2E648E;
+}
+
+
+aside.sidebar {
+    position: static;
+    width: 100%;
+    font-size: 0.8em;
+    margin-top: 15px;
+}
+aside.sidebar .box {
+    clear: both;
+    padding-top: 10px;
+}
+aside.sidebar h1 {
+    margin: 0px 0px;
+    padding: 3px 5px 1px 7px;
+    font-size: 1.2em;
+    border-top-left-radius: 0px;
+}
+aside.sidebar div.boxcontent {
+    margin-bottom: 0px;
+    padding: 5px 5px 0px 7px;
+    background: none;
+}
+aside.sidebar div.boxcontent p {
+    margin: 0px 3px;
+}
+aside.sidebar ul {
+    margin: 0px 0px;
+}
+.box_flickr, .box_twitter {
+    display: none;
+}
+.about-box-photo {
+    float: right;
+    margin: 0px 0px 0px 5px;
+}
+.about-box-morelink {
+    padding-top: 5px;
+    clear: none;
+}
+ul.sites li, ul.github li {
+    padding-bottom: 3px;
+}
+ul.sites li ul li a:before {
+    opacity: 1.0;
+}
+ul.github li a:before {
+    opacity: 1.0;
+}
+aside.sidebar .furry {
+    padding-left: 23px;
+}
+
+
+#mainbody {
+    margin: 10px 10px 0px 10px;
+    line-height: 1.4em;
+}
+#mainbody article, #mainbody section {
+    overflow: visible;
+    margin: 10px 0px 10px 0px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    padding: 10px 10px;
+    text-align: justify;
+}
+#mainbody article h2, #mainbody section h2 {
+    margin: -10px -10px 10px -10px;
+    padding: 3px 10px 0px 20px;
+    font-size: 1.2em;
+    line-height: 2em;
+    border-radius-topleft: 8px;
+    border-radius-topright: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+#mainbody article h3.blogsubheading, #mainbody section h3.blogsubheading {
+    font-size: 0.8em;
+    float: right;
+    margin: -10px -10px 10px 0px;
+    padding: 2px 8px 4px 8px;
+    border-bottom-left-radius: 10px;
+    border-radius-bottomleft: 10px;
+}
+#mainbody article h3.blogsubheading .postdatetitle {
+    display: none;
+}
+#mainbody article h3.blogsubheading .commentslink {
+    display: none;
+}
+#mainbody article p, #mainbody section p {
+    margin: 10px 0px 10px 0px;
+}
+#mainbody article p:first-child, #mainbody section p:first-child {
+    margin-top: 5px;
+}
+#mainbody article p:last-child, #mainbody section p:last-child {
+    margin-bottom: 5px;
+}
+#mainbody article ul, #mainbody section ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+.blogpost img, .blogpost iframe {
+    max-width: 100%;
+    height: auto;
+}
+.blogpostcontent {
+    clear: both;
+}
+.readmorelink {
+    margin-top: 0px;
+}
+
+.lastmodtime p {
+    margin: 0px 3px;
+}
+
+footer {
+    clear: both;
+    margin: 30px 10px 10px 10px;
+    text-align: center;
+}
+footer ul {
+    display: none;
+}
+
+.pagination {
+    margin: 0px 0px 0px 0px;
+    padding: 5px 0px 5px 0px;
+    font-size: 0.9em;
+    text-align: center;
+}
+.pagination h1 {
+    font-size: 1.0em;
+    margin-right: 10px;
+}
+.pagination ul {
+    padding: 0px 0px;
+    margin: 0px;
+}
+.pagination .fromcurrentpage_3, .pagination .fromcurrentpage_4, .pagination .fromcurrentpage_5, .pagination .fromcurrentpage_6, .pagination .fromcurrentpage_7, .pagination .fromcurrentpage_8, .pagination .fromcurrentpage_9, .pagination .fromcurrentpage_10, .pagination .fromcurrentpage_11, .pagination .fromcurrentpage_12, .pagination .fromcurrentpage_13, .pagination .fromcurrentpage_14, .pagination .fromcurrentpage_15, .pagination .fromcurrentpage_16, .pagination .fromcurrentpage_17, .pagination .fromcurrentpage_18, .pagination .fromcurrentpage_19 {
+    display: none;
+}
+.pagination .prevpage, .pagination .nextpage {
+    display: none;
+}
+.pagination li a, .pagination li span {
+    padding: 5px 12px 6px 10px;
+}
+.pagination li:first-child a {
+    padding-left: 10px;
+}
+.pagination li:last-child a {
+    padding-right: 10px;
+}
+.pagination .paginationdesc {
+    display: none;
+}
+
+
+img.about-page-photo {
+    float: none;
+    margin: 0px auto 0px auto;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+/*    zoom: 50%;*/
+}
+.aboutme ul {
+    padding-left: 15px;
+}
+.aboutme ul li {
+    margin-bottom: 5px;
+}
+
+#mainbody .flickralbums, #mainbody .localalbums {
+    text-align: center;
+}
+#mainbody .albumlistentry, #mainbody .albumimg {
+    margin: 0px;
+    display: block;
+}
+#mainbody .albumimg {
+}
+#mainbody .albumlistentry a, #mainbody .albumimg a {
+    margin: 10px 0px;
+    padding: 5px;
+    text-align: center;
+    font-size: 0; /* fixes a weird white space to the right of images */
+}
+#mainbody .albumlistentry:first-of-type a, #mainbody .albumimg:first-of-type a {
+    margin-top: 0px;
+}
+#mainbody .albumlistentry:last-of-type a, #mainbody .albumimg:last-of-type a {
+    margin-bottom: 0px;
+}
+#mainbody .albumlistentry img, #mainbody .albumimg img {
+    margin-bottom: -5px;
+    border-radius: 5px;
+}
+#mainbody .albumlistentry a .albumlisttitle, #mainbody .albumimg a .albumimgcaption {
+}
+#mainbody .albumlistentry a:hover, #mainbody .albumimg a:hover {
+    top: 0px;
+    left: 0px;
+}
+
+.portfoliosite {
+    overflow: auto;
+}
+.portfoliosite img {
+}
+.portfoliosite:nth-child(odd) img, .portfoliosite:nth-child(even) img {
+    float: none;
+    display: block;
+    margin: 0px auto 5px auto;
+}
+
+
+aside.cvdl {
+    margin: 0px 50px;
+}
+aside.cvdl span a {
+    padding-left: 5px;
+}
+
+.cv h3 {
+    padding: 2px 10px 3px 5px;
+    font-style: oblique;
+    font-variant: small-caps;
+}
+.cvqualificationtable {
+    font-size: 0.8em;
+}
+.cvqualificationtable, .cvqualificationtable th, .cvqualificationtable td {
+    padding: 2px 4px;
+    line-height: 1.2em;
+    border-color: #aaa;
+}
+.cvcontacttable {
+    margin: 0px;
+}
+.cvcontacttable td {
+    padding: 0px 5px;
+    font-size: 0.8em;
+}
+.cvcontacttable td:first-child {
+    padding-left: 0px;
+}
+.cvcontacttable td:last-child {
+    padding-right: 0px;
+}
+
+
+.code {
+    padding: 0px 5px 0px 5px;
+}
+
+
+p.dwquote {
+    padding: 3px;
+    margin: 10px 0px 10px 0px;
+}
+p.dwcaption {
+    margin: 0px 0px 10px 10px;
+}
+
+textarea[name=skills] {
+    width: 95%;
+}
+article.dwmaps img {
+    max-width: 100%;
+}
+article.dwrods table {
+    font-size: 0.7em;
+    width: 100%;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+article.dwrods th, article.dwrods td {
+    border: 1px solid #aaa;
+    padding: 0px 2px;
+}
+article.dwsbscript img {
+    max-width: 100%;
+}
