@@ -241,11 +241,13 @@ img.about-page-photo {
 #mainbody .albumlistentry, #mainbody .albumimg {
     margin: 0px;
     display: block;
+    max-width: 100%;
 }
 #mainbody .albumimg {
 }
 #mainbody .albumlistentry a, #mainbody .albumimg a {
     margin: 10px 0px;
+    max-width: 100%;
     padding: 5px;
     text-align: center;
     font-size: 0; /* fixes a weird white space to the right of images */
@@ -257,14 +259,27 @@ img.about-page-photo {
     margin-bottom: 0px;
 }
 #mainbody .albumlistentry img, #mainbody .albumimg img {
-    margin-bottom: -5px;
+    margin-bottom: 0px;
     border-radius: 5px;
+    max-width: 100%;
+    height: auto;
 }
 #mainbody .albumlistentry a .albumlisttitle, #mainbody .albumimg a .albumimgcaption {
 }
 #mainbody .albumlistentry a:hover, #mainbody .albumimg a:hover {
     top: 0px;
     left: 0px;
+}
+#mainbody .gallery_img img {
+    max-width: 100%;
+    height: auto;
+}
+#mainbody .gallery_data {
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+#mainbody .gallery_data td, #mainbody .gallery_data th {
+    border: 1px solid #aaa;
 }
 
 .portfoliosite {
@@ -280,7 +295,7 @@ img.about-page-photo {
 
 
 aside.cvdl {
-    margin: 0px 50px;
+    margin: 0px 00px;
 }
 aside.cvdl span a {
     padding-left: 5px;
