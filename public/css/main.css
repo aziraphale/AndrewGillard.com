@@ -9,11 +9,6 @@ body {
 }
 
 header a, nav a, aside.sidebar a, footer a, .pagination a, h1 a, h2 a, h3 a, h4 a, h5 a {
-/*header a:link, header a:visited, header a:active, header a:hover,
-nav a:link, nav a:visited, nav a:active, nav a:hover,
-aside.sidebar a:link, aside.sidebar a:visited, aside.sidebar a:active, aside.sidebar a:hover,
-footer a:link, footer a:visited, footer a:active, footer a:hover,
-.pagination a:link, .pagination a:visited, .pagination a:active, .pagination a:hover {*/
     text-decoration: none;
 }
 a {
@@ -27,7 +22,12 @@ a {
 .strike {
     text-decoration: line-through;
 }
-a[href$=".jpg"] img[src$=".jpg"] {
+abbr[title], acronym[title] {
+    border-bottom: 1px dotted;
+    cursor: help;
+}
+a[href$=".jpg"] img[src$=".jpg"], a[href$=".png"] img[src$=".png"], a[href$=".jpg"] img[src$=".png"], a[href$=".png"] img[src$=".jpg"] {
+    /* Image linking to another image - probably a thumbnail linking to the full-size image, so give it a "zoom" cursor */
     cursor: url(../img/magnify.cur), pointer;
 }
 a img {
@@ -91,7 +91,7 @@ header nav ul li {
     position: relative;
 }
 header nav > ul > li > a:not(:only-child):after {
-/*    padding-right: 20px;*/
+    /* Add a down-arrow to the right of menu items with children */
     content: "";
     display: inline-block;
     width: 16px;
@@ -162,7 +162,7 @@ aside.sidebar h1 {
     font-size: 1.2em;
     background-color: #2E648E;
     color: #8CB9DB;
-/*    border-radius-topleft: 15px;*/
+    border-radius-topleft: 15px;
     border-top-left-radius: 15px;
 }
 aside.sidebar div.boxcontent {
@@ -237,6 +237,7 @@ ul.github li:hover a:before {
     opacity: 1.0;
 }
 ul.github li.github-fork:before {
+    /* Add a "fork" icon to the right of forked github projects */
     content: "";
     float: right;
     width: 16px;
@@ -258,6 +259,17 @@ aside.sidebar .tweets p {
     margin-top: 10px;
     padding: 0px 5px;
     font-size: 0.9em;
+}
+aside.sidebar .tweets .tweet_geo {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    float: right;
+    margin: 0px -5px 5px 3px;
+    background-image: url(./images/ui-icons_469bdd_256x240.png);
+    background-position: -144px -144px;
+    background-repeat: no-repeat;
+    cursor: help;
 }
 aside.sidebar .tweets .tweetbody {
     display: block;
@@ -474,16 +486,40 @@ footer ul li a:hover {
     left: 2px;
 }
 
-.portfoliosite {
+#mainbody .portfoliosite {
     overflow: auto;
 }
-.portfoliosite img {
+#mainbody .portfoliosite h3, #mainbody .portfoliosite h3 {
+    font-size: 0.8em;
+    float: left;
+    background-color: #BED9ED;
+    margin: -30px 0px 0px -20px;
+    padding: 2px 8px 4px 8px;
+    border-bottom-right-radius: 10px;
+    border-radius-bottomright: 10px;
+}
+#mainbody .portfoliosite h3 a, #mainbody .portfoliosite h3 a {
+    color: #2E648E;
+}
+#mainbody .portfoliosite h3 a:hover, #mainbody .portfoliosite h3 a:hover {
+    color: #5E94aE;
+}
+#mainbody .portfoliosite .pfdate {
+    float: right;
+    margin-right: 10px;
+}
+#mainbody .portfoliosite .pftech {
+}
+#mainbody .portfoliosite p:first-of-type {
+    margin-top: 40px;
+}
+#mainbody .portfoliosite img {
     margin: 10px;
 }
-.portfoliosite:nth-child(odd) img {
+#mainbody .portfoliosite:nth-child(odd) img {
     float: left;
 }
-.portfoliosite:nth-child(even) img {
+#mainbody .portfoliosite:nth-child(even) img {
     float: right;
 }
 

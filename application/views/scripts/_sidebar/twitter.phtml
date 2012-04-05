@@ -24,7 +24,10 @@ twttr.anywhere(function(T) {
         <?php foreach ($tweets->status as $tweet): ?>
             <?php if (!empty($tweet->in_reply_to_user_id)) continue; /* skip replies */ ?>
             <p class="tweet" title="Posted at <?php echo $tweet->created_at ?>">
-                <span class="tweetbody"><?php echo AG_Formatting::linkifyUrlsFromTwitter($tweet->text, $tweet->entities) ?></span>
+                <?php if (!empty($tweet->place)) { ?>
+                    <span class="tweet_geo" title="<?php echo $this->escape($tweet->place->full_name) ?>, <?php echo $this->escape($tweet->place->country) ?>"></span>
+                <?php } ?>
+                <span class="tweetbody"><?php echo AG_Formatting::linkifyUrlsFromTwitter(AG_Formatting::wordwrapIgnoringUrls($tweet->text, 20, "&shy;"), $tweet->entities) ?></span>
                 <a href="https://twitter.com/lorddeath/status/<?php echo $tweet->id ?>">
                     <span class="tweetdate">
                         <?php
