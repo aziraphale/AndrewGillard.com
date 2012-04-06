@@ -1,7 +1,7 @@
 <article class="dwsbscript">
     <p>This is the script that I use in MUSHclient to give me a status bar at the bottom of the window displaying my current HP, GP and XP.</p>
 
-    <p>It collects data from "<span class="code">score</span>", "<span class="code">score brief</span>", the combat monitor ("<span class="code">monitor on</span>" if you haven't already done that...) and the MXP entities that the MUD sends back every time you enter a command (if you have MXP enabled), then estimates your current HP/GP/XP based on the number of heartbeats that have elapsed since the last set of data was received and your HP/GP regen rate.  It isn't 100% accurate, but I've found that it's good enough for my purposes.</p>
+    <p>It collects data from "<code>score</code>", "<code>score brief</code>", the combat monitor ("<code>monitor on</code>" if you haven't already done that...) and the MXP entities that the MUD sends back every time you enter a command (if you have MXP enabled), then estimates your current HP/GP/XP based on the number of heartbeats that have elapsed since the last set of data was received and your HP/GP regen rate.  It isn't 100% accurate, but I've found that it's good enough for my purposes.</p>
 
     <p>
         It looks something like this:<br>
@@ -37,9 +37,9 @@
                 <li>
                     <ul>
                         <li><b>Trigger #1:</b></li>
-                        <li><b>Trigger:</b> <span class="code">^[ &gt;]*You have ([0-9]+) \(([0-9]+)\) hit points, ([0-9]+) \(([0-9]+)\) guild points, [0-9]+ \([0-9]+\) quest points, [0-9]+ \([0-9]+\) achievement points and [0-9]+ \([0-9]+\) social points.$</span></li>
+                        <li><b>Trigger:</b> <code>^[ &gt;]*You have ([0-9]+) \(([0-9]+)\) hit points, ([0-9]+) \(([0-9]+)\) guild points, [0-9]+ \([0-9]+\) quest points, [0-9]+ \([0-9]+\) achievement points and [0-9]+ \([0-9]+\) social points.$</code></li>
                         <li><b>Regular Expression:</b> Yes</li>
-                        <li><b>Script:</b> <span class="code">handleScoreLineOne</span></li>
+                        <li><b>Script:</b> <code>handleScoreLineOne</code></li>
                         <li>
                             <a href="<?php echo $this->baseUrl() ?>/img/dw/sb_script/trigger1.png">
                                 <img src="<?php echo $this->baseUrl() ?>/img/dw/sb_script/trigger1.png" alt="Trigger #1">
@@ -50,9 +50,9 @@
                 <li>
                     <ul>
                         <li><b>Trigger #2:</b></li>
-                        <li><b>Trigger:</b> <span class="code">^[ &gt;]*Your current experience is [0-9]+ and [^;]+; your overall rating is [0-9]+.$</span></li>
+                        <li><b>Trigger:</b> <code>^[ &gt;]*Your current experience is [0-9]+ and [^;]+; your overall rating is [0-9]+.$</code></li>
                         <li><b>Regular Expression:</b> Yes</li>
-                        <li><b>Script:</b> <span class="code">handleScoreLineTwo</span></li>
+                        <li><b>Script:</b> <code>handleScoreLineTwo</code></li>
                         <li>
                             <a href="<?php echo $this->baseUrl() ?>/img/dw/sb_script/trigger2.png">
                                 <img src="<?php echo $this->baseUrl() ?>/img/dw/sb_script/trigger2.png" alt="Trigger #2">
@@ -63,9 +63,9 @@
                 <li>
                     <ul>
                         <li><b>Trigger #3:</b></li>
-                        <li><b>Trigger:</b> <span class="code">^[ &gt;]*Hp: ?[0-9]+ ?\([0-9]+\)  ?Gp: ?[0-9]+ ?\([0-9]+\)  ?Xp: ?[0-9]+$</span></li>
+                        <li><b>Trigger:</b> <code>^[ &gt;]*Hp: ?[0-9]+ ?\([0-9]+\)  ?Gp: ?[0-9]+ ?\([0-9]+\)  ?Xp: ?[0-9]+$</code></li>
                         <li><b>Regular Expression:</b> Yes</li>
-                        <li><b>Script:</b> <span class="code">handleSBOrMonitor</span></li>
+                        <li><b>Script:</b> <code>handleSBOrMonitor</code></li>
                         <li>
                             <a href="<?php echo $this->baseUrl() ?>/img/dw/sb_script/trigger3.png">
                                 <img src="<?php echo $this->baseUrl() ?>/img/dw/sb_script/trigger3.png" alt="Trigger #3">
@@ -85,8 +85,8 @@
                 <li>
                     <ul>
                         <li><b>Interval:</b> Every 1 second</li>
-                        <li><b>Label:</b> <span class="code">handleMXPEntityChanges</span></li>
-                        <li><b>Script:</b> <span class="code">handleMXPEntityChanges</span></li>
+                        <li><b>Label:</b> <code>handleMXPEntityChanges</code></li>
+                        <li><b>Script:</b> <code>handleMXPEntityChanges</code></li>
                         <li>
                             <a href="<?php echo $this->baseUrl() ?>/img/dw/sb_script/timer1.png">
                                 <img src="<?php echo $this->baseUrl() ?>/img/dw/sb_script/timer1.png" alt="Timer #1">
@@ -116,11 +116,11 @@
     <p>Only limited configuration is needed.  Open up the downloaded .js file in Notepad (or your text editor of choice - Visual Studio handles .js files nicely, but that's overkill for these purposes); the only two lines that you <b>need</b> to check are the first two non-comment lines:</p>
     <ul>
         <li>
-            <span class="code">var HPRegenRate = 3;</span><br>
+            <code>var HPRegenRate = 3;</code><br>
             This needs to be changed to your HP regeneration rate.  If you don't know it, you can get a calculator to determine it at <a href="http://bonuses.darkmud.co.uk/">Skills, Stats and Bonuses web site</a>, and it will probably be a value between 1 and 6.
         </li>
         <li>
-            <span class="code">var GPRegenRate = 3;</span><br>
+            <code>var GPRegenRate = 3;</code><br>
             This needs to be changed to your GP regeneration rate.  If you don't know it, you can get a calculator to determine it at <a href="http://bonuses.darkmud.co.uk/">Skills, Stats and Bonuses web site</a>, and it will probably be a value between 1 and 4.
         </li>
     </ul>
@@ -128,40 +128,40 @@
     <p>After those two lines, the rest of the configuration only affects the aesthetics of the status bar:</p>
     <ul>
         <li>
-            <span class="code">var barRedPercent = 0;</span><br>
+            <code>var barRedPercent = 0;</code><br>
             This is the percentage of HP/GP at which the bar will be "red".  Obviously this should be left at 0.
         </li>
         <li>
-            <span class="code">var barYellowPercent = 33;</span><br>
+            <code>var barYellowPercent = 33;</code><br>
             This is the percentage of HP/GP at which the bar will be "yellow".  Default is 33, i.e. a third.
         </li>
         <li>
-            <span class="code">var barGreenPercent = 66;</span><br>
+            <code>var barGreenPercent = 66;</code><br>
             This is the percentage of HP/GP at which the bar will be "green" (dark green).  Default is 66, i.e. two thirds.
         </li>
         <li>
-            <span class="code">var barFullPercent = 100;</span><br>
+            <code>var barFullPercent = 100;</code><br>
             This is the percentage of HP/GP at which the bar will be "full" (bright green).  Default is 100, but a slightly lower value might be preferable, depending on your purposes.
         </li>
         <li>
-            <span class="code">var barRed = "#ff0000";</span><br>
-            The HTML hex code that the bar will be in its "red" state.  Default is "<span class="code">#ff0000</span>", i.e. bright red.
+            <code>var barRed = "#ff0000";</code><br>
+            The HTML hex code that the bar will be in its "red" state.  Default is "<code>#ff0000</code>", i.e. bright red.
         </li>
         <li>
-            <span class="code">var barYellow = "#ffff00";</span><br>
-            The HTML hex code that the bar will be in its "yellow" state.  Default is "<span class="code">#ffff00</span>", i.e. bright yellow.
+            <code>var barYellow = "#ffff00";</code><br>
+            The HTML hex code that the bar will be in its "yellow" state.  Default is "<code>#ffff00</code>", i.e. bright yellow.
         </li>
         <li>
-            <span class="code">var barGreen = "#00a000";</span><br>
-            The HTML hex code that the bar will be in its "green" state.  Default is "<span class="code">#00a000</span>", i.e. dark green.
+            <code>var barGreen = "#00a000";</code><br>
+            The HTML hex code that the bar will be in its "green" state.  Default is "<code>#00a000</code>", i.e. dark green.
         </li>
         <li>
-            <span class="code">var barFull = "#00ff00";</span><br>
-            The HTML hex code that the bar will be in its "full" state.  Default is "<span class="code">#00ff00</span>", i.e. bright green.
+            <code>var barFull = "#00ff00";</code><br>
+            The HTML hex code that the bar will be in its "full" state.  Default is "<code>#00ff00</code>", i.e. bright green.
         </li>
         <li>
-            <span class="code">var barBackground = "#808080";</span><br>
-            The HTML hex code for the status bar background.  Default is "<span class="code">#808080</span>", i.e. a neutral grey.
+            <code>var barBackground = "#808080";</code><br>
+            The HTML hex code for the status bar background.  Default is "<code>#808080</code>", i.e. a neutral grey.
         </li>
     </ul>
 

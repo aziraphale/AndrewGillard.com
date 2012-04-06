@@ -571,7 +571,7 @@ aside.cvdl span a {
 }
 
 
-.code {
+code, .code {
     background-color: #ddd;
     font-family: monospace;
     font-size: 0.9em;
