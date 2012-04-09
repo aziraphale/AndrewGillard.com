@@ -9,15 +9,21 @@ resources.frontController.controllerDirectory = APPLICATION_PATH "/controllers"
 resources.frontController.params.displayExceptions = 0
 resources.layout.layoutPath = APPLICATION_PATH "/layouts/scripts/"
 resources.view[] = 
-resources.view.doctype = "HTML5"
 fontPath = APPLICATION_PATH "/../library/fonts"
 autoloaderNamespaces.ag = "AG_"
+flickrApiKey  = "8eed21229c89731237d473a0f1a46619"
+flickrUsername = "lorddeath@gmail.com"
+
+;routes.post.route = "post/:id/:title"
+;routes.post.defaults.controller = blog
+;routes.post.defaults.action = post
 
 resources.db.adapter = "PDO_MYSQL"
 resources.db.params.host = "localhost"
 resources.db.params.username = "ENTER_DBMS_USERNAME"
 resources.db.params.password = "ENTER_DBMS_PASSWORD"
 resources.db.params.dbname = "ENTER_DATABASE_NAME"
+resources.db.params.charset = "utf8"
 [staging : production]
 
 [testing : production]
