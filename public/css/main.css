@@ -513,6 +513,9 @@ footer ul li a:hover {
 #mainbody .portfoliosite p:first-of-type {
     margin-top: 40px;
 }
+#mainbody .portfoliosite p.pfmoremargin:first-of-type {
+    margin-top: 80px;
+}
 #mainbody .portfoliosite img {
     margin: 10px;
 }
