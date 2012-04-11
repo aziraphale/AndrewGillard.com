@@ -11,5 +11,5 @@ RewriteRule ^.*$ index.php [NC,L]
 
 <IfModule mod_expires.c>
     ExpiresActive On
-    ExpiresDefault "now plus 1 month"
+    ExpiresDefault "modification plus 1 day"
 </IfModule>
