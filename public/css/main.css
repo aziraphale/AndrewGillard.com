@@ -414,10 +414,17 @@ footer ul li a:hover {
 .pagination li a, .pagination li span {
     display: inline-block;
     padding: 5px 8px 6px 6px;
-    color: #2E648E;
+    color: #0E446E;
 }
 .pagination li span {
-    color: #ADD1ED;
+    color: #000000;
+}
+.pagination .currentpage {
+    font-weight: bold;
+}
+.pagination li.currentpage.pagejump span {
+    font-weight: normal;
+    color: #BED9ED;
 }
 .pagination li a:hover {
     color: #BED9ED;
@@ -527,6 +534,14 @@ footer ul li a:hover {
 }
 
 
+@font-face {
+    font-family: "Calibri";
+    src: local("Calibri"), url( fonts/Calibri.ttf ) format("truetype");
+}
+@font-face {
+    font-family: "Cambria";
+    src: local("Cambria"), url( fonts/Cambria.ttf ) format("truetype");
+}
 aside.cvdl {
     font-size: 0.8em;
     font-style: oblique;
@@ -539,38 +554,93 @@ aside.cvdl span {
 aside.cvdl span a {
     padding-left: 5px;
 }
-.cvredacted {
-    font-style: oblique;
-    color: #999;
+#mainbody .cv {
+    font-family: "Calibri", sans-serif;
+    font-size: 11pt;
+    text-align: left;
+    padding: 30px 20px 30px 50px;
 }
-.cvcentre {
-    text-align: center;
+.cvwidth {
+    width: 700px;
+}
+.cv .cvtitle {
+    font-size: 26pt;
+    border-bottom: 1px solid rgb(79, 129, 189);
+    padding-bottom: 15px;
+    font-family: "Cambria", serif;
+    font-weight: normal;
+    color: rgb(23, 54, 93);
+    margin: 0 0 15pt 0;
+}
+.cv a {
+    text-decoration: none;
+}
+.cv h3 {
+    font-size: 14pt;
+    font-family: "Cambria", serif;
+    font-weight: bold;
+    color: rgb(54, 95, 145);
+    margin: 24pt 0 0 0;
+}
+.cv h4 {
+    font-size: 13pt;
+    font-family: "Cambria", serif;
+    font-weight: bold;
+    color: rgb(79, 129, 189);
+    margin: 10pt 0 2pt 0;
+}
+.cv p {
+    margin: 0 0 6pt 0;
+}
+.cv ul {
+    margin: 0 0 10pt 0;
 }
 .cvcontacttable {
     margin: 0px auto;
 }
-.cvcontacttable td {
-    padding: 0px 50px;
+.cvcontacttable td:first-child {
+    padding-right: 40px;
+}
+.cvcontacttable td:last-child {
+    padding-left: 40px;
+}
+.cvcontacttable ul {
+    padding-left: 0px;
+}
+.cvcontacttable li {
+    list-style-type: none;
+}
+.cvredacted {
+    font-style: oblique;
+    color: #999;
+}
+em.cvsubtle {
+    font-style: oblique;
+    color: rgb(128, 128, 128);
+    
 }
 
+.cveducationdates {
+    float: right;
+    font-size: 9pt;
+    font-family: "Cambria", serif;
+    font-weight: bold;
+    font-style: oblique;
+    color: rgb(128, 128, 128);
+}
 .cvqualificationtable {
     width: 80%;
-    margin: 0px auto;
-}
-.cvqualificationtable, .cvqualificationtable th, .cvqualificationtable td {
+    margin: 5px auto;
     border: 1px solid;
-    padding: 5px 8px;
     border-spacing: 0px;
     border-collapse: collapse;
 }
-
-.cv h3 {
-    border: 1px solid #000;
-    border-width: 1px 3px 3px 1px;
-    background-color: #ccc;
-    padding: 2px 10px 3px 5px;
-    font-style: oblique;
-    font-variant: small-caps;
+.cvqualificationtable th, .cvqualificationtable td {
+    border: none;
+    padding: 5px 8px;
+}
+.cvqualificationtable .border {
+    border: 1px solid;
 }
 
 

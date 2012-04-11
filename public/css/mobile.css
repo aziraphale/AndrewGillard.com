@@ -295,6 +295,114 @@ img.about-page-photo {
 
 
 aside.cvdl {
+    font-size: 0.8em;
+    font-style: oblique;
+    margin: 0px 50px;
+    text-align: center;
+}
+aside.cvdl span {
+    display: inline-block;
+}
+aside.cvdl span a {
+    padding-left: 5px;
+}
+#mainbody .cv {
+    font-family: "Calibri", sans-serif;
+    font-size: 11pt;
+    text-align: left;
+    padding: 20px 10px 20px 10px;
+}
+#mainbody .cvwidth {
+    width: auto;
+}
+#mainbody .cv .cvtitle {
+    font-size: 26pt;
+    border-bottom: 1px solid rgb(79, 129, 189);
+    padding-bottom: 15px;
+    font-family: "Cambria", serif;
+    font-weight: normal;
+    color: rgb(23, 54, 93);
+    margin: 0 0 15pt 0;
+    line-height: 1.1em;
+}
+#mainbody .cv a {
+    text-decoration: none;
+}
+#mainbody .cv h3 {
+    font-size: 14pt;
+    font-family: "Cambria", serif;
+    font-weight: bold;
+    color: rgb(54, 95, 145);
+    margin: 24pt 0 0 0;
+}
+#mainbody .cv h4 {
+    font-size: 13pt;
+    font-family: "Cambria", serif;
+    font-weight: bold;
+    color: rgb(79, 129, 189);
+    margin: 10pt 0 2pt 0;
+}
+#mainbody .cv p {
+    margin: 0 0 6pt 0;
+}
+#mainbody .cv ul {
+    margin: 0 0 10pt 0;
+}
+#mainbody .cvcontacttable {
+    margin: 0px auto;
+}
+#mainbody .cvcontacttable td:first-child {
+    padding-right: 0;
+    display: block;
+    margin-bottom: 10px;
+}
+#mainbody .cvcontacttable td:last-child {
+    padding-left: 0;
+    display: block;
+}
+#mainbody .cvredacted {
+    font-style: oblique;
+    color: #999;
+}
+#mainbody .cvcontacttable ul {
+    padding-left: 20px;
+}
+#mainbody .cvcontacttable li {
+    list-style-type: inherit;
+}
+#mainbody .cvredacted br {
+    display: none;
+}
+#mainbody em.cvsubtle {
+    font-style: oblique;
+    color: rgb(128, 128, 128);
+    
+}
+
+#mainbody .cveducationdates {
+    float: right;
+    font-size: 9pt;
+    font-family: "Cambria", serif;
+    font-weight: bold;
+    font-style: oblique;
+    color: rgb(128, 128, 128);
+}
+#mainbody .cvqualificationtable {
+    width: 80%;
+    margin: 5px auto;
+    border: 1px solid;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+#mainbody .cvqualificationtable th, .cvqualificationtable td {
+    border: none;
+    padding: 5px 8px;
+}
+#mainbody .cvqualificationtable .border {
+    border: 1px solid;
+}
+
+/*aside.cvdl {
     margin: 0px 00px;
 }
 aside.cvdl span a {
@@ -326,7 +434,7 @@ aside.cvdl span a {
 }
 .cvcontacttable td:last-child {
     padding-right: 0px;
-}
+}*/
 
 
 .code {
