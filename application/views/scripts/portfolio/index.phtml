@@ -1,3 +1,9 @@
+<?php if (Zend_Controller_Front::getInstance()->getParam('bootstrap')->getOption('lookingForWork')): ?>
+    <article class="availableforwork">
+        <p>I'm currently available for full-time, permanent work as an experienced, Zend Certified, Web Developer. If you're interested in hiring me, please email me at <a href="mailto:cv@andrewgillard.com">cv@andrewgillard.com</a> or <a href="<?php echo $this->url(array('controller'=>'cv'), 'default', true) ?>">check out my CV</a>.</p>
+    </article>
+<?php endif; ?>
+
 <article>
     <p>Here is a list of notable Web projects that I have worked on, either alone or with others, ordered from most recent to oldest, with the years in which the projects were in active development displayed to the right of the project name. In the sub-heading of each site I have listed a few of the <strong>significant</strong> technologies/languages/services used - e.g. CSS and JavaScript won't be listed unless they played a large part in the project.</p>
     <p>The project names are links that will take you to the site in question, a demonstration of the software, or a gallery of screenshots from the project if the project isn't publicly available (whichever is applicable).</p>

@@ -1,3 +1,9 @@
+<?php if (Zend_Controller_Front::getInstance()->getParam('bootstrap')->getOption('lookingForWork')): ?>
+    <article class="availableforwork">
+        <p>I'm currently available for full-time, permanent work as an experienced, Zend Certified, Web Developer. If you're interested in hiring me, please email me at <a href="mailto:cv@andrewgillard.com">cv@andrewgillard.com</a>, or <a href="<?php echo $this->url(array('controller'=>'cv'), 'default', true) ?>">check out my CV</a> or <a href="<?php echo $this->url(array('controller'=>'portfolio'), 'default', true) ?>">portfolio</a>.</p>
+    </article>
+<?php endif; ?>
+
 <section>
     <p>“Writing code is easy; writing about myself is much harder.”</p>
 </section>

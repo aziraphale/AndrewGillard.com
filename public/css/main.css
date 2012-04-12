@@ -644,6 +644,11 @@ em.cvsubtle {
 }
 
 
+#mainbody .availableforwork {
+    background-color: #ffff55;
+}
+
+
 code, .code {
     background-color: #ddd;
     font-family: monospace;

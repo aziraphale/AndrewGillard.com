@@ -1,3 +1,9 @@
+<?php if (Zend_Controller_Front::getInstance()->getParam('bootstrap')->getOption('lookingForWork')): ?>
+    <article class="availableforwork">
+        <p>I'm currently available for full-time, permanent work as an experienced, Zend Certified, Web Developer. If you're interested in hiring me, please email me at <a href="mailto:cv@andrewgillard.com">cv@andrewgillard.com</a>.</p>
+    </article>
+<?php endif; ?>
+
 <aside class="cvdl">
     <p>This document is also available to download as a <span class="sprite-sites-docx"><a href="<?php echo $this->baseUrl() ?>/files/Andrew_Gillard_CV_Web.doc">Microsoft Word (.doc) file</a></span> or an <span class="sprite-sites-pdf"><a href="<?php echo $this->baseUrl() ?>/files/Andrew_Gillard_CV_Web.pdf">Adobe PDF (.pdf) file</a></span>.</p>
 </aside>
@@ -15,7 +21,7 @@
                     <td>
                         <ul>
                             <li><a href="http://www.andrewgillard.com/portfolio/">http://www.andrewgillard.com/portfolio/</a></li>
-                            <li>cv@andrewgillard.com</li>
+                            <li><a href="mailto:cv@andrewgillard.com">cv@andrewgillard.com</a></li>
                             <li><span class="cvredacted">Phone number redacted<br> from Web copy</span></li>
                             <li>Date of Birth: 7<sup>th</sup> February 1987</li>
                             <li>Full, clean, UK driving licence with own car</li>

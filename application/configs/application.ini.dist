@@ -13,6 +13,7 @@ fontPath = APPLICATION_PATH "/../library/fonts"
 autoloaderNamespaces.ag = "AG_"
 flickrApiKey  = "8eed21229c89731237d473a0f1a46619"
 flickrUsername = "lorddeath@gmail.com"
+lookingForWork = 0
 
 ;routes.post.route = "post/:id/:title"
 ;routes.post.defaults.controller = blog
