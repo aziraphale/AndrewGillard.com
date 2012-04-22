@@ -1,7 +1,7 @@
 <?php
 
-//define('GALLERY_URL', 'http://www.andrewgillard.com/gallery-demo/gallery.inc');
-define('GALLERY_URL', 'http://www.lorddeath.net/gallery-demo/gallery.inc');
+define('GALLERY_URL', 'http://www.andrewgillard.com/gallery-demo/gallery.inc');
+//define('GALLERY_URL', 'http://www.lorddeath.net/gallery-demo/gallery.inc');
 define('CACHED_SCRIPT_TIMEOUT', 3600);
 define('USE_DATA_URIS', true);
 
