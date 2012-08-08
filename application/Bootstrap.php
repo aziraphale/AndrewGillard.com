@@ -48,7 +48,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                             'Apc', //'File',
                                             array(
                                                 'lifetime' => 900,
-                                                'debug_header' => true,
+                                                'debug_header' => false,
                                                 'regexps' => $pageCacheRegexps,
                                             ),
                                             array()
