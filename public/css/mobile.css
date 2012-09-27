@@ -1,3 +1,8 @@
+@media only screen and (max-width: 32em) {
+
+/* Indicator so JS knows if this style is being used. Should have no visible effect on the page */
+html { background-clip: padding-box ! important; }
+
 body {
     margin: 0px 0px 0px 0px;
 }
@@ -468,4 +473,6 @@ article.dwrods th, article.dwrods td {
 }
 article.dwsbscript img {
     max-width: 100%;
+}
+
 }

@@ -20,13 +20,14 @@ $this
 //    ->headLink()->appendStylesheet($this->baseUrl() . "/css/main.css", "screen and (min-device-width: 601px)")
     ->headLink()->appendStylesheet($this->baseUrl() . "/css/jquery-ui-1.8.18.redmond.css", "screen")
     ->headLink()->appendStylesheet($this->baseUrl() . "/css/print.css", "print")
-    ->headLink()->appendStylesheet($this->baseUrl() . "/css/mobile.css", "handheld")
-    ->headLink(array('href'=>$this->baseUrl() . "/css/mobile.css", 'media'=>"all and (max-device-width: 600px)", 'rel'=>'stylesheet', 'type'=>'text/css'))
+//    ->headLink()->appendStylesheet($this->baseUrl() . "/css/mobile.css", "handheld")
+//    ->headLink(array('href'=>$this->baseUrl() . "/css/mobile.css", 'media'=>"all and (max-device-width: 600px)", 'rel'=>'stylesheet', 'type'=>'text/css'))
 //    ->headLink(array('href'=>$this->baseUrl() . "/css/mobile.css", 'media'=>"all", 'rel'=>'stylesheet', 'type'=>'text/css'))
 //    ->headLink()->appendStylesheet($this->baseUrl() . "/css/mobile.css", "all and (max-device-width: 600px)")
 //    ->headLink()->appendStylesheet($this->baseUrl() . "/css/mobile.css", "all and (-webkit-device-pixel-ratio:0.75)")
 //    ->headLink()->appendStylesheet($this->baseUrl() . "/css/mobile.css", "all and (-webkit-device-pixel-ratio:1.0)")
 //    ->headLink()->appendStylesheet($this->baseUrl() . "/css/mobile.css", "all and (-webkit-device-pixel-ratio:1.5)")
+    ->headLink()->appendStylesheet($this->baseUrl() . "/css/mobile.css", "screen")
     ;
 
 $this
