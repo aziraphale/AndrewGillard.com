@@ -10,6 +10,8 @@ class GalleryController extends Zend_Controller_Action
     {
         $this->imageModel = new Model_GalleryImage();
         $this->albumModel = new Model_GalleryAlbum();
+        
+        $this->_helper->cache(array('index','album','view'), array('gallery_controller'));
     }
 
     public function indexAction()

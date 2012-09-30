@@ -6,6 +6,9 @@ class DiscworldController extends Zend_Controller_Action
     public function init()
     {
         /* Initialize action controller here */
+        $this->_helper->cache(array('index', 'cre-cards', 'deaths', 'gruntha-deaths',
+                                    'information', 'language-graphs', 'render-language-graphs',
+                                    'locations','logs','maps','rods','status-bar-script'), array('discworld_controller'));
     }
 
     public function indexAction()

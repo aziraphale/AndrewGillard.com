@@ -9,6 +9,10 @@ class BlogController extends Zend_Controller_Action
     {
         $this->blogModel = new Model_Blog();
         $this->view->bbcode = Zend_Markup::factory("Bbcode");
+        
+        $this->_helper->cache(array('index'), array('blog_indexaction'));
+        $this->_helper->cache(array('view'), array('blog_viewaction'));
+        $this->_helper->cache(array('rss'), array('blog_rssaction'));
     }
 
     public function indexAction()

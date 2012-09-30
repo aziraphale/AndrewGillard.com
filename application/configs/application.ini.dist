@@ -25,6 +25,12 @@ resources.db.params.username = "ENTER_DBMS_USERNAME"
 resources.db.params.password = "ENTER_DBMS_PASSWORD"
 resources.db.params.dbname = "ENTER_DATABASE_NAME"
 resources.db.params.charset = "utf8"
+
+; Custom Caches (Adjustments To Default CacheManager)
+resources.cacheManager.page.backend.options.public_dir = APPLICATION_PATH "/../public/cached"
+resources.cacheManager.pagetag.backend.options.cache_dir = APPLICATION_PATH "/tmp/cache-tags"
+resources.frontController.params.disableOutputBuffering = true
+
 [staging : production]
 
 [testing : production]
@@ -35,3 +41,4 @@ phpSettings.display_errors = 1
 phpSettings.display_startup_errors = 1
 phpSettings.display_errors = 1
 resources.frontController.params.displayExceptions = 1
+resources.cacheManager.page.backend.options.disable_caching = true
