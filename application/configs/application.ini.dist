@@ -31,6 +31,12 @@ resources.cacheManager.page.backend.options.public_dir = APPLICATION_PATH "/../p
 resources.cacheManager.pagetag.backend.options.cache_dir = APPLICATION_PATH "/tmp/cache-tags"
 resources.frontController.params.disableOutputBuffering = true
 
+resources.log.stream.writerName = "Stream"
+resources.log.stream.writerParams.stream = APPLICATION_PATH "/../logs/error.log"
+resources.log.stream.writerParams.mode = "a"
+resources.log.stream.filterName = "Priority"
+resources.log.stream.filterParams.priority = 7
+
 [staging : production]
 
 [testing : production]

@@ -37,8 +37,9 @@ RewriteRule ^.*$ index.php [NC,L]
     AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript
 </IfModule>
 
-# All files default to expiring after 1 day (most files don't change much...)
+# All files default to expiring after 1 hour (most files don't change much, though keeping the
+#  Twitter/Flickr boxes current is nice...)
 <IfModule mod_expires.c>
     ExpiresActive On
-    ExpiresDefault "modification plus 1 day"
+    ExpiresDefault "now plus 1 hour"
 </IfModule>
