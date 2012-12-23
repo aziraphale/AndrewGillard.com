@@ -1,24 +1,28 @@
 RewriteEngine On
 
-Redirect /Blog/blog/
+Redirect /Blog/ /blog/
 
 # Keep all requests with a "www" prefix
 RewriteCond %{HTTP_HOST} !^www\.andrewgillard\.com$ [NC]
 RewriteCond %{HTTP_HOST} !^$
+RewriteCond %{ENV:APPLICATION_ENV} !development [NC]
 RewriteRule ^(/?.*) http://www.andrewgillard.com/$1 [R,L]
 
 ### ** CACHING ** ###
 # Special case for / URLs
+RewriteCond %{ENV:APPLICATION_ENV} !development [NC]
 RewriteCond %{REQUEST_METHOD} GET
 RewriteCond %{DOCUMENT_ROOT}/cached/index.html -f
 RewriteRule ^/*$ cached/index.html [L]
 
 # Strip trailing slashes from URLs (shouldn't be included with ZF URLs anyway)
+RewriteCond %{ENV:APPLICATION_ENV} !development [NC]
 RewriteCond %{REQUEST_METHOD} GET
 RewriteCond %{REQUEST_URI} ^(.+)/$
 RewriteRule . %1 [NC,R,L]
 
 # Serve up a static .html page if one has been created by the cache
+RewriteCond %{ENV:APPLICATION_ENV} !development [NC]
 RewriteCond %{REQUEST_METHOD} GET
 RewriteCond %{DOCUMENT_ROOT}/cached/%{REQUEST_URI}\.html -f
 RewriteRule .* cached/%{REQUEST_URI}\.html [L]
