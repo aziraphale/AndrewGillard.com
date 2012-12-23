@@ -1,5 +1,7 @@
 RewriteEngine On
 
+Redirect /Blog/blog/
+
 # Keep all requests with a "www" prefix
 RewriteCond %{HTTP_HOST} !^www\.andrewgillard\.com$ [NC]
 RewriteCond %{HTTP_HOST} !^$
