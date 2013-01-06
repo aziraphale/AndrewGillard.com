@@ -1,15 +1,49 @@
 RewriteEngine On
+
+# Stop with the uppercase page names
+RewriteCond %{REQUEST_URI} [A-Z]
+RewriteRule . ${lc:%{REQUEST_URI}} [R=301,L]
+
+# Keep all requests with a "www" prefix
+RewriteCond %{HTTP_HOST} !^www\.andrewgillard\.com$ [NC]
+RewriteCond %{HTTP_HOST} !^$
+RewriteRule ^(/?.*) http://www.andrewgillard.com/$1 [R,L]
+
+### ** CACHING ** ###
+# Special case for / URLs
+RewriteCond %{REQUEST_METHOD} GET
+RewriteCond %{DOCUMENT_ROOT}/cached/index.html -f
+RewriteRule ^/*$ cached/index.html [L]
+
+# Strip trailing slashes from URLs (shouldn't be included with ZF URLs anyway)
+RewriteCond %{REQUEST_METHOD} GET
+RewriteCond %{REQUEST_URI} ^(.+)/$
+RewriteRule . %1 [NC,R,L]
+
+# Serve up a static .html page if one has been created by the cache
+RewriteCond %{REQUEST_METHOD} GET
+RewriteCond %{DOCUMENT_ROOT}/cached/%{REQUEST_URI}\.html -f
+RewriteRule .* cached/%{REQUEST_URI}\.html [L]
+
+# ... otherwise continue with normal ZF stuff
+### ** END CACHING ** ###
+
+# Standard Zend Framework stuff - rewrite non-static requests to index.php
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -l [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^.*$ - [NC,L]
 RewriteRule ^.*$ index.php [NC,L]
 
+
+# Add transparent output compression to html, text, xml, css and js files
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript
 </IfModule>
 
+# All files default to expiring after 1 hour (most files don't change much, though keeping the
+#  Twitter/Flickr boxes current is nice...)
 <IfModule mod_expires.c>
     ExpiresActive On
-    ExpiresDefault "modification plus 1 day"
+    ExpiresDefault "now plus 1 hour"
 </IfModule>
