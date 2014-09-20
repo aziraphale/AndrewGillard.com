@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Multi-Client PHP TCP Server Example</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<style type="text/css">
+	body {
+		margin: 0px;
+		padding: 10px 50px 30px 50px;
+	}
+	h1 {
+		text-align: center;
+	}
+	h2 {
+		background-color: #000;
+		color: #fff;
+		padding: 2px 5px 3px 5px;
+		margin: 10px 0px 0px 0px;
+	}	
+	div.code {
+		font-family: monospace;
+		border: 1px solid #000;
+		padding: 5px;
+	}
+	</style>
+</head>
+<body>
+
+<h1>Multi-Client PHP TCP Server Example</h1>
+
+<p>Firstly, I know it looks like a lot of code, but most of it is comments to hopefully explain exactly what's going on, so don't freak out (yet).</p>
+
+<p>Secondly, there is a "feature" of Uniform Server's Apache configuration that messes up this script a bit.  Specifically, it adds an output filter to all files that are accessed by Apache in order to compress them.  On a production web server this would be a useful feature, however since Uniform Server is most likely used almost exclusively by people developing sites and testing on the local machine, compression strikes me as a waste of time and processor power.  Anyway, this affects our server by stopping any output getting to the browser until the script finishes, which, in the case of this server, is essentially "never".  This prevents us seeing the messages from our server, and also stops the script halting and closing its listening socket properly.</p>
+
+<p>Fortunately this is easy to fix (after I spent a couple of hours locating the problem, at least).  Open Notepad and into it type "SetEnv no-gzip" (without the quotes).  Go to File-&gt;Save as normal, but set the "Save as type" drop-down box to "All files (*.*)" and name the file ".htaccess", saving it in the same directory as your server script.  This disables the compression for that directory (and any sub-directories) and solves our problem.  You shouldn't even have to restart Uniform Server!  Remember that the file <strong>must be named ".htaccess"</strong> and NOT ".htaccess.txt".  In the file's properties dialog (right-click it and go to 'Properties') it should say that the "Type of file" is "HTACCESS File (.htaccess)".  If it doesn't, it's best to delete it and create it again following the above instructions - Windows Explorer won't let you rename an existing file to ".htaccess" (the command line will let you, but accessing that on lab machines is an entirely separate task...).</p>
+
+<p>So, on to the PHP server code.  This is essentially a drop-in replacement for the server code we've been using before; you just tell a client to connect to it on the given port (10000 by default) and send a message.  In its current state the server will just echo messages sent to it back to the browser that's running the server script, but that can be easily changed near the bottom of the script.</p>
+
+<h2>server.php</h2>
+<div class="code"><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php
+<br />&nbsp;
+<br /></span><span style="color: #FF8000">/*****************************************************************************
+<br />&nbsp;*&nbsp;PHP&nbsp;Multi-Client&nbsp;TCP&nbsp;Socket&nbsp;Example&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+<br />&nbsp;*****************************************************************************
+<br />&nbsp;*&nbsp;Will&nbsp;listen&nbsp;on&nbsp;a&nbsp;given&nbsp;socket&nbsp;for&nbsp;TCP&nbsp;connections,&nbsp;echoing&nbsp;whatever&nbsp;data&nbsp;&nbsp;*
+<br />&nbsp;*&nbsp;&nbsp;is&nbsp;sent&nbsp;to&nbsp;that&nbsp;socket.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+<br />&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+<br />&nbsp;*&nbsp;Original&nbsp;script&nbsp;by&nbsp;KnoB&nbsp;in&nbsp;a&nbsp;comment&nbsp;in&nbsp;the&nbsp;PHP&nbsp;documentation:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+<br />&nbsp;*&nbsp;&nbsp;http://www.php.net/manual/en/ref.sockets.php#43155&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+<br />&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+<br />&nbsp;*&nbsp;Heavily&nbsp;modified&nbsp;and&nbsp;commented&nbsp;by&nbsp;Andrew&nbsp;Gillard&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+<br />&nbsp;*****************************************************************************/
+<br />&nbsp;
+<br />//What&nbsp;address&nbsp;are&nbsp;we&nbsp;listening&nbsp;on?&nbsp;This&nbsp;will&nbsp;have&nbsp;to&nbsp;be&nbsp;the&nbsp;same&nbsp;as&nbsp;in
+<br />//&nbsp;the&nbsp;client.&nbsp;You&nbsp;probably&nbsp;just&nbsp;want&nbsp;'127.0.0.1'&nbsp;for&nbsp;both.
+<br /></span><span style="color: #0000BB">$address&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'127.0.0.1'</span><span style="color: #007700">;
+<br />&nbsp;
+<br /></span><span style="color: #FF8000">//What&nbsp;port&nbsp;to&nbsp;use?&nbsp;Again,&nbsp;the&nbsp;client&nbsp;will&nbsp;need&nbsp;to&nbsp;know&nbsp;this,&nbsp;too
+<br /></span><span style="color: #0000BB">$port&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">10000</span><span style="color: #007700">;
+<br />&nbsp;
+<br /></span><span style="color: #0000BB">?&gt;</span>&lt;!DOCTYPE&nbsp;html&nbsp;PUBLIC&nbsp;"-//W3C//DTD&nbsp;XHTML&nbsp;1.0&nbsp;Strict//EN"
+<br />&nbsp;"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+<br />&lt;html&nbsp;xmlns="http://www.w3.org/1999/xhtml"&gt;
+<br />&lt;head&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;PHP&nbsp;Multi-Client&nbsp;Server&nbsp;Example&lt;/title&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta&nbsp;http-equiv="Content-Type"&nbsp;content="text/html;&nbsp;charset=iso-8859-1"&nbsp;/&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;style&nbsp;type="text/css"&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;div.error&nbsp;{
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding:&nbsp;0px&nbsp;10px&nbsp;5px&nbsp;10px;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:&nbsp;#f88;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border:&nbsp;1px&nbsp;solid&nbsp;#f00;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;}
+<br />&nbsp;&nbsp;&nbsp;&nbsp;div.error&nbsp;span&nbsp;{
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-family:&nbsp;monospace;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;}
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/style&gt;
+<br />&lt;/head&gt;
+<br />&lt;body&gt;
+<br />&nbsp;
+<br /><span style="color: #0000BB">&lt;?php
+<br />&nbsp;
+<br /></span><span style="color: #FF8000">//Disable&nbsp;PHP's&nbsp;script&nbsp;execution&nbsp;time&nbsp;limit
+<br /></span><span style="color: #0000BB">set_time_limit</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">);
+<br />&nbsp;
+<br /></span><span style="color: #FF8000">//Ensure&nbsp;that&nbsp;every&nbsp;time&nbsp;we&nbsp;call&nbsp;"echo",&nbsp;the&nbsp;data&nbsp;is&nbsp;sent&nbsp;to&nbsp;the&nbsp;browser
+<br />//&nbsp;IMMEDIATELY,&nbsp;rather&nbsp;than&nbsp;when&nbsp;PHP&nbsp;feels&nbsp;like&nbsp;it
+<br /></span><span style="color: #0000BB">ob_implicit_flush</span><span style="color: #007700">();
+<br />&nbsp;
+<br /></span><span style="color: #FF8000">//Normally&nbsp;when&nbsp;the&nbsp;user&nbsp;clicks&nbsp;the&nbsp;"Stop"&nbsp;button&nbsp;in&nbsp;their&nbsp;browser,&nbsp;the
+<br />//&nbsp;script&nbsp;is&nbsp;terminated.&nbsp;This&nbsp;line&nbsp;stops&nbsp;that&nbsp;happening,&nbsp;so&nbsp;that&nbsp;we&nbsp;can
+<br />//&nbsp;detect&nbsp;the&nbsp;Stop&nbsp;button&nbsp;ourselves&nbsp;and&nbsp;properly&nbsp;close&nbsp;our&nbsp;sockets&nbsp;(to
+<br />//&nbsp;prevent&nbsp;the&nbsp;listening&nbsp;socket&nbsp;remaining&nbsp;open&nbsp;and&nbsp;stealing&nbsp;the&nbsp;port)
+<br /></span><span style="color: #0000BB">ignore_user_abort</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">);
+<br />&nbsp;
+<br /></span><span style="color: #FF8000">//Define&nbsp;a&nbsp;function&nbsp;that&nbsp;we&nbsp;can&nbsp;call&nbsp;when&nbsp;any&nbsp;of&nbsp;our&nbsp;socket&nbsp;function&nbsp;calls
+<br />//&nbsp;fail.&nbsp;This&nbsp;allows&nbsp;us&nbsp;to&nbsp;consolidate&nbsp;our&nbsp;error&nbsp;message&nbsp;XHTML&nbsp;and&nbsp;avoid
+<br />//&nbsp;code&nbsp;repetition.&nbsp;If&nbsp;$die&nbsp;is&nbsp;set&nbsp;to&nbsp;true,&nbsp;the&nbsp;script&nbsp;will&nbsp;terminate
+<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">socketError</span><span style="color: #007700">(</span><span style="color: #0000BB">$errorFunction</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$die</span><span style="color: #007700">=</span><span style="color: #0000BB">false</span><span style="color: #007700">)&nbsp;{
+<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$errMsg&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">socket_strerror</span><span style="color: #007700">(</span><span style="color: #0000BB">socket_last_error</span><span style="color: #007700">());
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//This&nbsp;odd&nbsp;construct&nbsp;(known&nbsp;as&nbsp;a&nbsp;heredoc)&nbsp;just&nbsp;echos&nbsp;all&nbsp;of&nbsp;the&nbsp;text
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;between&nbsp;"&lt;&lt;&lt;EOHTML"&nbsp;and&nbsp;"EOHTML;".&nbsp;It's&nbsp;just&nbsp;a&nbsp;neater&nbsp;and&nbsp;easier&nbsp;to&nbsp;read
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;format&nbsp;than&nbsp;using&nbsp;standard&nbsp;quoted&nbsp;strings.&nbsp;If&nbsp;you&nbsp;want&nbsp;to&nbsp;use&nbsp;one
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;yourself,&nbsp;bear&nbsp;in&nbsp;mind&nbsp;that&nbsp;the&nbsp;structure&nbsp;is&nbsp;VERY&nbsp;strict:&nbsp;the&nbsp;opening
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;line&nbsp;must&nbsp;be&nbsp;just&nbsp;"&lt;&lt;&lt;"&nbsp;followed&nbsp;by&nbsp;the&nbsp;ending&nbsp;identifier,&nbsp;and&nbsp;the&nbsp;last
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;line&nbsp;must&nbsp;contain&nbsp;NOTHING&nbsp;except&nbsp;the&nbsp;identifier&nbsp;("EOHTML"&nbsp;in&nbsp;this&nbsp;case).
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;The&nbsp;semi-colon&nbsp;after&nbsp;the&nbsp;closing&nbsp;identifier&nbsp;is&nbsp;optional,&nbsp;but&nbsp;it&nbsp;is
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;important&nbsp;to&nbsp;realise&nbsp;that&nbsp;there&nbsp;cannot&nbsp;even&nbsp;be&nbsp;whitespace&nbsp;(tabs&nbsp;or
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;spaces)&nbsp;before&nbsp;the&nbsp;EOHTML;&nbsp;at&nbsp;the&nbsp;end!!
+<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">echo&nbsp;&lt;&lt;&lt;EOHTML
+<br /></span><span style="color: #0000BB">&lt;div&nbsp;class="error"&gt;
+<br />&lt;h1&gt;$errorFunction()&nbsp;failed!&lt;/h1&gt;
+<br />&lt;p&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;strong&gt;Error&nbsp;Message:&lt;/strong&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;$errMsg&lt;/span&gt;
+<br />&lt;/p&gt;
+<br />&lt;p&gt;Note&nbsp;that&nbsp;if&nbsp;you&nbsp;have&nbsp;recently&nbsp;pressed&nbsp;your&nbsp;browser's&nbsp;Stop&nbsp;or
+<br />&nbsp;Refresh/Reload&nbsp;button&nbsp;on&nbsp;this&nbsp;server&nbsp;script,&nbsp;you&nbsp;may&nbsp;have&nbsp;to&nbsp;wait&nbsp;a&nbsp;few
+<br />&nbsp;seconds&nbsp;for&nbsp;the&nbsp;old&nbsp;server&nbsp;to&nbsp;release&nbsp;its&nbsp;listening&nbsp;port.&nbsp;As&nbsp;such,&nbsp;wait
+<br />&nbsp;and&nbsp;try&nbsp;again&nbsp;in&nbsp;a&nbsp;few&nbsp;seconds.
+<br />&lt;/p&gt;
+<br />&lt;/div&gt;
+<br /></span><span style="color: #007700">EOHTML;
+<br />&nbsp;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$die</span><span style="color: #007700">)&nbsp;{
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//Close&nbsp;the&nbsp;BODY&nbsp;and&nbsp;HTML&nbsp;tags&nbsp;as&nbsp;well&nbsp;as&nbsp;terminating&nbsp;script&nbsp;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//execution&nbsp;because&nbsp;the&nbsp;die()&nbsp;call&nbsp;prevents&nbsp;us&nbsp;ever&nbsp;getting&nbsp;to&nbsp;the&nbsp;last
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;lines&nbsp;of&nbsp;this&nbsp;script
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">die(</span><span style="color: #DD0000">'&lt;/body&gt;&lt;/html&gt;'</span><span style="color: #007700">);
+<br />&nbsp;&nbsp;&nbsp;&nbsp;}
+<br />}
+<br />&nbsp;
+<br /></span><span style="color: #FF8000">//Attempt&nbsp;to&nbsp;create&nbsp;our&nbsp;socket.&nbsp;The&nbsp;"@"&nbsp;hides&nbsp;PHP's&nbsp;standard&nbsp;error&nbsp;reporting,
+<br />//&nbsp;so&nbsp;that&nbsp;we&nbsp;can&nbsp;output&nbsp;our&nbsp;own&nbsp;error&nbsp;message&nbsp;if&nbsp;it&nbsp;fails
+<br /></span><span style="color: #007700">if&nbsp;(!(</span><span style="color: #0000BB">$server&nbsp;</span><span style="color: #007700">=&nbsp;@</span><span style="color: #0000BB">socket_create</span><span style="color: #007700">(</span><span style="color: #0000BB">AF_INET</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SOCK_STREAM</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SOL_TCP</span><span style="color: #007700">)))&nbsp;{
+<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">socketError</span><span style="color: #007700">(</span><span style="color: #DD0000">'socket_create'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">);
+<br />}
+<br />&nbsp;
+<br /></span><span style="color: #FF8000">//Set&nbsp;the&nbsp;"Reuse&nbsp;Address"&nbsp;socket&nbsp;option&nbsp;to&nbsp;enabled
+<br />//socket_set_option($server,&nbsp;SOL_SOCKET,&nbsp;SO_REUSEADDR,&nbsp;1);
+<br />&nbsp;
+<br />//Attempt&nbsp;to&nbsp;bind&nbsp;our&nbsp;socket&nbsp;to&nbsp;the&nbsp;address&nbsp;and&nbsp;port&nbsp;that&nbsp;we're&nbsp;listening&nbsp;on.
+<br />//&nbsp;Again,&nbsp;we&nbsp;suppress&nbsp;PHP's&nbsp;error&nbsp;reporting&nbsp;in&nbsp;favour&nbsp;of&nbsp;our&nbsp;own
+<br /></span><span style="color: #007700">if&nbsp;(!@</span><span style="color: #0000BB">socket_bind</span><span style="color: #007700">(</span><span style="color: #0000BB">$server</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$address</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$port</span><span style="color: #007700">))&nbsp;{
+<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">socketError</span><span style="color: #007700">(</span><span style="color: #DD0000">'socket_bind'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">);
+<br />}
+<br />&nbsp;
+<br /></span><span style="color: #FF8000">//Start&nbsp;listening&nbsp;on&nbsp;the&nbsp;address&nbsp;and&nbsp;port&nbsp;that&nbsp;we&nbsp;bound&nbsp;our&nbsp;socket&nbsp;to&nbsp;above,
+<br />//&nbsp;using&nbsp;our&nbsp;own&nbsp;error&nbsp;reporting&nbsp;code&nbsp;as&nbsp;before
+<br /></span><span style="color: #007700">if&nbsp;(!@</span><span style="color: #0000BB">socket_listen</span><span style="color: #007700">(</span><span style="color: #0000BB">$server</span><span style="color: #007700">))&nbsp;{
+<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">socketError</span><span style="color: #007700">(</span><span style="color: #DD0000">'socket_listen'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">);
+<br />}
+<br />&nbsp;
+<br /></span><span style="color: #FF8000">//Create&nbsp;an&nbsp;array&nbsp;to&nbsp;store&nbsp;our&nbsp;sockets&nbsp;in.&nbsp;We&nbsp;use&nbsp;this&nbsp;so&nbsp;that&nbsp;we&nbsp;can
+<br />//&nbsp;determine&nbsp;which&nbsp;socket&nbsp;has&nbsp;new&nbsp;incoming&nbsp;data&nbsp;with&nbsp;the&nbsp;"socket_select()"
+<br />//&nbsp;function,&nbsp;and&nbsp;to&nbsp;properly&nbsp;close&nbsp;each&nbsp;socket&nbsp;when&nbsp;the&nbsp;script&nbsp;finishes
+<br /></span><span style="color: #0000BB">$allSockets&nbsp;</span><span style="color: #007700">=&nbsp;array(</span><span style="color: #0000BB">$server</span><span style="color: #007700">);
+<br />&nbsp;
+<br /></span><span style="color: #FF8000">//Start&nbsp;looping&nbsp;indefinitely.&nbsp;On&nbsp;each&nbsp;iteration&nbsp;we&nbsp;will&nbsp;make&nbsp;sure&nbsp;the&nbsp;browser's
+<br />//&nbsp;"Stop"&nbsp;button&nbsp;hasn't&nbsp;been&nbsp;pressed&nbsp;and,&nbsp;if&nbsp;not,&nbsp;see&nbsp;if&nbsp;we&nbsp;have&nbsp;any&nbsp;incoming
+<br />//&nbsp;client&nbsp;connection&nbsp;requests&nbsp;or&nbsp;any&nbsp;incoming&nbsp;data&nbsp;on&nbsp;existing&nbsp;clients
+<br /></span><span style="color: #007700">while&nbsp;(</span><span style="color: #0000BB">true</span><span style="color: #007700">)&nbsp;{
+<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//We&nbsp;have&nbsp;to&nbsp;echo&nbsp;something&nbsp;to&nbsp;the&nbsp;browser&nbsp;or&nbsp;PHP&nbsp;won't&nbsp;know&nbsp;if&nbsp;the&nbsp;Stop
+<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;button&nbsp;has&nbsp;been&nbsp;pressed
+<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'&nbsp;'</span><span style="color: #007700">;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">connection_aborted</span><span style="color: #007700">())&nbsp;{
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//The&nbsp;Stop&nbsp;button&nbsp;has&nbsp;been&nbsp;pressed,&nbsp;so&nbsp;close&nbsp;all&nbsp;our&nbsp;sockets&nbsp;and&nbsp;exit
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">foreach&nbsp;(</span><span style="color: #0000BB">$allSockets&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$socket</span><span style="color: #007700">)&nbsp;{
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">socket_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$socket</span><span style="color: #007700">);
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<br />&nbsp;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//Now&nbsp;break&nbsp;out&nbsp;of&nbsp;this&nbsp;while()&nbsp;loop!
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">break;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;}
+<br />&nbsp;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//socket_select()&nbsp;is&nbsp;slightly&nbsp;strange.&nbsp;You&nbsp;have&nbsp;to&nbsp;make&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;array
+<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;of&nbsp;sockets&nbsp;you&nbsp;pass&nbsp;to&nbsp;it,&nbsp;because&nbsp;it&nbsp;changes&nbsp;that&nbsp;array&nbsp;when&nbsp;it&nbsp;returns
+<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;and&nbsp;the&nbsp;resulting&nbsp;array&nbsp;will&nbsp;only&nbsp;contain&nbsp;sockets&nbsp;with&nbsp;waiting&nbsp;data&nbsp;on
+<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;them.&nbsp;$write&nbsp;and&nbsp;$except&nbsp;are&nbsp;set&nbsp;to&nbsp;NULL&nbsp;because&nbsp;we&nbsp;aren't&nbsp;interested&nbsp;in
+<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;them.&nbsp;The&nbsp;last&nbsp;parameter&nbsp;indicates&nbsp;that&nbsp;socket_select&nbsp;will&nbsp;return&nbsp;after
+<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;that&nbsp;many&nbsp;seconds&nbsp;if&nbsp;no&nbsp;data&nbsp;is&nbsp;receiveed&nbsp;in&nbsp;that&nbsp;time;&nbsp;this&nbsp;prevents&nbsp;the
+<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;script&nbsp;hanging&nbsp;forever&nbsp;at&nbsp;this&nbsp;point&nbsp;(remember,&nbsp;we&nbsp;might&nbsp;want&nbsp;to&nbsp;accept&nbsp;a
+<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;new&nbsp;connection&nbsp;or&nbsp;even&nbsp;exit&nbsp;entirely)&nbsp;and&nbsp;also&nbsp;pauses&nbsp;the&nbsp;script&nbsp;briefly
+<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;to&nbsp;prevent&nbsp;this&nbsp;tight&nbsp;while()&nbsp;loop&nbsp;using&nbsp;a&nbsp;lot&nbsp;of&nbsp;processor&nbsp;time
+<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$changedSockets&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$allSockets</span><span style="color: #007700">;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">socket_select</span><span style="color: #007700">(</span><span style="color: #0000BB">$changedSockets</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$write&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$except&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">NULL</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">1</span><span style="color: #007700">);
+<br />&nbsp;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//Now&nbsp;we&nbsp;loop&nbsp;over&nbsp;each&nbsp;of&nbsp;the&nbsp;sockets&nbsp;that&nbsp;socket_select()&nbsp;says&nbsp;have&nbsp;new
+<br />&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;data&nbsp;on&nbsp;them
+<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">foreach(</span><span style="color: #0000BB">$changedSockets&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$socket</span><span style="color: #007700">)&nbsp;{
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$socket&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #0000BB">$server</span><span style="color: #007700">)&nbsp;{
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//socket_select()&nbsp;will&nbsp;include&nbsp;our&nbsp;server&nbsp;socket&nbsp;in&nbsp;the
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;$changedSockets&nbsp;array&nbsp;if&nbsp;there&nbsp;is&nbsp;an&nbsp;incoming&nbsp;connection&nbsp;attempt
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;on&nbsp;it.&nbsp;This&nbsp;will&nbsp;only&nbsp;accept&nbsp;one&nbsp;incoming&nbsp;connection&nbsp;per&nbsp;while()
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;loop&nbsp;iteration,&nbsp;but&nbsp;that&nbsp;shouldn't&nbsp;be&nbsp;a&nbsp;problem&nbsp;given&nbsp;the
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;frequency&nbsp;that&nbsp;we're&nbsp;iterating
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">if&nbsp;(!(</span><span style="color: #0000BB">$client&nbsp;</span><span style="color: #007700">=&nbsp;@</span><span style="color: #0000BB">socket_accept</span><span style="color: #007700">(</span><span style="color: #0000BB">$server</span><span style="color: #007700">)))&nbsp;{
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//socket_accept()&nbsp;failed&nbsp;for&nbsp;some&nbsp;reason&nbsp;(again,&nbsp;we&nbsp;hid&nbsp;PHP's
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;standard&nbsp;error&nbsp;message),&nbsp;so&nbsp;let's&nbsp;say&nbsp;what&nbsp;happened...
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">socketError</span><span style="color: #007700">(</span><span style="color: #DD0000">'socket_accept'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">);
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//We've&nbsp;accepted&nbsp;the&nbsp;incoming&nbsp;connection,&nbsp;so&nbsp;add&nbsp;the&nbsp;new&nbsp;client
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;socket&nbsp;to&nbsp;our&nbsp;array&nbsp;of&nbsp;sockets
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$allSockets</span><span style="color: #007700">[]&nbsp;=&nbsp;</span><span style="color: #0000BB">$client</span><span style="color: #007700">;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//Attempt&nbsp;to&nbsp;read&nbsp;data&nbsp;from&nbsp;this&nbsp;socket
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$data&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">socket_read</span><span style="color: #007700">(</span><span style="color: #0000BB">$socket</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">2048</span><span style="color: #007700">);
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$data&nbsp;</span><span style="color: #007700">===&nbsp;</span><span style="color: #0000BB">false&nbsp;</span><span style="color: #007700">||&nbsp;</span><span style="color: #0000BB">$data&nbsp;</span><span style="color: #007700">===&nbsp;</span><span style="color: #DD0000">''</span><span style="color: #007700">)&nbsp;{
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//socket_read()&nbsp;returned&nbsp;FALSE,&nbsp;meaning&nbsp;that&nbsp;the&nbsp;client&nbsp;has
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;closed&nbsp;the&nbsp;connection.&nbsp;Therefore&nbsp;we&nbsp;need&nbsp;to&nbsp;remove&nbsp;this
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;socket&nbsp;from&nbsp;our&nbsp;client&nbsp;sockets&nbsp;array&nbsp;and&nbsp;close&nbsp;the&nbsp;socket
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//A&nbsp;potential&nbsp;bug&nbsp;in&nbsp;PHP&nbsp;means&nbsp;that&nbsp;socket_read()&nbsp;will&nbsp;return
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;an&nbsp;empty&nbsp;string&nbsp;instead&nbsp;of&nbsp;FALSE&nbsp;when&nbsp;the&nbsp;connection&nbsp;has
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;been&nbsp;closed,&nbsp;contrary&nbsp;to&nbsp;what&nbsp;the&nbsp;documentation&nbsp;states.&nbsp;As
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;such,&nbsp;we&nbsp;look&nbsp;for&nbsp;FALSE&nbsp;or&nbsp;an&nbsp;empty&nbsp;string&nbsp;(an&nbsp;empty&nbsp;string
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;for&nbsp;the&nbsp;current,&nbsp;buggy,&nbsp;behaviour,&nbsp;and&nbsp;FALSE&nbsp;in&nbsp;case&nbsp;it&nbsp;ends
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;up&nbsp;getting&nbsp;fixed&nbsp;at&nbsp;some&nbsp;point)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">unset(</span><span style="color: #0000BB">$allSockets</span><span style="color: #007700">[</span><span style="color: #0000BB">array_search</span><span style="color: #007700">(</span><span style="color: #0000BB">$socket</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$allSockets</span><span style="color: #007700">)]);
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">socket_close</span><span style="color: #007700">(</span><span style="color: #0000BB">$socket</span><span style="color: #007700">);
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//We&nbsp;got&nbsp;useful&nbsp;data&nbsp;from&nbsp;socket_read(),&nbsp;so&nbsp;let's&nbsp;echo&nbsp;it.
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;"$socket"&nbsp;will&nbsp;be&nbsp;output&nbsp;as&nbsp;"Resource&nbsp;id&nbsp;#n",&nbsp;where&nbsp;n&nbsp;is
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;the&nbsp;internal&nbsp;ID&nbsp;of&nbsp;the&nbsp;socket,&nbsp;e.g.&nbsp;"Resource&nbsp;id&nbsp;#3"
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Note&nbsp;also&nbsp;that&nbsp;$data&nbsp;can&nbsp;be&nbsp;an&nbsp;empty&nbsp;string,&nbsp;so&nbsp;we&nbsp;check
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;for&nbsp;that&nbsp;in&nbsp;our&nbsp;"elseif&nbsp;($data)"&nbsp;line
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"\r\n&lt;p&gt;&lt;strong&gt;&amp;middot;&lt;/strong&gt;&nbsp;$socket&nbsp;wrote:&nbsp;$data&lt;/p&gt;"</span><span style="color: #007700">;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<br />&nbsp;&nbsp;&nbsp;&nbsp;}
+<br />}
+<br />&nbsp;
+<br /></span><span style="color: #FF8000">//Once&nbsp;we&nbsp;get&nbsp;here,&nbsp;the&nbsp;sockets&nbsp;have&nbsp;been&nbsp;closed,&nbsp;so&nbsp;just&nbsp;echo&nbsp;our&nbsp;XHTML&nbsp;footer
+<br />&nbsp;
+<br /></span><span style="color: #0000BB">?&gt;
+<br /></span>&nbsp;
+<br />&lt;/body&gt;
+<br />&lt;/html&gt;</span></div>
+
+</body>
+</html>
