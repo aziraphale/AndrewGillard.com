@@ -46,7 +46,7 @@ $this->headScript()
     ->appendFile($this->baseUrl() . '/js/jquery-ui-1.8.18.min.js')
     ->appendFile($this->baseUrl() . '/js/misc.js')
     ->appendFile($this->baseUrl() . '/js/ie-fix-html5.js', 'text/javascript', array('conditional'=>'lt IE 9'))
-    ->appendFile("http://platform.twitter.com/anywhere.js?id=i4bNsKCLceEAbuaGiZPhw&amp;v=1")
+    ->appendFile("https://platform.twitter.com/anywhere.js?id=i4bNsKCLceEAbuaGiZPhw&amp;v=1")
     ;
 
 echo $this->doctype(); ?>
@@ -57,6 +57,17 @@ echo $this->doctype(); ?>
     <?php echo $this->headLink() ?>
 	<?php echo $this->headStyle() ?>
     <?php echo $this->headScript() ?>
+    <script>
+    var _prum = [['id', '52b7dfbbabe53d2772000000'],
+                ['mark', 'firstbyte', (new Date()).getTime()]];
+    (function() {
+        var s = document.getElementsByTagName('script')[0]
+          , p = document.createElement('script');
+        p.async = 'async';
+        p.src = '//rum-static.pingdom.net/prum.min.js';
+        s.parentNode.insertBefore(p, s);
+    })();
+    </script>
 </head>
 <body>
     <header>

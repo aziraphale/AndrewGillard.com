@@ -56,13 +56,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 //        $pageCache->start();
         
         $cache = Zend_Cache::factory(   'Core',
-                                        'Apc',// 'File', 
+                                        #'Apc',// 'File', 
+                                        'File',
                                         array(
                                             'lifetime' => 300,
                                             'automatic_serialization' => true
                                         ),
                                         array(
-//                                            'cache_dir' => APPLICATION_PATH.'/tmp'
+                                            'cache_dir' => APPLICATION_PATH.'/tmp'
                                         ));
         Zend_Registry::set('cache', $cache);
     }
