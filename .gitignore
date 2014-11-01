@@ -5,8 +5,10 @@
 *.php_
 Thumbs.db
 *.*~
-/logs
-/public/gallery-demo
+/logs/*.log
+/public/qd/d/*.apk
+/public/f-list/*.cache
+/public/cached/
 /public/squigma
 /public/testz
 /public/shopping-list-demo
