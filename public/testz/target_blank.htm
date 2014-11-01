@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Automatic target="_blank" Replacement Test</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<script type="text/javascript">
+window.onload = function() {
+	var aTags = document.getElementsByTagName('a');
+	for (var i=0; aTags[i]; i++)
+		if (aTags[i].rel == 'newwindow') aTags[i].onclick = function() {window.open(this.href);return false;}
+}
+</script>
+</head>
+<body>
+
+<p>Stuff! <a href="http://news.bbc.co.uk/" rel="newwindow">Link!</a></p>
+
+</body>
+</html>

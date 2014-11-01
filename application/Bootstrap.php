@@ -36,33 +36,34 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     }
     
     protected function _initCache() {
-        $pageCacheRegexps = array(
-            '^/discworld/language-graphs' => array( 'cache'=>true,
-                                                    'cache_with_post_variables'=>true,
-                                                    'make_id_with_post_variables'=>true),
+        //$pageCacheRegexps = array(
+//            '^/discworld/language-graphs' => array( 'cache'=>true,
+//                                                    'cache_with_post_variables'=>true,
+//                                                    'make_id_with_post_variables'=>true),
 //            '^/$' => array('cache'=>true),
-            '^/' => array('cache'=>true), // just cache everything
-            
-        );
-        $pageCache = Zend_Cache::factory(   'Page',
-                                            'Apc', //'File',
-                                            array(
-                                                'lifetime' => 900,
-                                                'debug_header' => false,
-                                                'regexps' => $pageCacheRegexps,
-                                            ),
-                                            array()
-                                        );
-        $pageCache->start();
+//            '^/' => array('cache'=>true), // just cache everything
+//            
+//        );
+//        $pageCache = Zend_Cache::factory(   'Page',
+//                                            'Apc', //'File',
+//                                            array(
+//                                                'lifetime' => 900,
+//                                                'debug_header' => false,
+//                                                'regexps' => $pageCacheRegexps,
+//                                            ),
+//                                            array()
+//                                        );
+//        $pageCache->start();
         
         $cache = Zend_Cache::factory(   'Core',
-                                        'Apc',// 'File', 
+                                        #'Apc',// 'File', 
+                                        'File',
                                         array(
                                             'lifetime' => 300,
                                             'automatic_serialization' => true
                                         ),
                                         array(
-//                                            'cache_dir' => APPLICATION_PATH.'/tmp'
+                                            'cache_dir' => APPLICATION_PATH.'/tmp'
                                         ));
         Zend_Registry::set('cache', $cache);
     }

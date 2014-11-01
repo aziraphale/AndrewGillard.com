@@ -1,0 +1,108 @@
+BODY {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	font-size: small;
+	background-color: #FFFFFF;
+	color: #000000;
+	font-weight: normal;
+}
+.headtable {
+	font-size: large;
+}
+TABLE.headtable TD, TABLE.headtable TH {
+	border-style: solid;
+	border-width: 1px;
+	border-left-color: #D8D2BD;
+	border-bottom-color: #D8D2BD;
+	border-top-color: #FFFFFF;
+	border-right-width: 0px;
+	background-image: url(images/top_tb_left.gif);
+	background-position: center left;
+	background-repeat: no-repeat;
+}
+TABLE.tb1 {
+	border: 1px solid #000000;
+}
+TABLE.tb1 TR, TABLE.tb1 TD, TABLE.tb1 TH {
+	border: 0px;
+	font-weight: normal;
+}
+TABLE.tb1 TH {
+	background-color: #E7E2CC;
+	background-image: url(images/top_tb_bg.gif);
+	background-position: bottom;
+	background-repeat: repeat-x;
+}
+P.copyright {
+	text-align: center;
+	font-size: x-small;
+	color: #999999;
+}
+P.pagestats {
+	text-align: center;
+	font-size: x-small;
+	color: #999999;
+}
+DIV.errorbox {
+	text-align: center;
+	background-color: #E7E2CC;
+	border: 2px solid #000000;
+	width: 95%;
+}
+DIV.sqlerror {
+	width: 90%;
+	text-align: center;
+	background-color: #D9D2BD;
+	border: 1px dashed #000000;
+	font-size: small;
+	font-family: "Courier New", Courier, mono;
+}
+DIV.newsbody {
+	width: 90%;
+	text-align: justify;
+}
+DIV.newsbody:first-letter {
+	font-size: 200%;
+	float: left;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+
+TABLE.news {
+	border: 1px solid #000000;
+}
+TABLE.news TD, TABLE.news TR, TABLE.news TH {
+	border-style: none;
+	border-width: 0px;
+}
+TD.lineabove {
+	border-top: 1px dashed #D8D2BD;
+}
+
+
+TABLE.comment {
+	border: 1px solid #000000;
+}
+TABLE.comment TD, TABLE.comment TR, TABLE.comment TH {
+	border-style: none;
+	border-width: 0px;
+}
+TABLE.comment TD.foot {
+	border-top: 1px dashed #D8D2BD;
+}
+
+INPUT, TEXTAREA {
+	background-color: #D8D2BD;
+	color: #000000;
+	border: 1px dashed #000000;
+}
+INPUT:focus, TEXTAREA:focus {
+	background-color: #C1D2EE;
+	color: #000075;
+	border: 1px solid #000000;
+}
+TABLE.debug TD {
+	font-family: "Courier New", Courier, mono;
+}

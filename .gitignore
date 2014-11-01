@@ -5,3 +5,9 @@
 *.php_
 Thumbs.db
 *.*~
+/logs/*.log
+/public/qd/d/*.apk
+/public/f-list/*.cache
+/public/cached/
+/public/squigma
+

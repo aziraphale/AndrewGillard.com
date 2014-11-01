@@ -1,0 +1,56 @@
+BODY {
+	margin-top: 110px;
+}
+.headtable {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	background-image: url(images/headerbackground.png);
+}
+#rightmenu {
+	position: fixed;
+}
+
+/* ##### WinXP Style Links ##### */
+.headtable A:LINK, .headtable A:VISITED {
+	color : #000075;
+	text-decoration: none;
+	border: 1px hidden;
+}
+.headtable A:HOVER, .headtable A:ACTIVE {
+	color: #000075;
+	border: 1px solid #316AC5;
+	background-color: #C1D2EE;
+	text-decoration: none;
+}
+A:LINK, A:VISITED {
+	color : #000075;
+	text-decoration: none;
+	border: 1px hidden;
+	background-color: transparent;
+}
+A:HOVER, A:ACTIVE {
+	color : #000075;
+	text-decoration : none;
+	border: 1px solid #316AC5;
+	background-color: #C1D2EE;
+}
+A:ACTIVE {
+	background-color: #98B5E2;
+}
+A:LINK.img, A:VISITED.img, A:ACTIVE.img, A:HOVER.img {
+	border: 0px none #FFFFFF;
+	background-color: transparent;
+}
+A:LINK IMG, A:VISITED IMG {
+	border: 1px solid #FFFFFF;
+}
+A:HOVER IMG {
+	border: 1px solid #316AC5;
+	background-color: #C1D2EE;
+}
+A:ACTIVE IMG {
+	border: 1px solid #316AC5;
+	background-color: #98B5E2;
+}
+/* ##### End WinXP Style Links ##### */

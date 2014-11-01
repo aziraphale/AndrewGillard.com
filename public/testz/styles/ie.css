@@ -1,0 +1,28 @@
+BODY {
+	margin-top: 0px;
+}
+.headtable {
+	background-color: #E7E2CC;
+	background-image: url(/images/top_tb_bg.gif);
+	background-position: bottom;
+	background-repeat: repeat-x;
+}
+.headtable A:LINK, .headtable A:VISITED {
+	color : #000075;
+	text-decoration: none;
+	border: 0px none;
+}
+A:LINK, A:VISITED {
+	color : #000075;
+	text-decoration: none;
+	border: 0px none;
+}
+A:HOVER, A:ACTIVE {
+	color : #000075;
+	text-decoration : none;
+	border: 1px solid #316AC5;
+	background-color: #C1D2EE;
+}
+A:ACTIVE {
+	background-color: #98B5E2;
+}

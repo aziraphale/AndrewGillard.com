@@ -1,0 +1,25 @@
+<?php
+
+$mc = new Memcached();
+$mc->addServer('localhost', 11211);
+
+define('CACHE_KEY', 'rss-xkcd');
+define('CACHE_TIME', 3600);
+
+//ob_start('ob_gzhandler');
+header("Content-Type: application/xml");
+header("Expires: " . date('D, d M Y H:i:s T', (time()+CACHE_TIME)));
+
+$cached = true;
+if (!$xml = $mc->get(CACHE_KEY)) {
+    $cached = false;
+    $xml = file_get_contents('http://xkcd.com/rss.xml');
+
+    // <description>&lt;img src="bumblebees.png" title="know!?" alt="know!?" /&gt;</description>
+    $xml = preg_replace('/" alt="(.*?)" \/&gt;/i', '" /&gt;&lt;br&gt;&lt;b&gt;Title:&lt;/b&gt; \\1', $xml);
+
+    $mc->set(CACHE_KEY, $xml, CACHE_TIME);
+}
+
+echo $xml;
+//echo "<!-- Cached: " . ($cached ? 1 : 0) . " -->";

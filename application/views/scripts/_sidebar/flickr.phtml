@@ -14,7 +14,7 @@ try {
     <div class="flickr">
         <?php foreach ($photos as $k => /** @var Zend_Service_Flickr_Result */ $photo): ?>
             <a href="<?php echo $this->escape($photo->Large->clickUri) ?>" title="<?php echo $this->escape($photo->title) ?>; taken at <?php echo $photo->datetaken ?>">
-                <img src="<?php echo $this->escape($photo->Square->uri) ?>" alt="[Flickr Photo]" width="75" height="75">
+                <img src="<?php echo preg_replace('#(?<=^http)(?=://)#iS', 's', $this->escape($photo->Square->uri)) ?>" alt="[Flickr Photo]" width="75" height="75">
             </a>
             <?php if (($k+1) % 2 == 0): ?>
                 <br>

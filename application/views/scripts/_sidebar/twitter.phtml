@@ -1,8 +1,13 @@
 <?php
-$limit = 10;
-$twitter = new Zend_Service_Twitter();
-$tweets = $twitter->statusUserTimeline(array('id'=>18414634, 'count'=>50, 'trim_user'=>true, 'include_entities'=>true));
-//var_dump($tweets);
+try {
+    $limit = 10;
+    $twitter = new Zend_Service_Twitter();
+    $tweets = $twitter->statusUserTimeline(array('id'=>18414634, 'count'=>50, 'trim_user'=>true, 'include_entities'=>true));
+    //var_dump($tweets);
+} catch (Exception $ex) {
+    ?><!-- TWITTER ERROR: <?=$ex->getMessage()?> --><?php
+    return;
+}
 $shown = 0;
 /*
  * It should be noted that, while filtering out @replies here instead of on Twitter's end is a very
@@ -14,11 +19,6 @@ $shown = 0;
  *  argument, so it just isn't worth the effort.
  */
 ?>
-<script type="text/javascript">
-twttr.anywhere(function(T) {
-    T.hovercards();
-});
-</script>
 <?php if (count($tweets->status)): ?>
     <div class="tweets">
         <?php foreach ($tweets->status as $tweet): ?>
