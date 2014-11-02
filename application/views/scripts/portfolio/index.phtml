@@ -1,3 +1,21 @@
+<?php
+
+$baseUrl = $this->baseUrl();
+
+$pfImgUrl = function ($id) use ($baseUrl) {
+    return "$baseUrl/img/portfolio/$id.png";
+};
+
+$pfThumbUrl = function ($id) use ($baseUrl) {
+    return "$baseUrl/img/portfolio/thumbs/$id.jpg";
+};
+
+$vcScreen = function ($id) use ($baseUrl) {
+    return "$baseUrl/img/portfolio/viper-cart-screens/?file=" . urlencode($id) . ".png";
+};
+
+?>
+
 <?php if (Zend_Controller_Front::getInstance()->getParam('bootstrap')->getOption('lookingForWork')): ?>
     <article class="availableforwork">
         <p>I'm currently available for full-time, permanent work as an experienced, Zend Certified, Web Developer. If
@@ -264,9 +282,8 @@
         APIs
     </span></h3>
     <aside>
-        <a href="<?php echo $this->baseUrl() ?>/img/portfolio/andrewgillardcom.png">
-            <img src="<?php echo $this->baseUrl() ?>/img/portfolio/th_andrewgillardcom.jpg"
-                alt="Andrew's Stuff Screenshot" width="250" height="272">
+        <a href="<?= $pfImgUrl('andrewgillardcom') ?>">
+            <img src="<?= $pfThumbUrl('andrewgillardcom') ?>" alt="Andrew's Stuff Screenshot" width="250" height="272">
         </a>
     </aside>
     <p>This is the most recent iteration of my personal website. This time around it was created using the
@@ -291,9 +308,8 @@
         HTML5; JavaScript; <a href="http://jquery.com/">jQuery</a> + <a href="http://jqueryui.com/">UI</a>; CSS3
     </span></h3>
     <aside>
-        <a href="<?php echo $this->baseUrl() ?>/img/portfolio/furcodegenerator.png">
-            <img src="<?php echo $this->baseUrl() ?>/img/portfolio/th_furcodegenerator.jpg"
-                alt="Furry Code Generator Screenshot" width="250" height="254">
+        <a href="<?= $pfImgUrl('furcodegenerator') ?>">
+            <img src="<?= $pfThumbUrl('furcodegenerator') ?>" alt="Furry Code Generator Screenshot" width="250" height="254">
         </a>
     </aside>
     <p>You may have heard of the <a href="http://www.geekcode.com/">Geek Code</a> - essentially a way to describe one's
@@ -338,9 +354,8 @@
         <a href="https://developers.google.com/maps/documentation/geocoding/">Google Geocoding API</a>
     </span></h3>
     <aside>
-        <a href="<?php echo $this->baseUrl() ?>/img/portfolio/gallery.png">
-            <img src="<?php echo $this->baseUrl() ?>/img/portfolio/th_gallery.jpg" alt="Simple Image Gallery Screenshot"
-                width="250" height="327">
+        <a href="<?= $pfImgUrl('gallery') ?>">
+            <img src="<?= $pfThumbUrl('gallery') ?>" alt="Simple Image Gallery Screenshot" width="250" height="327">
         </a>
     </aside>
     <p>This script was designed to be a very simple, graphical replacement for the Apache Web server's
@@ -372,9 +387,8 @@
         Offline Web App
     </span></h3>
     <aside>
-        <a href="<?php echo $this->baseUrl() ?>/img/portfolio/shoppinglist.png">
-            <img src="<?php echo $this->baseUrl() ?>/img/portfolio/th_shoppinglist.jpg"
-                alt="Simple Shopping List Screenshot" width="250" height="188">
+        <a href="<?= $pfImgUrl('shoppinglist') ?>">
+            <img src="<?= $pfThumbUrl('shoppinglist') ?>" alt="Simple Shopping List Screenshot" width="250" height="188">
         </a>
     </aside>
     <p>I created this Web app because I was unable to find a shopping list application for my phone with the features
@@ -405,9 +419,8 @@
         Courier Tracking Integration (City Link, USPS, DHL)
     </span></h3>
     <aside>
-        <a href="<?php echo $this->baseUrl() ?>/img/portfolio/vipercart.png">
-            <img src="<?php echo $this->baseUrl() ?>/img/portfolio/th_vipercart.jpg" alt="Viper Cart Screenshot"
-                width="250" height="495">
+        <a href="<?= $pfImgUrl('vipercart') ?>">
+            <img src="<?= $pfThumbUrl('vipercart') ?>" alt="Viper Cart Screenshot" width="250" height="495">
         </a>
     </aside>
     <p class="pfmoremargin"><a href="http://www.vipercart.com/index.php">Viper Cart</a>, an
@@ -479,12 +492,12 @@
         <a href="http://www.sitemaps.org/">Sitemaps</a> group of classes that produced the required XML for search
         engines supporting the Sitemaps system.</p>
     <p>Other notable features that I wrote for Viper Cart include giving it
-        <a href="<?php echo $this->baseUrl() ?>/img/portfolio/viper-cart-screens/?file=ACP%20-%20IP%20Address%20Management.png">full IPv6 support</a>,
+        <a href="<?= $vcScreen('ACP - IP Address Management') ?>">full IPv6 support</a>,
         an <a href="http://www.opensearch.org/">OpenSearch</a> widget,
-        a <a href="<?php echo $this->baseUrl() ?>/img/portfolio/viper-cart-screens/?file=VC%20-%20Search%20Form.png">custom, advanced product search system</a>,
-        a <a href="<?php echo $this->baseUrl() ?>/img/portfolio/viper-cart-screens/?file=ACP%20-%20Users%20Online.png">Web browser user-agent analyser</a>
+        a <a href="<?= $vcScreen('VC - Search Form') ?>">custom, advanced product search system</a>,
+        a <a href="<?= $vcScreen('ACP - Users Online') ?>">Web browser user-agent analyser</a>
         (including support for several mobile devices) for statistics collection, and
-        <a href="<?php echo $this->baseUrl() ?>/img/portfolio/viper-cart-screens/?file=ACP%20-%20Admin%20Permissions.png">fine-grained access control lists</a>
+        <a href="<?= $vcScreen('ACP - Admin Permissions') ?>">fine-grained access control lists</a>
         (ACLs) for the adminstration system. It also integrated with the
         <a href="http://www.postcodeanywhere.co.uk/">Postcode Anywhere</a> API and a database of USA <strong>ZIP
         codes</strong> and <strong>Canadian post codes</strong> in order to do post/zip code-to-address lookups for
@@ -508,9 +521,8 @@
         Integration; Payment Gateway Integration
     </span></h3>
     <aside>
-        <a href="<?php echo $this->baseUrl() ?>/img/portfolio/craigbrassssytems.png">
-            <img src="<?php echo $this->baseUrl() ?>/img/portfolio/th_craigbrasssystems.jpg"
-                alt="Craig Brass Systems Screenshot" width="250" height="218">
+        <a href="<?= $pfImgUrl('craigbrassssytems') ?>">
+            <img src="<?= $pfThumbUrl('craigbrasssystems') ?>" alt="Craig Brass Systems Screenshot" width="250" height="218">
         </a>
     </aside>
     <p>The Craig Brass Systems website is the corporate site for my former employer. It consists of various
@@ -531,9 +543,8 @@
         PHP; MySQL; XHTML; <a href="http://www.smarty.net/">Smarty</a>
     </span></h3>
     <aside>
-        <a href="<?php echo $this->baseUrl() ?>/img/portfolio/lorddeathnet.png">
-            <img src="<?php echo $this->baseUrl() ?>/img/portfolio/th_lorddeathnet.jpg"
-                alt="Lord d'Eath's Stuff Screenshot" width="250" height="267">
+        <a href="<?= $pfImgUrl('lorddeathnet') ?>">
+            <img src="<?= $pfThumbUrl('lorddeathnet') ?>" alt="Lord d'Eath's Stuff Screenshot" width="250" height="267">
         </a>
     </aside>
     <p>This is the previous incarnation of this very website, my personal blog-and-such site. I created it in 2004,
@@ -550,21 +561,20 @@
         <a href="http://www.craigbrass.net/">Craig Brass' Blog</a>
         <span class="pfdate">2009</span>
     </h2>
+        a few information pages. It utilises the aforementioned <strong>CBS Framework</strong>, and pulls in data from
+    <aside>
+        <a href="<?= $pfImgUrl('craigbrassnet') ?>">
+            <img src="<?= $pfThumbUrl('craigbrassnet') ?>" alt="Craig Brass' Blog Screenshot" width="250" height="238">
+        </a>
+    </aside>
+    <p>I created this website in a few weeks for my previous employer to be used as his personal site to host a blog and
+        <strong>Twitter</strong>, <strong>Flickr</strong> and <strong>YouTube</strong>. The graphical design of this
+        site was created by a third-party designer, though I wrote most of the HTML for it.</p>
     <h3><span class="pftech">
         PHP; PDO/MySQL; XHTML; <abbr title="Craig Brass Systems">CBS</abbr> Framework;
         <a href="https://dev.twitter.com/">Twitter</a>, <a href="http://www.flickr.com/services/api/">Flickr</a> &amp;
         <a href="https://developers.google.com/youtube/">YouTube</a> APIs
     </span></h3>
-    <aside>
-        <a href="<?php echo $this->baseUrl() ?>/img/portfolio/craigbrassnet.png">
-            <img src="<?php echo $this->baseUrl() ?>/img/portfolio/th_craigbrassnet.jpg"
-                alt="Craig Brass' Blog Screenshot" width="250" height="238">
-        </a>
-    </aside>
-    <p>I created this website in a few weeks for my previous employer to be used as his personal site to host a blog and
-        a few information pages. It utilises the aforementioned <strong>CBS Framework</strong>, and pulls in data from
-        <strong>Twitter</strong>, <strong>Flickr</strong> and <strong>YouTube</strong>. The graphical design of this
-        site was created by a third-party designer, though I wrote most of the HTML for it.</p>
 </section>
 
 <section class="portfoliosite">
@@ -576,9 +586,8 @@
         PHP; MySQL; XHTML
     </span></h3>
     <aside>
-        <a href="<?php echo $this->baseUrl() ?>/img/portfolio/thirdyearproject.png">
-            <img src="<?php echo $this->baseUrl() ?>/img/portfolio/th_thirdyearproject.jpg"
-                alt="Third Year Project Screenshot" width="250" height="499">
+        <a href="<?= $pfImgUrl('thirdyearproject') ?>">
+            <img src="<?= $pfThumbUrl('thirdyearproject') ?>" alt="Third Year Project Screenshot" width="250" height="499">
         </a>
     </aside>
     <p>My <a href="<?php echo $this->baseUrl() ?>/files/Level_3_Project.pdf">final-year project</a> at university
@@ -609,9 +618,8 @@
         XHTML; <a href="http://www.smarty.net/">Smarty</a>
     </span></h3>
     <aside>
-        <a href="<?php echo $this->baseUrl() ?>/img/portfolio/web2messenger.png">
-            <img src="<?php echo $this->baseUrl() ?>/img/portfolio/th_web2messenger.jpg"
-                alt="Web2Messenger Screenshot" width="250" height="270">
+        <a href="<?= $pfImgUrl('web2messenger') ?>">
+            <img src="<?= $pfThumbUrl('web2messenger') ?>" alt="Web2Messenger Screenshot" width="250" height="270">
         </a>
     </aside>
     <p>Web2Messenger was a joint project between me and a Dutch friend of mine, Frans-Willem Hardijzer, that allows
@@ -645,9 +653,8 @@
         PHP; MySQL
     </span></h3>
     <aside>
-        <a href="<?php echo $this->baseUrl() ?>/img/portfolio/udcx.png">
-            <img src="<?php echo $this->baseUrl() ?>/img/portfolio/th_udcx.jpg" alt="uDCX Screenshot"
-                width="250" height="315">
+        <a href="<?= $pfImgUrl('udcx') ?>">
+            <img src="<?= $pfThumbUrl('udcx') ?>" alt="uDCX Screenshot" width="250" height="315">
         </a>
     </aside>
     <p>A fan-site for an on-line Role-Playing Game (RPG) I used to play regularly, Neverwinter Nights, uDCX is primarily
@@ -667,9 +674,8 @@
         PHP; XHTML; JavaScript; <a href="https://developers.google.com/maps/">Google Maps API</a>
     </span></h3>
     <aside>
-        <a href="<?php echo $this->baseUrl() ?>/img/portfolio/udcx_gmaps.png">
-            <img src="<?php echo $this->baseUrl() ?>/img/portfolio/th_udcx_gmaps.jpg" alt="uDCX Maps Screenshot"
-                width="250" height="207">
+        <a href="<?= $pfImgUrl('udcx_gmaps') ?>">
+            <img src="<?= $pfThumbUrl('udcx_gmaps') ?>" alt="uDCX Maps Screenshot" width="250" height="207">
         </a>
     </aside>
     <p>An extension to the above site is this map of the DC:X game-world which is powered by the <strong>Google Maps
