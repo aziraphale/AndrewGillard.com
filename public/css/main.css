@@ -244,7 +244,7 @@ ul.github li.github-fork:before {
     height: 16px;
     background-image: url(../img/sites.png?40f1aa);
     background-repeat: no-repeat;
-    
+
     /* copy the position from sprite-sites-githubfork */
     background-position:0px -400px;
 }
@@ -500,10 +500,11 @@ footer ul li a:hover {
     font-size: 0.8em;
     float: left;
     background-color: #BED9ED;
-    margin: -30px 0px 0px -20px;
+    margin: -30px 0px 3px -20px;
     padding: 2px 8px 4px 8px;
     border-bottom-right-radius: 10px;
     border-radius-bottomright: 10px;
+    max-width: 70%;
 }
 #mainbody .portfoliosite h3 a, #mainbody .portfoliosite h3 a {
     color: #2E648E;
@@ -515,13 +516,50 @@ footer ul li a:hover {
     float: right;
     margin-right: 10px;
 }
-#mainbody .portfoliosite .pftech {
+#mainbody .portfoliosite ul.pftech {
+    font-size: 0.8em;
+    /*float: left;*/
+    background-color: #BED9ED;
+    margin: -30px 0px 3px -20px;
+    padding: 2px 8px 4px 8px;
+    list-style-type: none;
+    border-bottom-right-radius: 10px;
+    border-radius-bottomright: 10px;
+    width: 70%;
+    text-align: left;
+}
+#mainbody .portfoliosite ul.pftech li {
+    /*float: left;*/
+    display: inline;
+    white-space: nowrap;
+}
+#mainbody .portfoliosite ul.pftech li.hasChildren {
+    white-space: normal;
+}
+#mainbody .portfoliosite ul.pftech > li:after {
+    content: ";";
+}
+#mainbody .portfoliosite ul.pftech > li:last-child:after {
+    content: "";
+}
+#mainbody .portfoliosite ul.pftech ul {
+    /*margin: -30px 0px 3px -20px;*/
+    /*padding: 2px 8px 4px 8px;*/
+    list-style-type: none;
+    display: inline;
+    padding-left: 0;
+}
+#mainbody .portfoliosite ul.pftech ul > li:after {
+    content: ",";
+}
+#mainbody .portfoliosite ul.pftech ul > li:last-child:after {
+    content: "";
 }
 #mainbody .portfoliosite p:first-of-type {
-    margin-top: 40px;
+    /*margin-top: 40px;*/
 }
 #mainbody .portfoliosite p.pfmoremargin:first-of-type {
-    margin-top: 80px;
+    /*margin-top: 80px;*/
 }
 #mainbody .portfoliosite img {
     margin: 10px;
@@ -532,6 +570,39 @@ footer ul li a:hover {
 #mainbody .portfoliosite:nth-child(even) img {
     float: right;
 }
+
+
+#mainbody .portfoliosite.ncrm,
+#mainbody .portfoliosite.maxx,
+#mainbody .portfoliosite.cbs/*,
+#mainbody .portfoliosite.personal*/ {
+    background-position: 100% 22px;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+}
+#mainbody .portfoliosite.ncrm {
+    background-image: url(../img/portfolio/logos/ncrm.png);
+    /*background-size: 682px 84px;*/
+    /*background-size: 341px 42px;*/
+    background-size: 170px 21px;
+}
+#mainbody .portfoliosite.maxx {
+    background-image: url(../img/portfolio/logos/maxx.png);
+    /*background-size: 144px 85px;*/
+    /*background-size: 72px 43px;*/
+    background-size: 36px 21px;
+}
+#mainbody .portfoliosite.cbs {
+    background-image: url(../img/portfolio/logos/cbs.jpg);
+    /*background-size: 425px 50px;*/
+    background-size: 213px 25px;
+    /*background-size: 107px 13px;*/
+}
+/*#mainbody .portfoliosite.personal {
+    background-image: url(../img/portfolio/logos/.png);
+    background-size: 500px 50px;
+}*/
+
 
 
 @font-face {
@@ -617,7 +688,7 @@ aside.cvdl span a {
 em.cvsubtle {
     font-style: oblique;
     color: rgb(128, 128, 128);
-    
+
 }
 
 .cveducationdates {
@@ -676,9 +747,9 @@ code, .code {
  * 2. s/,$/ a:before,/
  * 3. s/\{/ a:before{/
  * 4. s/background-image:url\(sites.png\);background-repeat:no-repeat/content:"";float:left;width:16px;height:16px;background-image:url(../img/sites.png);background-repeat:no-repeat;/
- * 
+ *
  * (or just use the fix-sprite-css.php script in the meta/ dir)
- * 
+ *
  * ** DON'T FORGET TO COPY THE GITHUB-FORK POSITION TO THE `ul.github li.github-fork:before` STYLE! **
  */
 .sprite-sites-zce a:before,
