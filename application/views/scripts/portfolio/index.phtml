@@ -111,12 +111,13 @@ $vcScreen = function ($id) use ($baseUrl) {
     -->
     <p>I make heavy use of a distributed IRC client called Quassel, which stores all of its chat logs in a central MySQL
         database on my main remote server. This system is very convenient for seamlessly jumping between many client
-        devices, but it has the disadvantage of making it difficult to quickly search through what can amount to many
-        years' worth of chat logs.</p>
+        devices (desktop PC, laptop, smartphone, etc.), but it has the disadvantage of making it difficult to quickly
+        search through what can amount to many years' worth of chat logs.</p>
     <p>In order to facilitate easy searching of these logs, a Web-based log search script was created by someone by the
-        name of m4yer. While functional, this script was rather basic and the code seemed a little outdated. As such, I
-        set out to rewrite it with up-to-date techniques such as full OO programming, MVC, and using systems like
-        Bootstrap, Composer, Bower and SCSS, while also adding extra functionality at the same time.</p>
+        name of <a href="https://gitorious.org/quassel-backlog-search">m4yer</a>. While functional, this script was
+        rather basic and the code seemed a little outdated. As such, I set out to rewrite it with up-to-date techniques
+        such as full OO programming, MVC, and using systems like Bootstrap, Composer, Bower and SCSS, while also adding
+        extra functionality at the same time.</p>
     <p>Unfortunately this project is still in-progress and frustratingly-incomplete, however
         <a href="https://github.com/aziraphale/Quassel-LogSearch/tree/rewrite">the code that I've pushed to github</a>
         is, at least, a good indication of the direction in which I was going, as well as the style of code that I write
@@ -142,7 +143,9 @@ $vcScreen = function ($id) use ($baseUrl) {
         </a>
     </aside>
     -->
-    <p></p>
+    <p>Rather like the photo/image gallery listed below, this script aims to present a directory of video files to a visitor via a Web interface - again, with no/minimal configuration in each directory in which it's used. It operates on two directory levels, allowing for one level of categorisation of the videos.</p>
+    <p>Each video is analysed by the script (using an ffmpeg/libav library) which extracts details such as the video's dimensions, length, video and audio codecs, number of audio channels, and so on. These data are then cached in a hidden file to minimise subsequent load time and load on the server. The script also generates both static and animated thumbnail images (using ffmpeg/libav and ImageMagick) from the video source: the static image is displayed normally, being temporarily replaced with the animated image when the user hovers their mouse cursor over the video details. These thumbnail images are obviously also cached.</p>
+    <p>There's no built-in way of displaying/embedding the videos within the browser window, as this is both extremely difficult to get to work without using plugins, transcoding video, etc., and because it was simply not something I needed the script to do! Instead it's easy for viewers to just download the video files to their own computers and watch them there (or stream them, if their browser or other video player supports that).</p>
 </section>
 
 <section class="portfoliosite maxx">
@@ -163,6 +166,8 @@ $vcScreen = function ($id) use ($baseUrl) {
         </a>
     </aside>
     -->
+    <p>This was developed for the Breakthrough Breast Cancer charity as a way of communicating difficult information to women regarding screening for breast cancer. It was designed to be very striking, "different" and a bit playful in order to lighten the mood of what can be a very dark and tough subject.</p>
+    <p>To that end we used a jQuery library that I had previously discovered called Scroll Path which causes a Web browser to appear to scroll in a non-linear manner - instead of merely scrolling up and down, the the standard ways of scrolling through a Web page instead cause the browser to appear to scroll in many directions in a convoluted path through the content. The simple fact that most people had never seen a website like this before caused it to gain a lot of attention for the charity and no doubt had a large part to play in its subsequent winning of four separate awards (see below).</p>
     <p>This website has <strong>won four awards!</strong></p>
     <ul>
         <li>
@@ -215,7 +220,9 @@ $vcScreen = function ($id) use ($baseUrl) {
         </a>
     </aside>
     -->
-    <p></p>
+    <p>A common problem at MAXX was that clients who owned and retained control of their own domain names would need to set up the appropriate DNS records to point their domains at MAXX's Web servers. This only required two records, but for people who aren't already familiar with DNS this would often still prove too complicated and was only further complicated by certain domain registrars/hosts having incomprehensible, functionally-limited or downright broken control panels - and some even had staff who claimed that the records that were required were actually impossible to set.</p>
+    <p>Since I was the most technically-inclined person in the office, I was always the one who was asked (either by colleagues or clients) to check on the state of client domains to see if the domain had yet been set up correctly - this saved them the time of contacting the remotely-located sysadmin. This rapidly became a large waste of my time, having to frequently type and run a handful of `dig` commands. I therefore wrote, over the period of a few weeks, a script to automate all of the work for me, to the point that it was possible for me to supply a URL to colleagues, or even clients, which would check the domain, report exactly what was wrong and how to fix it. This could even be supplied to clients' domain hosts, though I don't think that ever happened.</p>
+    <p>Essentially this is just an example of me writing a PHP script to automate a common, time-consuming task (in this case it was a Web-based script, but many of my automation scripts are purely command line-based).</p>
 </section>
 
 <section class="portfoliosite maxx">
@@ -233,7 +240,9 @@ $vcScreen = function ($id) use ($baseUrl) {
         </a>
     </aside>
     -->
-    <p></p>
+    <p>Britannia Pharmaceuticals asked MAXX to create for them a Web system that would enable the sharing of documents between themselves and their worldwide partners. This site was the result.</p>
+    <p>It's relatively basic and mostly consists of an authentication system, an upload form with a way of selecting which organisations should be allowed to view which documents, and a system for searching, browsing and viewing the uploaded documents.</p>
+    <p>The complex part is that each uploaded document has all textual content extracted so that the search engine is able to find matches inside the uploaded documents. The formats searched include Microsoft Word, Excel and PowerPoint (both the old Office pre-2007 .doc/.xls/.ppt formats and the new, XML-based, .docx/.xlsx/.pptx formats) and PDF. The text extraction was primarily conducted using third-party libraries, such as `antiword`, and the XML-based formats are easy for a PHP script to interpret, however I was unable to find a reader for the old PowerPoint (.ppt) format and ended up reverse-engineering much of the PPT format myself, as the documentation was far too long and complex for the time I had available.</p>
 </section>
 
 <section class="portfoliosite maxx">
